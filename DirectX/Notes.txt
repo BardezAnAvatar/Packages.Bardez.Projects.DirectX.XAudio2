@@ -1,0 +1,17 @@
+Programming reference fo XAudio2:
+http://msdn.microsoft.com/en-us/library/windows/desktop/ee415899%28v=VS.85%29.aspx
+
+End goal is to implement at least four of these:
+IXAudio2				Provides information about the IXAudio2 interface.
+IXAudio2Voice			Provides information about the IXAudio2Voice interface.
+IXAudio2SourceVoice		Provides information about the IXAudio2SourceVoice interface.
+IXAudio2SubmixVoice		Provides information about the IXAudio2SubmixVoice interface.
+IXAudio2MasteringVoice	Provides information about the IXAudio2MasteringVoice interface.
+IXAudio2EngineCallback	Provides information about the IXAudio2EngineCallback interface.
+IXAudio2VoiceCallback	Provides information about the IXAudio2VoiceCallback interface.
+
+Specifically:
+IXAudio2				
+IXAudio2Voice			
+IXAudio2SourceVoice		
+IXAudio2MasteringVoice
