@@ -47,6 +47,8 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>\Code\DirectX\Include;$(IncludePath)</IncludePath>
     <LibraryPath>\Code\DirectX\Lib\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>bin\$(Configuration)\</OutDir>
+    <IntDir>tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
