@@ -49,18 +49,21 @@ XAudio2Interface::XAudio2Interface()
 
 #pragma region Destruction
 /// <summary>Destrutor</summary>
+/// <remarks>Dispose()</remarks>
 XAudio2Interface::~XAudio2Interface()
 {
 	this->DisposeUnmanaged();
 }
 
 /// <summary>Destrutor</summary>
+/// <remarks>Finalize()</remarks>
 XAudio2Interface::!XAudio2Interface()
 {
 	this->DisposeUnmanaged();
 }
 
 /// <summary>Destrutor logic, disposes the object</summary>
+/// <remarks>There are only managed references, so either Finalize or Dispose would be calling</remarks>
 void XAudio2Interface::DisposeUnmanaged()
 {
 	// Dispose the XAudio2 interface
@@ -408,7 +411,7 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends, System::Collections::Generic::List<EffectDescriptor^>^ effectChain)
 {
 	SourceVoice^ voice;
-	this->CreateSourceVoice(format, flags, freqRatio, callback, sends, effectChain);
+	this->CreateSourceVoice(voice, format, flags, freqRatio, callback, sends, effectChain);
 	return voice;
 }
 
