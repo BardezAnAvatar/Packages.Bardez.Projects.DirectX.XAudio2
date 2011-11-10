@@ -79,7 +79,6 @@ namespace Bardez
 						}
 					}
 
-
 					/// <summary>Positions of the audio channels</summary>
 					property System::UInt32 ChannelMask
 					{

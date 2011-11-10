@@ -90,6 +90,7 @@ namespace Bardez
 					!XAudio2Interface();
 
 					/// <summary>Destrutor logic, disposes the object</summary>
+					/// <remarks>There are only managed references, so either Finalize or Dispose would be calling</remarks>
 					void DisposeUnmanaged();
 				#pragma endregion
 					
@@ -418,10 +419,6 @@ namespace Bardez
 					/// <param name="sampleRate">Input sample rate</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateSubmixVoice(SubmixVoice^% submixVoice, System::UInt32 channels, System::UInt32 sampleRate);
-					
-
-
-
 					
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="channels">Number of input channels</param>
