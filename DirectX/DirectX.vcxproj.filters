@@ -48,12 +48,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Wave Format Extensible.h">
-      <Filter>Header Files\Wave Formats</Filter>
-    </ClInclude>
-    <ClInclude Include="Wave Format Ex.h">
-      <Filter>Header Files\Wave Formats</Filter>
-    </ClInclude>
     <ClInclude Include="XAudio2 Interface.h">
       <Filter>Header Files\XAudio2 Classes</Filter>
     </ClInclude>
@@ -143,9 +137,6 @@
     <ClCompile Include="Effect Base.cpp">
       <Filter>Source Files\XAPO</Filter>
     </ClCompile>
-    <ClCompile Include="Wave Format Extensible.cpp">
-      <Filter>Source Files\Wave Formats</Filter>
-    </ClCompile>
     <ClCompile Include="XAudio2 Interface.cpp">
       <Filter>Source Files\XAudio2 Classes</Filter>
     </ClCompile>
@@ -187,9 +178,6 @@
     </ClCompile>
     <ClCompile Include="Debug Configuration.cpp">
       <Filter>Source Files\XAudio2 Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Wave Format Ex.cpp">
-      <Filter>Source Files\Wave Formats</Filter>
     </ClCompile>
     <ClCompile Include="Unmanaged Engine Callback Base.cpp">
       <Filter>Source Files\XAudio2 Classes\Callbacks</Filter>
