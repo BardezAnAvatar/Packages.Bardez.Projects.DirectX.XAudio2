@@ -146,7 +146,7 @@ namespace Bardez
 					AudioBuffer() {}
 
 					/// <summary>Definition constructor</summary>
-					/// <param name="flagsCreation">Buffer flags. May be 0 or XAUDIO2_END_OF_STREAM</param>
+					/// <param name="flagsCreation">Buffer flags. May be 0 or XAUDIO2_END_OF_STREAM (0x0040)</param>
 					/// <param name="data">Audio data stream</param>
 					/// <param name="beginPlay">Sample # within audio data to start playing</param>
 					/// <param name="lengthPlay">Length of audio samples to play</param>

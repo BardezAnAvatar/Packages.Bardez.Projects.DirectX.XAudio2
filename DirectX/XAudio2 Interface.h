@@ -19,9 +19,9 @@
 #include "Submix Voice.h"
 #include "Version.h"
 #include "Voice Callback.h"
-#include "Wave Format Ex.h"
 
 using namespace System;
+using namespace Bardez::Projects::Win32::Audio;
 
 namespace Bardez
 {

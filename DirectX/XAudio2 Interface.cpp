@@ -2,6 +2,8 @@
 #include "Unmanaged Engine Callback Base.h"
 #include "Unmanaged Voice Callback Base.h"
 #include "XAudio2 Interface.h"
+#include "Wave Format Ex API Converter.h"
+#include "Wave Format Extensible API Converter.h"
 
 //used to force the linker to link to the correct library
 #pragma comment(lib, "ole32.lib") //for CoInitializeEX, CoCreateInstance
@@ -260,7 +262,7 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 	IXAudio2SourceVoice* ptr = NULL;
 	XAUDIO2_EFFECT_CHAIN* chain = GetEffectChain(effectChain);	//static method
 	XAUDIO2_VOICE_SENDS* output = GetVoiceSends(sends);			//static method
-	WAVEFORMATEX sourceFormat = format->ToUnmanaged();
+	WAVEFORMATEX sourceFormat = WaveFormatExWin32Converter::To_WAVEFORMATEX(format);
 	IXAudio2VoiceCallback* voiceCallback = NULL;
 
 	if (callback != nullptr)
@@ -292,7 +294,6 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 	//wave->cbSize = 16;
 	//ResultCode result = (ResultCode)this->XAudio2->CreateSourceVoice(ptrSrc, wave);
 	*/
-#pragma endregion
 
 	//WAVEFORMATEX* wave = new WAVEFORMATEX;
 
@@ -307,6 +308,7 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 
 	////works less badly, at least, if no copy
 	//ResultCode result = (ResultCode)this->XAudio2->CreateSourceVoice(&ptr, wave);
+#pragma endregion
 	
 	ResultCode result = (ResultCode)this->XAudio2->CreateSourceVoice(&ptr, &sourceFormat, flags, freqRatio, voiceCallback, output, chain);
 	sourceVoice = gcnew SourceVoice(ptr);
@@ -694,7 +696,7 @@ DeviceDetails^ XAudio2Interface::GetDeviceDetails(System::UInt32 index)
 		detail->DeviceId = gcnew String(details.DeviceID);
 		detail->DisplayName = gcnew String(details.DisplayName);
 		detail->Device_Role = (DeviceRole)details.Role;
-		detail->OutputFormat = gcnew WaveFormatExtensible(details.OutputFormat);
+		detail->OutputFormat = WaveFormatExtensibleWin32Converter::BuildWaveFormatExtensible(details.OutputFormat);
 	}
 
 	return detail;

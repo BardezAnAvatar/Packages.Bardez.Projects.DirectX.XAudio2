@@ -2,11 +2,10 @@
 #define Bardez_Projects_Directx_XAudio2_DEVICE_DETAILS
 
 #include "Device Role.h"
-#include "Wave Format Extensible.h"
 	
 using namespace System;
 using namespace System::Text;
-using namespace Bardez::Projects::DirectX::Sound;
+using namespace Bardez::Projects::Win32::Audio;
 
 namespace Bardez
 {
