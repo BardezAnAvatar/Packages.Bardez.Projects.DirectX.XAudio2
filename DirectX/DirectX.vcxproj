@@ -82,6 +82,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Break Mask.h" />
+    <ClInclude Include="Callback Delegates.h" />
     <ClInclude Include="Debug Configuration.h" />
     <ClInclude Include="Effect Base.h" />
     <ClInclude Include="Effect Parameter Base.h" />
@@ -117,6 +118,7 @@
     <ClCompile Include="Effect Base.cpp" />
     <ClCompile Include="Effect Descriptor.cpp" />
     <ClCompile Include="Effect Parameter Base.cpp" />
+    <ClCompile Include="Engine Callback.cpp" />
     <ClCompile Include="Filter Parameter.cpp" />
     <ClCompile Include="Mastering Voice.cpp" />
     <ClCompile Include="Performance Data.cpp" />
@@ -125,6 +127,7 @@
     <ClCompile Include="Audio Buffer.cpp" />
     <ClCompile Include="Unmanaged Engine Callback Base.cpp" />
     <ClCompile Include="Unmanaged Voice Callback Base.cpp" />
+    <ClCompile Include="Voice Callback.cpp" />
     <ClCompile Include="Voice Details.cpp" />
     <ClCompile Include="Voice Send Descriptor.cpp" />
     <ClCompile Include="Voice State.cpp" />

@@ -138,6 +138,9 @@
     <ClInclude Include="Wave Format Extensible API Converter.h">
       <Filter>Header Files\Wave Formats</Filter>
     </ClInclude>
+    <ClInclude Include="Callback Delegates.h">
+      <Filter>Header Files\XAudio2 Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Effect Base.cpp">
@@ -199,6 +202,12 @@
     </ClCompile>
     <ClCompile Include="Wave Format Extensible API Converter.cpp">
       <Filter>Source Files\Wave Formats</Filter>
+    </ClCompile>
+    <ClCompile Include="Voice Callback.cpp">
+      <Filter>Source Files\XAudio2 Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Callback.cpp">
+      <Filter>Source Files\XAudio2 Classes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
