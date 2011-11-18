@@ -141,7 +141,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Win32 Structures\Win32 Structures.vcxproj">
+    <ProjectReference Include="..\..\Win32 Structures\Win32 Structures.vcxproj">
       <Project>{257201a0-0b65-4ea0-ac04-0b8005aecc37}</Project>
     </ProjectReference>
   </ItemGroup>
