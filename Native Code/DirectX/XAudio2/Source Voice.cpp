@@ -15,6 +15,19 @@ void SourceVoice::XAudio2SourceVoice::set(IXAudio2SourceVoice* value)
 {
 	this->ptrVoice = System::IntPtr(value);
 }
+
+/// <summary>Reference to the voice callback object for this source voice</summary>
+VoiceCallback^ SourceVoice::Callback::get()
+{
+	return this->callback;
+}
+
+/// <summary>Reference to the voice callback object for this source voice</summary>
+/// <param name="value">Instance to reference</param>
+void SourceVoice::Callback::set(VoiceCallback^ value)
+{
+	this->callback = value;
+}
 #pragma endregion
 					
 
@@ -22,9 +35,11 @@ void SourceVoice::XAudio2SourceVoice::set(IXAudio2SourceVoice* value)
 #pragma region Construction
 /// <summary>Definition constructor</summary>
 /// <param name="pointer">Pointer to an XAudio2 source voice interface object</param>
-SourceVoice::SourceVoice(IXAudio2SourceVoice* pointer)
+/// <param name="callback">Callback instance to reference</param>
+SourceVoice::SourceVoice(IXAudio2SourceVoice* pointer, VoiceCallback^ callback)
 {
 	this->XAudio2SourceVoice = pointer;
+	this->callback = callback;
 }
 #pragma endregion
 					

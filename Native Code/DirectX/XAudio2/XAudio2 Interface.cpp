@@ -270,48 +270,9 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 		voiceCallback = new UnmanagedVoiceCallbackBase(callback);
 		callback->CallbackPointer = System::IntPtr(voiceCallback);
 	}
-
-#pragma region decprecated code
-	/*
-	//ResultCode result = (ResultCode)this->XAudio2->CreateSourceVoice(&ptr, &sourceFormat, flags, freqRatio, voiceCallback, output, chain);
-	//ResultCode result = (ResultCode)this->XAudio2->CreateSourceVoice(&ptr, &sourceFormat, 0, 2.0f, NULL, NULL, NULL);
-
-	//pin_ptr<IXAudio2SourceVoice*> source = &ptr;
-	//pin_ptr<WAVEFORMATEX> wave = &sourceFormat;
-	//ResultCode result = (ResultCode)this->XAudio2->CreateSourceVoice(source, wave, 0, 2.0f, NULL, NULL, NULL);
-	
-	//pin_ptr<IXAudio2SourceVoice*> source = &ptr;
-	//WAVEFORMATEX wave = {0};
-	//wave.wBitsPerSample = 16;
-	//wave.cbSize = 22;
-	//ResultCode result = (ResultCode)this->XAudio2->CreateSourceVoice(source, &wave, 0, 2.0f, NULL, NULL, NULL);
-	
-	//OMG, THIS WORKS. IT WAS THE DEREFERENCE that was ghey@
-	
-	//IXAudio2SourceVoice* ptrTop = NULL;
-	//IXAudio2SourceVoice** ptrSrc = &ptrTop;
-	//WAVEFORMATEX* wave = new WAVEFORMATEX;
-	//wave->cbSize = 16;
-	//ResultCode result = (ResultCode)this->XAudio2->CreateSourceVoice(ptrSrc, wave);
-	*/
-
-	//WAVEFORMATEX* wave = new WAVEFORMATEX;
-
-	//////copy from format unmanaged
-	//wave->wFormatTag = sourceFormat.wFormatTag;
-	//wave->nChannels = sourceFormat.nChannels;
-	//wave->nSamplesPerSec = sourceFormat.nSamplesPerSec;
-	//wave->nAvgBytesPerSec = sourceFormat.nAvgBytesPerSec;
-	//wave->nBlockAlign = sourceFormat.nBlockAlign;
-	//wave->wBitsPerSample = sourceFormat.wBitsPerSample;
-	//wave->cbSize = sourceFormat.cbSize;
-
-	////works less badly, at least, if no copy
-	//ResultCode result = (ResultCode)this->XAudio2->CreateSourceVoice(&ptr, wave);
-#pragma endregion
 	
 	ResultCode result = (ResultCode)this->XAudio2->CreateSourceVoice(&ptr, &sourceFormat, flags, freqRatio, voiceCallback, output, chain);
-	sourceVoice = gcnew SourceVoice(ptr);
+	sourceVoice = gcnew SourceVoice(ptr, callback);
 	return result;
 }
 

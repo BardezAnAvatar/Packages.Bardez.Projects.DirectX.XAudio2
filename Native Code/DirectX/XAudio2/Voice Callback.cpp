@@ -164,41 +164,29 @@ void VoiceCallback::ProcessingPassStart::raise(System::UInt32 bytesRequired)
     this->processingPassStart(bytesRequired);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 /// <summary>Called when the voice finishes processing a buffer</summary>
 /// <param name="bufferContext">Pointer to a buffer context, defined and used by the client software.</param>
-void VoiceCallback::OnBufferEnd(System::IntPtr bufferContext)
+void VoiceCallback::RaiseBufferEnd(System::IntPtr bufferContext)
 {
 	this->BufferEnd(bufferContext);
 }
 
 /// <summary>Called when the voice starts processing a buffer</summary>
 /// <param name="bufferContext">Pointer to a buffer context, defined and used by the client software.</param>
-void VoiceCallback::OnBufferStart(System::IntPtr bufferContext)
+void VoiceCallback::RaiseBufferStart(System::IntPtr bufferContext)
 {
     this->BufferStart(bufferContext);
 }
 
 /// <summary>Called when the voice finishes processing a loop</summary>
 /// <param name="bufferContext">Pointer to a buffer context, defined and used by the client software.</param>
-void VoiceCallback::OnLoopEnd(System::IntPtr bufferContext)
+void VoiceCallback::RaiseLoopEnd(System::IntPtr bufferContext)
 {
     this->LoopEnd(bufferContext);
 }
 
 /// <summary>Called when the voice finishes processing an audio stream</summary>
-void VoiceCallback::OnStreamEnd()
+void VoiceCallback::RaiseStreamEnd()
 {
     this->StreamEnd();
 }
@@ -206,20 +194,20 @@ void VoiceCallback::OnStreamEnd()
 /// <summary>Called when the voice encounters a critical error</summary>
 /// <param name="bufferContext">Pointer to a buffer context, defined and used by the client software.</param>
 /// <param name="error">Error encountered</param>
-void VoiceCallback::OnVoiceError(System::IntPtr bufferContext, ResultCode error)
+void VoiceCallback::RaiseVoiceError(System::IntPtr bufferContext, ResultCode error)
 {
 	this->Error(bufferContext, error);
 }
 
 /// <summary>Called just after the processing pass for the voice ends</summary>
-void VoiceCallback::OnVoiceProcessingPassEnd()
+void VoiceCallback::RaiseVoiceProcessingPassEnd()
 {
     this->ProcessingPassEnd();
 }
 
 /// <summary>Called during each processing pass for each voice, just before XAudio2 reads data from the voice's buffer queue.</summary>
 /// <param name="bytesRequired">The number of bytes that need to be submitted to avoid voice starvation</param>
-void VoiceCallback::OnVoiceProcessingPassStart(System::UInt32 bytesRequired)
+void VoiceCallback::RaiseVoiceProcessingPassStart(System::UInt32 bytesRequired)
 {
     this->ProcessingPassStart(bytesRequired);
 }

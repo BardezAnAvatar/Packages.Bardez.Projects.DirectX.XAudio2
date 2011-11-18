@@ -34,7 +34,7 @@ namespace Bardez
 
 
 				#pragma region Construction
-				public:
+				internal:
 					/// <summary>Definition constructor</summary>
 					/// <param name="pointer">Pointer to an XAudio2 submix voice interface object</param>
 					SubmixVoice(IXAudio2SubmixVoice* pointer);

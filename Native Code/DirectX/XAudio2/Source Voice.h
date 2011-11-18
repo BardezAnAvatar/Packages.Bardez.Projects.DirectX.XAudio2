@@ -6,6 +6,7 @@
 #include "Audio Buffer.h"
 #include "Version.h"
 #include "Voice.h"
+#include "Voice Callback.h"
 #include "Voice State.h"
 #include "WMA Buffer.h"
 
@@ -23,6 +24,14 @@ namespace Bardez
 				///	</remarks>
 				public ref class SourceVoice : Voice
 				{
+				#pragma region Fields
+				protected:
+					/// <summary>Reference to the voice callback object for this source voice</summary>
+					VoiceCallback^ callback;
+				#pragma endregion
+					
+
+
 				#pragma region Properties
 				internal:
 					/// <summary>Property to access the XAudio2MasteringVoice pointer, wrapping to a .NET IntPtr</summary>
@@ -31,15 +40,24 @@ namespace Bardez
 						IXAudio2SourceVoice* get();
 						void set(IXAudio2SourceVoice* value);
 					}
+
+				public:
+					/// <summary>Reference to the voice callback object for this source voice</summary>
+					property VoiceCallback^ Callback
+					{
+						VoiceCallback^ get();
+						void set(VoiceCallback^ value);
+					}
 				#pragma endregion
 					
 
 
 				#pragma region Construction
-				public:
+				internal:
 					/// <summary>Definition constructor</summary>
 					/// <param name="pointer">Pointer to an XAudio2 source voice interface object</param>
-					SourceVoice(IXAudio2SourceVoice* pointer);
+					/// <param name="callback">Callback instance to reference</param>
+					SourceVoice(IXAudio2SourceVoice* pointer, VoiceCallback^ callback);
 				#pragma endregion
 					
 
