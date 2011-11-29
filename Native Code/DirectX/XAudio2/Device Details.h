@@ -101,7 +101,7 @@ namespace Bardez
 						builder->Append("\tDevice Role:     ");
 						builder->Append(this->deviceRole.ToString());
 						builder->AppendLine(System::String::Empty);
-						builder->AppendLine("\tOutput format:");
+						builder->AppendLine("Output format:");
 						builder->Append(this->outputFormat->ToDescriptionString());
 						builder->AppendLine(System::String::Empty);
 

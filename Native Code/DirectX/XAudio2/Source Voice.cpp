@@ -484,7 +484,7 @@ ResultCode SourceVoice::Start()
 /// <returns>S_OK on success, otherwise an error code.</returns>
 ResultCode SourceVoice::Stop(System::UInt32 flags, System::UInt32 operationSet)
 {
-	return (ResultCode)this->XAudio2SourceVoice->Start(flags, operationSet);
+	return (ResultCode)this->XAudio2SourceVoice->Stop(flags, operationSet);
 }
 
 
