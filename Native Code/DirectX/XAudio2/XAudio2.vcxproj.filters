@@ -57,9 +57,6 @@
     <ClInclude Include="Device Role.h">
       <Filter>Header Files\XAudio2 Components\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="Result Codes.h">
-      <Filter>Header Files\XAudio2 Components\Enums</Filter>
-    </ClInclude>
     <ClInclude Include="Filter Types.h">
       <Filter>Header Files\XAudio2 Components\Enums</Filter>
     </ClInclude>

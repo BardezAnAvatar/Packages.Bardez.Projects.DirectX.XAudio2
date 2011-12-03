@@ -1,9 +1,9 @@
 
-#include "Result Codes.h"
 #include "Unmanaged Voice Callback Base.h"
 
 
 using namespace Bardez::Projects::DirectX::XAudio2;
+using namespace Bardez::Projects::Win32;
 
 
 #pragma region Construction

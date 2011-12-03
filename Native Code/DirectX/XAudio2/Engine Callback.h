@@ -3,7 +3,8 @@
 #define Bardez_Projects_Directx_XAudio2_EngineCallback
 
 #include "Callback Delegates.h"
-#include "Result Codes.h"
+
+using namespace Bardez::Projects::Win32;
 
 namespace Bardez
 {

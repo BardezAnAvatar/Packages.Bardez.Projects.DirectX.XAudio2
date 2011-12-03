@@ -92,7 +92,6 @@
     <ClInclude Include="Filter Types.h" />
     <ClInclude Include="Performance Data.h" />
     <ClInclude Include="Processor.h" />
-    <ClInclude Include="Result Codes.h" />
     <ClInclude Include="Mastering Voice.h" />
     <ClInclude Include="Source Voice.h" />
     <ClInclude Include="Submix Voice.h" />

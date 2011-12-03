@@ -6,12 +6,12 @@
 #include "Effect Descriptor.h"
 #include "Effect Parameter Base.h"
 #include "Filter Parameter.h"
-#include "Result Codes.h"
 #include "Voice Details.h"
 #include "Voice Send Descriptor.h"
 
 using namespace System;
 using namespace Bardez::Projects::DirectX::XAudio2::XAPO;
+using namespace Bardez::Projects::Win32;
 
 namespace Bardez
 {

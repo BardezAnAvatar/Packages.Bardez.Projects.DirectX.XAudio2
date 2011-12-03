@@ -14,13 +14,13 @@
 #include "Mastering Voice.h"
 #include "Performance Data.h"
 #include "Processor.h"
-#include "Result Codes.h"
 #include "Source Voice.h"
 #include "Submix Voice.h"
 #include "Version.h"
 #include "Voice Callback.h"
 
 using namespace System;
+using namespace Bardez::Projects::Win32;
 using namespace Bardez::Projects::Win32::Audio;
 
 namespace Bardez
