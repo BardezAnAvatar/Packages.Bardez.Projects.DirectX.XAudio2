@@ -42,7 +42,7 @@ SourceVoice::SourceVoice(IXAudio2SourceVoice* pointer, VoiceCallback^ callback)
 	this->callback = callback;
 }
 #pragma endregion
-					
+
 
 
 #pragma region Destruction
