@@ -366,7 +366,7 @@ ResultCode MasteringVoice::SetOutputVoices(array<VoiceSendDescriptor^>^ voices)
 }
 
 /// <summary>Sets the voice's volume output matrix for each channel</summary>
-/// <param name="volume">Value of the oerall volume to set for this voice</param>
+/// <param name="volume">Value of the overall volume to set for this voice</param>
 /// <param name="operationSet">Operation set of the effect (XAUDIO2_COMMIT_NOW == 0?), identifiying a batch</param>
 /// <returns>S_OK on success, otherwise an error code.</returns>
 /// <remarks>
