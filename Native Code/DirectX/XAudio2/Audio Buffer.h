@@ -57,6 +57,12 @@ namespace Bardez
 
 					/// <summary>Pointer to a buffer context, defined and used by the client software.</summary>
 					System::IntPtr context;
+
+					/// <summary>
+					///		Pointer to data that wll not be garbage collected. Used to get a pointer to the Byte Array without using
+					//		Marshal to copy the data (which is unnecessarily slow).
+					/// </summary>
+                    System::Runtime::InteropServices::GCHandle gcHandle;
 				#pragma endregion
 
 
@@ -161,6 +167,23 @@ namespace Bardez
 					/// <param name="buffer">Unmanaged XAUDIO2_BUFFER struct</param>
 					AudioBuffer(XAUDIO2_BUFFER buffer);
 				#pragma endregion
+					
+
+
+				#pragma region Destruction
+				public:
+					/// <summary>Destrutor</summary>
+					/// <remarks>Dispose()</remarks>
+					~AudioBuffer();
+
+					/// <summary>Destrutor</summary>
+					/// <remarks>Finalize()</remarks>
+					!AudioBuffer();
+
+					/// <summary>Destrutor logic, disposes the object</summary>
+					void DisposeUnmanaged();
+				#pragma endregion
+
 
 
 				#pragma region Methods

@@ -176,6 +176,37 @@ AudioBuffer::AudioBuffer(XAUDIO2_BUFFER buffer)
 	this->context = System::IntPtr(buffer.pContext);
 }
 #pragma endregion
+					
+
+
+#pragma region Destruction
+/// <summary>Destrutor</summary>
+/// <remarks>Dispose()</remarks>
+AudioBuffer::~AudioBuffer()
+{
+	this->DisposeUnmanaged();
+	this->audioData = nullptr;
+}
+
+/// <summary>Destrutor</summary>
+/// <remarks>Finalize()</remarks>
+AudioBuffer::!AudioBuffer()
+{
+	this->DisposeUnmanaged();
+}
+
+/// <summary>Destrutor logic, disposes the object</summary>
+void AudioBuffer::DisposeUnmanaged()
+{
+	// Dispose this voice
+	if (this->gcHandle.IsAllocated)
+	{
+		this->gcHandle.Free();
+		//no way to set GCHandle to nullptr, etc? Setting is IntPtr to IntPtr.Zero errors.
+	}
+}
+#pragma endregion
+
 
 
 #pragma region Methods
@@ -186,10 +217,25 @@ XAUDIO2_BUFFER AudioBuffer::ToUnmanaged()
 	XAUDIO2_BUFFER buffer;
 
 	buffer.Flags = this->flags;
-	buffer.AudioBytes = this->audioData->Length;
+	
+	//Copy the data. Slow/glitches during audio and video playback
+	//buffer.AudioBytes = this->audioData->Length;
+	//buffer.pAudioData = new unsigned char[this->audioData->Length];
+	//System::Runtime::InteropServices::Marshal::Copy(this->audioData, 0, System::IntPtr((void*)(buffer.pAudioData)), buffer.AudioBytes);
 
-	buffer.pAudioData = new unsigned char[this->audioData->Length];
-	System::Runtime::InteropServices::Marshal::Copy(this->audioData, 0, System::IntPtr((void*)(buffer.pAudioData)), buffer.AudioBytes);
+	if (this->audioData == nullptr)
+	{
+		buffer.AudioBytes = 0U;
+		buffer.pAudioData = NULL;
+	}
+	else	//pinning the pointer is worthless, because XAudio2 will still need it once the submission is complete
+	{
+		buffer.AudioBytes = this->audioData->Length;
+
+		//set garbage collection to a no-no
+        this->gcHandle = System::Runtime::InteropServices::GCHandle::Alloc(this->audioData, System::Runtime::InteropServices::GCHandleType::Pinned);
+		buffer.pAudioData = reinterpret_cast<const BYTE*>(this->gcHandle.AddrOfPinnedObject().ToPointer());
+	}
 
 	buffer.PlayBegin = this->playBegin;
 	buffer.PlayLength = this->playLength;
