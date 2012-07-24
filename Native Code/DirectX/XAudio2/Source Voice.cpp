@@ -362,7 +362,7 @@ ResultCode SourceVoice::SetOutputMatrix(Voice^ destination, System::UInt32 sourc
 	return (ResultCode)this->XAudio2SourceVoice->SetOutputMatrix(destination->XAudio2Voice, sourceChannels, destinationChannels, unmanagedVol, operationSet);
 }
 
-/// <summary>Designates a new set of Source or mastering Voice destinations to receive this Voice's output</summary>
+/// <summary>Designates a new set of Submix or Mastering Voice destinations to receive this Voice's output</summary>
 /// <param name="voices">Array of set destination Voices.</param>
 /// <returns>S_OK on success, otherwise an error code.</returns>
 /// <remarks>if voices is null, it is sent to the current mastering voice. To not send anywhere, set size of the array to 0.</remarks>
@@ -488,7 +488,7 @@ ResultCode SourceVoice::Stop(System::UInt32 flags, System::UInt32 operationSet)
 }
 
 
-/// <summary>Stops consumption and processing of audio by this voice. Delivers the result to any connected submix or mastering voices, or to the output device.</summary>
+/// <summary>Submits a data buffer to XAudio2</summary>
 /// <param name="buffer">Audio buffer details &amp; data</param>
 /// <param name="bufferWma">Additional buffer data for WMA streams. Nullable if PCM data.</param>
 /// <returns>S_OK on success, otherwise an error code.</returns>
