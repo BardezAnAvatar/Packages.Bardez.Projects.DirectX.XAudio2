@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Wave Formats">
-      <UniqueIdentifier>{74835cfb-3dd6-43ec-a369-af9900319e7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Wave Formats">
-      <UniqueIdentifier>{1f29d00a-9e2b-495c-86ff-119076683cf1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\XAudio2 Classes">
       <UniqueIdentifier>{4fd6be55-7c49-40b2-9d94-cb0967d709ef}</UniqueIdentifier>
     </Filter>
@@ -45,6 +39,18 @@
     </Filter>
     <Filter Include="Source Files\XAudio2 Classes\Callbacks">
       <UniqueIdentifier>{83def106-4ddc-464f-9737-f8c14fec0c2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\X3DAudio">
+      <UniqueIdentifier>{582cef77-01af-413c-b1e5-663dd40aa264}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Wave Formats">
+      <UniqueIdentifier>{74835cfb-3dd6-43ec-a369-af9900319e7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\X3DAudio">
+      <UniqueIdentifier>{1b36f1e7-acae-443a-a25a-5e98027eb51e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Wave Formats">
+      <UniqueIdentifier>{1f29d00a-9e2b-495c-86ff-119076683cf1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +144,30 @@
     <ClInclude Include="Callback Delegates.h">
       <Filter>Header Files\XAudio2 Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Listener.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="Cone.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="Emitter.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="X3DAudio Calculation Flags.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="DSP Settings.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="X3DAudio Interface.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="Distance Setting.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Effect Base.cpp">
@@ -206,5 +236,29 @@
     <ClCompile Include="Engine Callback.cpp">
       <Filter>Source Files\XAudio2 Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Cone.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="Listener.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="Distance Setting.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="Emitter.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="X3DAudio Interface.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="DSP Settings.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="How to Apply 3d effects.txt" />
   </ItemGroup>
 </Project>

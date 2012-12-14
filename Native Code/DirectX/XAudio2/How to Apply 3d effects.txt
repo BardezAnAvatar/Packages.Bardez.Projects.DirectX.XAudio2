@@ -1,0 +1,57 @@
+How to apply the computed values of an X3DAudio computation
+
+
+1) Use IXAudio2Voice::SetOutputMatrix and IXAudio2SourceVoice::SetFrequencyRatio to apply the volume and pitch values to the source voice. 
+	X3DAUDIO_CALCULATE_DOPPLER:
+pSFXSourceVoice->SetOutputMatrix( pMasterVoice, 1, deviceDetails.OutputFormat.Format.nChannels, DSPSettings.pMatrixCoefficients ) ;
+pSFXSourceVoice->SetFrequencyRatio(DSPSettings.DopplerFactor);
+	-or-
+voice->SetFrequencyRatio( g_audioState.dspSettings.DopplerFactor );
+voice->SetOutputMatrix( g_audioState.pMasteringVoice, INPUTCHANNELS, g_audioState.nChannels, g_audioState.matrixCoefficients );
+
+
+2) Use IXAudio2Voice::SetOutputMatrix to apply the calculated reverb level to the submix voice.
+	X3DAUDIO_CALCULATE_REVERB:
+//sets the in and out channels to mono and uses the single reverb as the matrix.
+pSFXSourceVoice->SetOutputMatrix(pSubmixVoice, 1, 1, &DSPSettings.ReverbLevel);
+	-or-
+voice->SetOutputMatrix(g_audioState.pSubmixVoice, 1, 1, &g_audioState.dspSettings.ReverbLevel);
+
+
+3) Use IXAudio2Voice::SetFilterParameters to apply the calculated low pass filter direct coefficient to the source voice. 
+	X3DAUDIO_CALCULATE_LPF_REVERB:
+XAUDIO2_FILTER_PARAMETERS FilterParameters = { LowPassFilter, 2.0f * sinf(X3DAUDIO_PI/6.0f * DSPSettings.LPFDirectCoefficient), 1.0f };
+pSFXSourceVoice->SetFilterParameters(&FilterParameters);
+
+
+4) X3DAUDIO_CALCULATE_LPF_DIRECT:
+XAUDIO2_FILTER_PARAMETERS FilterParametersDirect = { LowPassFilter, 2.0f * sinf(X3DAUDIO_PI/6.0f * g_audioState.dspSettings.LPFDirectCoefficient), 1.0f }; // see XAudio2CutoffFrequencyToRadians() in XAudio2.h for more information on the formula used here
+voice->SetOutputFilterParameters(g_audioState.pMasteringVoice, &FilterParametersDirect);
+
+
+5) X3DAUDIO_CALCULATE_LPF_REVERB:
+XAUDIO2_FILTER_PARAMETERS FilterParametersReverb = { LowPassFilter, 2.0f * sinf(X3DAUDIO_PI/6.0f * g_audioState.dspSettings.LPFReverbCoefficient), 1.0f }; // see XAudio2CutoffFrequencyToRadians() in XAudio2.h for more information on the formula used here
+voice->SetOutputFilterParameters(g_audioState.pSubmixVoice, &FilterParametersReverb);
+
+
+
+
+How does one use:
+pDelayTimes (is there a submix for this?)
+EmitterToListenerAngle
+EmitterToListenerDistance
+EmitterVelocityComponent
+ListenerVelocityComponent
+
+
+Note:
+XAudio2 Built-in Effects:
+Effect			Creation Method
+------------	------------------------
+Reverb			XAudio2CreateReverb
+Volume Meter	XAudio2CreateVolumeMeter
+
+
+Further note:
+"You can apply volume and pitch values calculated by X3DAudio to a voice with the IXAudio2Voice::SetOutputMatrix and IXAudio2SourceVoice::SetFrequencyRatio methods."
+"Other values calculated by X3DAudio will need to be applied to a reverb effect using the IXAudio2Voice::SetEffectParameters method."
