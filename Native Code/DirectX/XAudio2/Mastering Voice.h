@@ -7,6 +7,7 @@
 #include "Voice.h"
 
 using namespace System;
+using namespace Bardez::Projects::BasicStructures::Win32;
 
 namespace Bardez
 {
@@ -28,7 +29,7 @@ namespace Bardez
 						void set(IXAudio2MasteringVoice* value);
 					}
 				#pragma endregion
-					
+
 
 
 				#pragma region Construction
@@ -37,7 +38,7 @@ namespace Bardez
 					/// <param name="pointer">Pointer to an XAudio2 mastering voice interface object</param>
 					MasteringVoice(IXAudio2MasteringVoice* pointer);
 				#pragma endregion
-					
+
 
 
 				#pragma region Destruction
@@ -85,13 +86,13 @@ namespace Bardez
 					///		Not valid for Mastering voices. In C API, the array must be pre-initialized,
 					///		and is then populated. No reason for this for the .NET API.
 					///		The volumes returned are after the voice's effects are applied.
-					///		
+					///
 					///		From MSDN:
 					///		Volume levels are expressed as floating-point amplitude multipliers between -224 to 224, with a maximum gain of 144.5 dB.
 					///		A volume of 1 means there is no attenuation or gain, 0 means silence, and negative levels can be used to invert the audio's phase.
 					/// </remarks>
 					virtual array<System::Single>^ GetChannelVolumes(System::UInt32 channels) override;
-					
+
 					/// <summary>Gets the effect parameters of a specified effect</summary>
 					/// <param name="effectIndex">Index of the effect to get the parameters of</param>
 					/// <param name="parameters">Output EffectParameterBase class</param>
@@ -159,7 +160,7 @@ namespace Bardez
 					///		A volume level of 1 means there is no attenuation or gain and 0 means silence. Negative levels can be used to invert the audio's phase.
 					/// </remarks>
 					virtual ResultCode SetChannelVolumes(array<System::Single>^ volumes, System::UInt32 operationSet) override;
-					
+
 					/// <summary>Replaces this Voice's effect chain.</summary>
 					/// <param name="chain">Effect chain to be applied. Passing null will remove existing effects.</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
@@ -169,7 +170,7 @@ namespace Bardez
 					///		After attaching an effect, the client should no longer reference it, as XAudio2 will handle it going forward.
 					/// </remarks>
 					virtual ResultCode SetEffectChain(System::Collections::Generic::List<EffectDescriptor^>^ chain) override;
-					
+
 					/// <summary>Sets the parameters for  an effect in this voice's effect in the chain as specified in the index</summary>
 					/// <param name="effectIndex">Index within the effect chain to set parameters for</param>
 					/// <param name="parameters">Object array of parameters to set</param>
@@ -190,7 +191,7 @@ namespace Bardez
 					///			OperationSet argument.
 					/// </remarks>
 					virtual ResultCode SetEffectParameters(System::UInt32 effectIndex, EffectParameterBase^ parameters, System::UInt32 operationSet) override;
-					
+
 					/// <summary>Sets the voice's parameters</summary>
 					/// <param name="parameter">A FilterParameter object containing filter parameter info</param>
 					/// <param name="operationSet">Operation set of the effect (XAUDIO2_COMMIT_NOW == 0?), identifiying a batch</param>
@@ -207,7 +208,7 @@ namespace Bardez
 					/// <param name="operationSet">Operation set of the effect (XAUDIO2_COMMIT_NOW == 0?), identifiying a batch</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					virtual ResultCode SetOutputFilterParameters(Voice^ destination, FilterParameter^ parameter, System::UInt32 operationSet) override;
-					
+
 					/// <summary>Sets the voice's volume output matrix for each channel</summary>
 					/// <param name="destination">Destination Voice to set the matrix for. If null and only one destination, will set for that destination Voice.</param>
 					/// <param name="sourceChannels">Number of channels of the source Voice.</param>
@@ -249,8 +250,8 @@ namespace Bardez
 
 #if _XAUDIO2_VERSION_ >= 8
 					/// <summary>Gets this voice's channel mask</summary>
-					/// <returns>The channel mask</returns>
-					/// <remarks>This correlates to the Wave Format Extensible's channelMask member</remarks>
+					/// <returns>The channel mask, which correlates to the Wave Format Extensible's channelMask member</returns>
+					/// <remarks>This method was introduced in XAudio2 version 2.8</remarks>
 					System::UInt32 GetChannelMask();
 #endif
 				#pragma endregion
@@ -261,3 +262,4 @@ namespace Bardez
 }
 
 #endif
+
