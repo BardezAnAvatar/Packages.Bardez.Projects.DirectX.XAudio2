@@ -20,8 +20,8 @@
 #include "Voice Callback.h"
 
 using namespace System;
-using namespace Bardez::Projects::Win32;
-using namespace Bardez::Projects::Win32::Audio;
+using namespace Bardez::Projects::BasicStructures::Win32;
+using namespace Bardez::Projects::BasicStructures::Win32::Audio;
 
 namespace Bardez
 {
@@ -43,6 +43,43 @@ namespace Bardez
 				/// </remarks>
 				public ref class XAudio2Interface //: System::IDisposable //implied by setting a ~Destructor
 				{
+				#pragma region Constants & Flags
+				public:
+					ref class VoiceFlags
+					{
+					public:
+						/// <summary>No sample rate conversion is available on the voice. The voice's outputs must have the same sample rate.</summary>
+						/// <remarks>This flag causes the voice to behave as though the XAUDIO2_VOICE_NOPITCH flag also is specified.</remarks>
+						static const System::UInt32 NoSampleRateConversion = XAUDIO2_VOICE_NOSRC;
+
+						/// <summary>No pitch control is available on the voice.</summary>
+						static const System::UInt32 NoPitchControl = XAUDIO2_VOICE_NOPITCH;
+
+						/// <summary>The filter effect should be available on this voice.</summary>
+						static const System::UInt32 FilterEffectAvailable = XAUDIO2_VOICE_USEFILTER;
+
+						/// <summary>System default number of audio channels</summary>
+						/// <remarks>Used in CreateMasteringVoice. </remarks>
+						static const System::UInt32 DefaultAudioChannelCount = XAUDIO2_DEFAULT_CHANNELS;
+
+						/// <summary>Maximum channels in an audio stream</summary>
+						static const System::UInt32 MaximumAudioChannelCount = XAUDIO2_MAX_AUDIO_CHANNELS;
+
+						/// <summary>System default sample rate</summary>
+						/// <remarks>Used in CreateMasteringVoice. Translates into 44.1k or 48k depending on the driver</remarks>
+						static const System::UInt32 DefaultSampleRate = XAUDIO2_DEFAULT_SAMPLERATE;
+
+						/// <summary>Minimum audio sample rate supported</summary>
+						/// <remarks>1000?</remarks>
+						static const System::UInt32 MinimumSampleRate = XAUDIO2_MIN_SAMPLE_RATE;
+
+						/// <summary>Maximum audio sample rate supported</summary>
+						/// <remarks>200000?</remarks>
+						static const System::UInt32 MaximumSampleRate = XAUDIO2_MAX_SAMPLE_RATE;
+					};
+				#pragma endregion
+
+
 				#pragma region Members
 				protected:
 					/// <summary>Pointer to an XAudio2 interface object</summary>
@@ -467,7 +504,7 @@ namespace Bardez
 					///	</param>
 					/// <returns>A new Submix voice reference.</returns>
 					SubmixVoice^ CreateSubmixVoice(System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="channels">Number of input channels</param>
 					/// <param name="sampleRate">Input sample rate</param>
@@ -505,9 +542,11 @@ namespace Bardez
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode Initialize(System::UInt32 flags, Processors processor);
 
+#if _XAUDIO2_VERSION_ < 8
 					/// <summary>Initializes the XAudio2 object</summary>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode Initialize();
+#endif
 
 					/// <summary>Adds a callback pointer to the engine callback list</summary>
 					/// <param name="callback">Callback to add</param>
@@ -561,3 +600,4 @@ namespace Bardez
 }
 
 #endif
+
