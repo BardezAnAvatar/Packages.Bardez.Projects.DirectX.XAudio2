@@ -97,7 +97,12 @@ XAudio2Interface^ XAudio2Interface::NewInstance()
 	HRESULT result;
 
 	//write a new address to the pointer
-	if (FAILED( result = XAudio2Create(&ptr, 0, XAUDIO2_DEFAULT_PROCESSOR) ) )
+	UINT32 xaudio2Flags = 0;
+#if DEBUG
+	xaudio2Flags |= XAUDIO2_DEBUG_ENGINE;
+#endif
+
+	if (FAILED( result = XAudio2Create(&ptr, xaudio2Flags, XAUDIO2_DEFAULT_PROCESSOR) ) )
 		throw gcnew System::Exception(System::String::Concat("Error instantiating the XAudio2 interface: ", ((ResultCode)result).ToString()));
 	else
 		newInstance->XAudio2 = ptr;
