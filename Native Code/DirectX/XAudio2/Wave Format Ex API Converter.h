@@ -5,7 +5,7 @@
 #include <windows.h>
 
 using namespace System;
-using namespace Bardez::Projects::Win32::Audio;
+using namespace Bardez::Projects::BasicStructures::Win32::Audio;
 
 #include <Windows.h>
 
@@ -25,7 +25,7 @@ namespace Bardez
 					/// <summary>Returns an unmanaged version of this object</summary>
 					/// <returns>An unmanaged WAVEFORMATEX struct</returns>
 					static WAVEFORMATEX To_WAVEFORMATEX(WaveFormatEx^ waveFormat);
-					
+
 					/// <summary>Unmanaged WAVEFORMATEX Win32 constructor</summary>
 					static WaveFormatEx^ BuildWaveFormatEx(WAVEFORMATEX waveFormat);
 				};

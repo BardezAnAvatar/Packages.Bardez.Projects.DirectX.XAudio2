@@ -2,8 +2,8 @@
 #include "Unmanaged Engine Callback Base.h"
 
 
+using namespace Bardez::Projects::BasicStructures::Win32;
 using namespace Bardez::Projects::DirectX::XAudio2;
-using namespace Bardez::Projects::Win32;
 
 
 #pragma region Construction
@@ -14,7 +14,7 @@ UnmanagedEngineCallbackBase::UnmanagedEngineCallbackBase(EngineCallback^ callbac
 	this->managedCallback = callback;
 }
 #pragma endregion
-					
+
 
 
 #pragma region Methods
@@ -24,13 +24,13 @@ void UnmanagedEngineCallbackBase::OnCriticalError(HRESULT error)
 {
 	this->managedCallback->OnCriticalError((ResultCode)error);
 }
-					
+
 /// <summary>Called just after an audio processing pass ends</summary>
 void UnmanagedEngineCallbackBase::OnProcessingPassEnd()
 {
 	this->managedCallback->OnProcessingPassEnd();
 }
-					
+
 /// <summary>Called just after an audio processing pass starts</summary>
 void UnmanagedEngineCallbackBase::OnProcessingPassStart()
 {

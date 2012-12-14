@@ -1,10 +1,14 @@
 
+
 #ifndef Bardez_Projects_Directx_XAudio2_EngineCallback
 #define Bardez_Projects_Directx_XAudio2_EngineCallback
 
+
 #include "Callback Delegates.h"
 
-using namespace Bardez::Projects::Win32;
+
+using namespace Bardez::Projects::BasicStructures::Win32;
+
 
 namespace Bardez
 {
@@ -100,3 +104,4 @@ namespace Bardez
 }
 
 #endif
+

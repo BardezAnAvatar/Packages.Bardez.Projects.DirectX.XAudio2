@@ -2,7 +2,7 @@
 #ifndef Bardez_Projects_Directx_XAudio2_CallbackDelegates
 #define Bardez_Projects_Directx_XAudio2_CallbackDelegates
 
-using namespace Bardez::Projects::Win32;
+using namespace Bardez::Projects::BasicStructures::Win32;
 
 namespace Bardez
 {

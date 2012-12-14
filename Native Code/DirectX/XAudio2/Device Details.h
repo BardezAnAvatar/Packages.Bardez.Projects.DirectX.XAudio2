@@ -1,11 +1,16 @@
+
+
 #ifndef Bardez_Projects_Directx_XAudio2_DEVICE_DETAILS
 #define Bardez_Projects_Directx_XAudio2_DEVICE_DETAILS
 
+
 #include "Device Role.h"
 	
+
 using namespace System;
 using namespace System::Text;
-using namespace Bardez::Projects::Win32::Audio;
+using namespace Bardez::Projects::BasicStructures::Win32::Audio;
+
 
 namespace Bardez
 {
@@ -116,3 +121,4 @@ namespace Bardez
 }
 
 #endif
+

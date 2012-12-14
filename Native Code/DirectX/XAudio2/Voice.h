@@ -10,8 +10,8 @@
 #include "Voice Send Descriptor.h"
 
 using namespace System;
+using namespace Bardez::Projects::BasicStructures::Win32;
 using namespace Bardez::Projects::DirectX::XAudio2::XAPO;
-using namespace Bardez::Projects::Win32;
 
 namespace Bardez
 {
@@ -28,7 +28,7 @@ namespace Bardez
 				protected:
 					/// <summary>Pointer to an XAudio2Voice interface COM object</summary>
 					System::IntPtr ptrVoice;
-					
+
 					/// <summary>The list of effects</summary>
 					System::Collections::Generic::List<EffectDescriptor^>^ effects;
 				#pragma endregion
@@ -43,7 +43,7 @@ namespace Bardez
 						IntPtr get();
 						void set(IntPtr value);
 					}
-					
+
 					/// <summary>The list of effects</summary>
 					property System::Collections::Generic::List<EffectDescriptor^>^ Effects
 					{
@@ -59,7 +59,7 @@ namespace Bardez
 						void set(IXAudio2Voice* value);
 					}
 				#pragma endregion
-					
+
 
 
 				#pragma region Construction
@@ -72,7 +72,7 @@ namespace Bardez
 					/// <param name="pointer">Unmanaged parameters struct</param>
 					Voice(IXAudio2Voice* pointer);
 				#pragma endregion
-					
+
 
 
 				#pragma region Destruction
@@ -90,7 +90,7 @@ namespace Bardez
 				#pragma endregion
 
 
-					
+
 				#pragma region Methods
 				public:
 					/// <summary>Destroys the voice.</summary>
@@ -120,13 +120,13 @@ namespace Bardez
 					///		Not valid for Mastering voices. In C API, the array must be pre-initialized,
 					///		and is then populated. No reason for this for the .NET API.
 					///		The volumes returned are after the voice's effects are applied.
-					///		
+					///
 					///		From MSDN:
 					///		Volume levels are expressed as floating-point amplitude multipliers between -224 to 224, with a maximum gain of 144.5 dB.
 					///		A volume of 1 means there is no attenuation or gain, 0 means silence, and negative levels can be used to invert the audio's phase.
 					/// </remarks>
 					virtual array<System::Single>^ GetChannelVolumes(System::UInt32 channels);
-					
+
 					/// <summary>Gets the effect parameters of a specified effect</summary>
 					/// <param name="effectIndex">Index of the effect to get the parameters of</param>
 					/// <param name="parameters">Output EffectParameterBase class</param>
@@ -194,7 +194,7 @@ namespace Bardez
 					///		A volume level of 1 means there is no attenuation or gain and 0 means silence. Negative levels can be used to invert the audio's phase.
 					/// </remarks>
 					virtual ResultCode SetChannelVolumes(array<System::Single>^ volumes, System::UInt32 operationSet);
-					
+
 					/// <summary>Replaces this Voice's effect chain.</summary>
 					/// <param name="chain">Effect chain to be applied. Passing null will remove existing effects.</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
@@ -204,7 +204,7 @@ namespace Bardez
 					///		After attaching an effect, the client should no longer reference it, as XAudio2 will handle it going forward.
 					/// </remarks>
 					virtual ResultCode SetEffectChain(System::Collections::Generic::List<EffectDescriptor^>^ chain);
-					
+
 					/// <summary>Sets the parameters for  an effect in this voice's effect in the chain as specified in the index</summary>
 					/// <param name="effectIndex">Index within the effect chain to set parameters for</param>
 					/// <param name="parameters">Object array of parameters to set</param>
@@ -225,7 +225,7 @@ namespace Bardez
 					///			OperationSet argument.
 					/// </remarks>
 					virtual ResultCode SetEffectParameters(System::UInt32 effectIndex, EffectParameterBase^ parameters, System::UInt32 operationSet);
-					
+
 					/// <summary>Sets the voice's parameters</summary>
 					/// <param name="parameter">A FilterParameter object containing filter parameter info</param>
 					/// <param name="operationSet">Operation set of the effect (XAUDIO2_COMMIT_NOW == 0?), identifiying a batch</param>
@@ -242,7 +242,7 @@ namespace Bardez
 					/// <param name="operationSet">Operation set of the effect (XAUDIO2_COMMIT_NOW == 0?), identifiying a batch</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					virtual ResultCode SetOutputFilterParameters(Voice^ destination, FilterParameter^ parameter, System::UInt32 operationSet);
-					
+
 					/// <summary>Sets the voice's volume output matrix for each channel</summary>
 					/// <param name="destination">Destination Voice to set the matrix for. If null and only one destination, will set for that destination Voice.</param>
 					/// <param name="sourceChannels">Number of channels of the source Voice.</param>
@@ -289,3 +289,4 @@ namespace Bardez
 }
 
 #endif
+
