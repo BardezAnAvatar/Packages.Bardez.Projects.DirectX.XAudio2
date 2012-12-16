@@ -23,14 +23,10 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>XAudio2</RootNamespace>
-    <SccProjectName>
-    </SccProjectName>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccProvider>
-    </SccProvider>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -232,12 +228,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Win32 Structures\Basic Structures.csproj">
-      <Project>{257201a0-0b65-4ea0-ac04-0b8005aecc37}</Project>
-    </ProjectReference>
+    <None Include="How to Apply 3d effects.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="How to Apply 3d effects.txt" />
+    <ProjectReference Include="..\..\..\Basic Structures\Basic Structures.csproj">
+      <Project>{257201a0-0b65-4ea0-ac04-0b8005aecc37}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
