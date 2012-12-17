@@ -12,26 +12,14 @@ using namespace Bardez::Projects::DirectX::XAudio2;
 
 
 #pragma region Properties
-/// <summary>Pointer to an XAudio2 interface object</summary>
-System::IntPtr XAudio2Interface::PtrXAudio2::get()
-{
-	return this->ptrXAudio2;
-}
-
-/// <summary>Pointer to an XAudio2 interface object</summary>
-void XAudio2Interface::PtrXAudio2::set(System::IntPtr value)
-{
-	this->ptrXAudio2 = value;
-}
-
 /// <summary>Property to access the XAudio pointer, wrapping to a .NET IntPtr</summary>
-IXAudio2* XAudio2Interface::XAudio2::get()
+IXAudio2* XAudio2Interface::XAudio2Handle::get()
 {
 	return reinterpret_cast<IXAudio2*>(this->ptrXAudio2.ToPointer());
 }
 
 /// <summary>Property to access the XAudio pointer, wrapping to a .NET IntPtr</summary>
-void XAudio2Interface::XAudio2::set(IXAudio2* value)
+void XAudio2Interface::XAudio2Handle::set(IXAudio2* value)
 {
 	this->ptrXAudio2 = IntPtr(value);
 }
@@ -43,7 +31,7 @@ void XAudio2Interface::XAudio2::set(IXAudio2* value)
 /// <summary>Default construtor</summary>
 XAudio2Interface::XAudio2Interface()
 {
-	this->XAudio2 = NULL;
+	this->XAudio2Handle = NULL;
 }
 #pragma endregion
 
@@ -69,10 +57,10 @@ XAudio2Interface::!XAudio2Interface()
 void XAudio2Interface::DisposeUnmanaged()
 {
 	// Dispose the XAudio2 interface
-	if (this->XAudio2)
+	if (this->XAudio2Handle)
 	{
-		this->XAudio2->Release();
-		this->XAudio2 = NULL;
+		this->XAudio2Handle->Release();
+		this->XAudio2Handle = NULL;
         CoUninitialize();
 	}
 }
@@ -92,7 +80,7 @@ XAudio2Interface^ XAudio2Interface::NewInstance()
 	#endif
 	
 	//Initialize XAudio2 pointer
-	IXAudio2* ptr = newInstance->XAudio2;
+	IXAudio2* ptr = newInstance->XAudio2Handle;
 
 	HRESULT result;
 
@@ -105,7 +93,7 @@ XAudio2Interface^ XAudio2Interface::NewInstance()
 	if (FAILED( result = XAudio2Create(&ptr, xaudio2Flags, XAUDIO2_DEFAULT_PROCESSOR) ) )
 		throw gcnew System::Exception(System::String::Concat("Error instantiating the XAudio2 interface: ", ((ResultCode)result).ToString()));
 	else
-		newInstance->XAudio2 = ptr;
+		newInstance->XAudio2Handle = ptr;
 
 	return newInstance;
 }
@@ -115,7 +103,7 @@ XAudio2Interface^ XAudio2Interface::NewInstance()
 /// <returns>S_OK on success, otherwise an error code.</returns>
 ResultCode XAudio2Interface::CommitChanges(System::UInt32 operationSet)
 {
-	return (ResultCode)this->XAudio2->CommitChanges(operationSet);
+	return (ResultCode)this->XAudio2Handle->CommitChanges(operationSet);
 }
 
 /// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
@@ -131,7 +119,7 @@ ResultCode XAudio2Interface::CreateMasteringVoice(MasteringVoice^% masteringVoic
 	IXAudio2MasteringVoice* ptr;
 	XAUDIO2_EFFECT_CHAIN* chain = GetEffectChain(effectChain);	//static method
 
-	ResultCode result = (ResultCode)this->XAudio2->CreateMasteringVoice(&ptr, channels, sampleRate, flags, deviceIndex, chain);
+	ResultCode result = (ResultCode)this->XAudio2Handle->CreateMasteringVoice(&ptr, channels, sampleRate, flags, deviceIndex, chain);
 	masteringVoice = gcnew MasteringVoice(ptr);
 
 	return result;
@@ -276,7 +264,7 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 		callback->CallbackPointer = System::IntPtr(voiceCallback);
 	}
 	
-	ResultCode result = (ResultCode)this->XAudio2->CreateSourceVoice(&ptr, &sourceFormat, flags, freqRatio, voiceCallback, output, chain);
+	ResultCode result = (ResultCode)this->XAudio2Handle->CreateSourceVoice(&ptr, &sourceFormat, flags, freqRatio, voiceCallback, output, chain);
 	sourceVoice = gcnew SourceVoice(ptr, callback);
 	return result;
 }
@@ -480,7 +468,7 @@ ResultCode XAudio2Interface::CreateSubmixVoice(SubmixVoice^% submixVoice, System
 	XAUDIO2_EFFECT_CHAIN* chain = GetEffectChain(effectChain);	//static method
 	XAUDIO2_VOICE_SENDS* output = GetVoiceSends(sends);			//static method
 
-	ResultCode result = (ResultCode)this->XAudio2->CreateSubmixVoice(&ptr, channels, sampleRate, flags, stage, output, chain);
+	ResultCode result = (ResultCode)this->XAudio2Handle->CreateSubmixVoice(&ptr, channels, sampleRate, flags, stage, output, chain);
 	submixVoice = gcnew SubmixVoice(ptr);
 
 	return result;
@@ -638,8 +626,8 @@ System::UInt32 XAudio2Interface::GetDeviceCount()
 	UINT32 count;
 	//pin_ptr<UINT32> ptrCount = &count;
 
-	if (this->XAudio2)
-		this->XAudio2->GetDeviceCount(&count);
+	if (this->XAudio2Handle)
+		this->XAudio2Handle->GetDeviceCount(&count);
 
 	System::UInt32 clrCount = count;
 
@@ -654,9 +642,9 @@ DeviceDetails^ XAudio2Interface::GetDeviceDetails(System::UInt32 index)
 	DeviceDetails^ detail = nullptr;
 	XAUDIO2_DEVICE_DETAILS details;
 
-	if (this->XAudio2)
+	if (this->XAudio2Handle)
 	{
-		this->XAudio2->GetDeviceDetails(index, &details);
+		this->XAudio2Handle->GetDeviceDetails(index, &details);
 
 		detail = gcnew DeviceDetails();
 		detail->DeviceId = gcnew String(details.DeviceID);
@@ -674,7 +662,7 @@ DeviceDetails^ XAudio2Interface::GetDeviceDetails(System::UInt32 index)
 PerformanceData^ XAudio2Interface::GetPerformanceData()
 {
 	XAUDIO2_PERFORMANCE_DATA data;
-	this->XAudio2->GetPerformanceData(&data);
+	this->XAudio2Handle->GetPerformanceData(&data);
 	return gcnew PerformanceData(data);
 }
 
@@ -684,7 +672,7 @@ PerformanceData^ XAudio2Interface::GetPerformanceData()
 /// <returns>S_OK on success, otherwise an error code.</returns>
 ResultCode XAudio2Interface::Initialize(System::UInt32 flags, Processors processor)
 {
-	return (ResultCode)this->XAudio2->Initialize(flags, (XAUDIO2_PROCESSOR)processor);
+	return (ResultCode)this->XAudio2Handle->Initialize(flags, (XAUDIO2_PROCESSOR)processor);
 }
 
 /// <summary>Initializes the XAudio2 object</summary>
@@ -706,28 +694,28 @@ ResultCode XAudio2Interface::RegisterForCallbacks(EngineCallback^ callback)
 	callback->CallbackPointer = System::IntPtr(unmanagedCallback);
 
 	//register
-	return (ResultCode)this->XAudio2->RegisterForCallbacks(unmanagedCallback);
+	return (ResultCode)this->XAudio2Handle->RegisterForCallbacks(unmanagedCallback);
 }
 
 /// <summary>Sets the debug configuration data</summary>
 void XAudio2Interface::SetDebugConfiguration(DebugConfiguration^ config)
 {
 	XAUDIO2_DEBUG_CONFIGURATION debugConfiguration = config->ToUnmanaged();
-	this->XAudio2->SetDebugConfiguration(&debugConfiguration);
+	this->XAudio2Handle->SetDebugConfiguration(&debugConfiguration);
 }
 					
 /// <summary>Starts the audio processing thread</summary>
 /// <returns>S_OK on success, otherwise an error code.</returns>
 ResultCode XAudio2Interface::StartEngine()
 {
-	return (ResultCode)this->XAudio2->StartEngine();
+	return (ResultCode)this->XAudio2Handle->StartEngine();
 }
 					
 /// <summary>Stops the audio processing thread</summary>
 /// <returns>S_OK on success, otherwise an error code.</returns>
 void XAudio2Interface::StopEngine()
 {
-	this->XAudio2->StopEngine();
+	this->XAudio2Handle->StopEngine();
 }
 
 /// <summary>Removes a callback pointer to the engine callback list</summary>
@@ -735,7 +723,7 @@ void XAudio2Interface::StopEngine()
 /// <returns>S_OK on success, otherwise an error code.</returns>
 void XAudio2Interface::UnregisterForCallbacks(EngineCallback^ callback)
 {
-	this->XAudio2->UnregisterForCallbacks((UnmanagedEngineCallbackBase*)(callback->CallbackPointer.ToPointer()));
+	this->XAudio2Handle->UnregisterForCallbacks((UnmanagedEngineCallbackBase*)(callback->CallbackPointer.ToPointer()));
 }
 #pragma endregion
 
