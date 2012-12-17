@@ -22,7 +22,7 @@ WaveFormatExtensible^ WaveFormatExtensibleWin32Converter::BuildWaveFormatExtensi
 
 	//WAVEFORMATEXTENSIBLE REMAINDER
 	wave->Samples = waveFormat.Samples.wSamplesPerBlock;
-	wave->ChannelMask = waveFormat.dwChannelMask;
+	wave->ChannelMask = (SpeakerPositions)(waveFormat.dwChannelMask);
 	wave->SubFormat =  System::Guid
 		(waveFormat.SubFormat.Data1, waveFormat.SubFormat.Data2, waveFormat.SubFormat.Data3,
 			waveFormat.SubFormat.Data4[0], waveFormat.SubFormat.Data4[1], waveFormat.SubFormat.Data4[2], waveFormat.SubFormat.Data4[3], 
@@ -46,7 +46,7 @@ WAVEFORMATEXTENSIBLE WaveFormatExtensibleWin32Converter::To_WAVEFORMATEXTENSIBLE
 
 	waveext.Format = WaveFormatExWin32Converter::To_WAVEFORMATEX(waveFormat);	//base data
 	waveext.Samples.wSamplesPerBlock = waveFormat->Samples;						//union data
-	waveext.dwChannelMask = waveFormat->ChannelMask;
+	waveext.dwChannelMask = (System::UInt32)(waveFormat->ChannelMask);
 		
 	array<System::String^>^ guid = waveFormat->SubFormat.ToString()->Split('-');
 	System::String^ long64 = System::String::Concat(guid[3], guid[4]);
