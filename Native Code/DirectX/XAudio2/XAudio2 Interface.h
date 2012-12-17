@@ -76,6 +76,10 @@ namespace Bardez
 						/// <summary>Maximum audio sample rate supported</summary>
 						/// <remarks>200000?</remarks>
 						static const System::UInt32 MaximumSampleRate = XAUDIO2_MAX_SAMPLE_RATE;
+						
+						/// <summary>XAudio2 constant indicating that the stream is expected to close after this buffer is finished.</summary>
+						/// <value>0x0040U</value>
+						static const System::UInt32 EndOfStream = XAUDIO2_END_OF_STREAM;
 					};
 				#pragma endregion
 
@@ -89,17 +93,9 @@ namespace Bardez
 
 
 				#pragma region Properties
-				public:
-					/// <summary>Pointer to an XAudio2 interface object</summary>
-					property System::IntPtr PtrXAudio2
-					{
-						System::IntPtr get();
-						void set(System::IntPtr value);
-					}
-
-				/*protected*/ internal:
+				protected:
 					/// <summary>Property to access the XAudio pointer, wrapping to a .NET IntPtr</summary>
-					property IXAudio2* XAudio2
+					property IXAudio2* XAudio2Handle
 					{
 						IXAudio2* get();
 						void set(IXAudio2* value);
@@ -118,11 +114,11 @@ namespace Bardez
 					
 				#pragma region Destruction
 				public:
-					/// <summary>Destrutor</summary>
+					/// <summary>Destructor</summary>
 					/// <remarks>Dispose()</remarks>
 					~XAudio2Interface();
 
-					/// <summary>Destrutor</summary>
+					/// <summary>Destructor</summary>
 					/// <remarks>Finalize()</remarks>
 					!XAudio2Interface();
 
