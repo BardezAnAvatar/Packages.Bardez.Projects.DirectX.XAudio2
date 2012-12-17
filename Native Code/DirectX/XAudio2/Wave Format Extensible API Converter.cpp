@@ -9,25 +9,26 @@ using namespace Bardez::Projects::DirectX::XAudio2;
 /// <summary>Unmanaged WAVEFORMATEXTENSIBLE Win32 constructor</summary>
 WaveFormatExtensible^ WaveFormatExtensibleWin32Converter::BuildWaveFormatExtensible(WAVEFORMATEXTENSIBLE waveFormat)
 {
-	WaveFormatExtensible^ wave = gcnew WaveFormatExtensible();
+	WaveFormatExtensible^ wave = gcnew WaveFormatExtensible
+	(
+		//WAVEFORMATEX
+		waveFormat.Format.wFormatTag,
+		waveFormat.Format.nChannels,
+		waveFormat.Format.nSamplesPerSec,
+		waveFormat.Format.nAvgBytesPerSec,
+		waveFormat.Format.nBlockAlign,
+		waveFormat.Format.wBitsPerSample,
+		waveFormat.Format.cbSize,
 
-	//WAVEFORMATEX
-	wave->FormatTag = waveFormat.Format.wFormatTag;
-	wave->NumberChannels = waveFormat.Format.nChannels;
-	wave->SamplesPerSec = waveFormat.Format.nSamplesPerSec;
-	wave->AverageBytesPerSec = waveFormat.Format.nAvgBytesPerSec;
-	wave->BlockAlignment = waveFormat.Format.nBlockAlign;
-	wave->BitsPerSample = waveFormat.Format.wBitsPerSample;
-	wave->Size = waveFormat.Format.cbSize;
-
-	//WAVEFORMATEXTENSIBLE REMAINDER
-	wave->Samples = waveFormat.Samples.wSamplesPerBlock;
-	wave->ChannelMask = (SpeakerPositions)(waveFormat.dwChannelMask);
-	wave->SubFormat =  System::Guid
-		(waveFormat.SubFormat.Data1, waveFormat.SubFormat.Data2, waveFormat.SubFormat.Data3,
-			waveFormat.SubFormat.Data4[0], waveFormat.SubFormat.Data4[1], waveFormat.SubFormat.Data4[2], waveFormat.SubFormat.Data4[3], 
-			waveFormat.SubFormat.Data4[4], waveFormat.SubFormat.Data4[5], waveFormat.SubFormat.Data4[6], waveFormat.SubFormat.Data4[7]
-		);
+		//WAVEFORMATEXTENSIBLE REMAINDER
+		waveFormat.Samples.wSamplesPerBlock,
+		(SpeakerPositions)(waveFormat.dwChannelMask),
+		System::Guid
+			(	waveFormat.SubFormat.Data1, waveFormat.SubFormat.Data2, waveFormat.SubFormat.Data3,
+				waveFormat.SubFormat.Data4[0], waveFormat.SubFormat.Data4[1], waveFormat.SubFormat.Data4[2], waveFormat.SubFormat.Data4[3], 
+				waveFormat.SubFormat.Data4[4], waveFormat.SubFormat.Data4[5], waveFormat.SubFormat.Data4[6], waveFormat.SubFormat.Data4[7]
+			)
+	);
 
 	return wave;
 }

@@ -8,15 +8,17 @@ using namespace Bardez::Projects::DirectX::XAudio2;
 /// <summary>Unmanaged WAVEFORMATEX Win32 constructor</summary>
 WaveFormatEx^ WaveFormatExWin32Converter::BuildWaveFormatEx(WAVEFORMATEX waveFormat)
 {
-	WaveFormatEx^ wave = gcnew WaveFormatEx();
-	
-	wave->FormatTag = waveFormat.wFormatTag;
-	wave->NumberChannels = waveFormat.nChannels;
-	wave->SamplesPerSec = waveFormat.nSamplesPerSec;
-	wave->AverageBytesPerSec = waveFormat.nAvgBytesPerSec;
-	wave->BlockAlignment = waveFormat.nBlockAlign;
-	wave->BitsPerSample = waveFormat.wBitsPerSample;
-	wave->Size = waveFormat.cbSize;
+	WaveFormatEx^ wave = gcnew WaveFormatEx
+	(
+		//WAVEFORMATEX
+		waveFormat.wFormatTag,
+		waveFormat.nChannels,
+		waveFormat.nSamplesPerSec,
+		waveFormat.nAvgBytesPerSec,
+		waveFormat.nBlockAlign,
+		waveFormat.wBitsPerSample,
+		waveFormat.cbSize
+	);
 
 	return wave;
 }
