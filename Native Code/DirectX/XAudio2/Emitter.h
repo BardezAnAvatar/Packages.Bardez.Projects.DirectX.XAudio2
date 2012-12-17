@@ -256,7 +256,7 @@ namespace Bardez
 						/// <param name="curveReverb">Reverb send level distance curve</param>
 						/// <param name="curveDistanceScaler">Curve distance scaler that is used to scale normalized distance curves to user-defined world units</param>
 						/// <param name="dopplerScaler">Doppler shift scaler that is used to exaggerate Doppler shift effect</param>
-						Emitter(Vector<Single>^ front, Vector<Single>^ top, Vector<Single>^ position, Vector<Single>^ velocity, Bardez::Projects::DirectX::X3DAudio::Cone^ cone,
+						Emitter(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Bardez::Projects::DirectX::X3DAudio::Cone^ cone,
 							Single innerRadius, Single innerRadiusAngle, UInt32 channelCount, Single channelRadius, IList<Single>^ channelAzimuths,
 							IList<DistanceSetting^>^ curveVolume, IList<DistanceSetting^>^ curveLFE, IList<DistanceSetting^>^ curveLpfDirect, IList<DistanceSetting^>^ curveLpfReverb, IList<DistanceSetting^>^ curveReverb,
 							Single curveDistanceScaler, Single dopplerScaler);

@@ -36,7 +36,7 @@ namespace Bardez
 						/// <param name="position">Position in user-defined world units</param>
 						/// <param name="velocity">Velocity vector in user-defined world units per second</param>
 						/// <param name="cone">Listener cone</param>
-						Listener(Vector<Single>^ front, Vector<Single>^ top, Vector<Single>^ position, Vector<Single>^ velocity, Cone^ cone);
+						Listener(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Cone^ cone);
 						
 					internal:
 						/// <summary>X3DAudio constructor</summary>
