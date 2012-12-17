@@ -19,7 +19,7 @@ Listener::Listener() : Actor() { }
 /// <param name="position">Position in user-defined world units</param>
 /// <param name="velocity">Velocity vector in user-defined world units per second</param>
 /// <param name="cone">Listener cone</param>
-Listener::Listener(Vector<Single>^ front, Vector<Single>^ top, Vector<Single>^ position, Vector<Single>^ velocity, Cone^ cone) : Actor(front, top, position, velocity, cone) { }
+Listener::Listener(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Cone^ cone) : Actor(front, top, position, velocity, cone) { }
 						
 /// <summary>X3DAudio constructor</summary>
 /// <param name="listener">Unmanaged listener to copy from.</param>
@@ -34,10 +34,10 @@ Listener^ Listener::FromUnmanaged(X3DAUDIO_LISTENER* listener)
 		if (listener->pCone != NULL)
 			cone = Cone::FromUnmanaged(listener->pCone);
 	
-		Vector<Single>^ front = Actor::CopyUnmanagedVector(listener->OrientFront);
-		Vector<Single>^ top = Actor::CopyUnmanagedVector(listener->OrientTop);
-		Vector<Single>^ position = Actor::CopyUnmanagedVector(listener->Position);
-		Vector<Single>^ velocity = Actor::CopyUnmanagedVector(listener->Velocity);
+		Vector<Single> front = Actor::CopyUnmanagedVector(listener->OrientFront);
+		Vector<Single> top = Actor::CopyUnmanagedVector(listener->OrientTop);
+		Vector<Single> position = Actor::CopyUnmanagedVector(listener->Position);
+		Vector<Single> velocity = Actor::CopyUnmanagedVector(listener->Velocity);
 
 		managed = gcnew Listener(front, top, position, velocity, cone);
 	}

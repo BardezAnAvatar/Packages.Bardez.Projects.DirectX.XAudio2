@@ -266,7 +266,7 @@ Emitter::Emitter(UInt32 channels) : Actor()
 /// <param name="curveReverb">Reverb send level distance curve</param>
 /// <param name="curveDistanceScaler">Curve distance scaler that is used to scale normalized distance curves to user-defined world units</param>
 /// <param name="dopplerScaler">Doppler shift scaler that is used to exaggerate Doppler shift effect</param>
-Emitter::Emitter(Vector<Single>^ front, Vector<Single>^ top, Vector<Single>^ position, Vector<Single>^ velocity, Bardez::Projects::DirectX::X3DAudio::Cone^ cone,
+Emitter::Emitter(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Bardez::Projects::DirectX::X3DAudio::Cone^ cone,
 	Single innerRadius, Single innerRadiusAngle, UInt32 channelCount, Single channelRadius, IList<Single>^ channelAzimuths,
 	IList<DistanceSetting^>^ curveVolume, IList<DistanceSetting^>^ curveLFE, IList<DistanceSetting^>^ curveLpfDirect, IList<DistanceSetting^>^ curveLpfReverb, IList<DistanceSetting^>^ curveReverb,
 	Single curveDistanceScaler, Single dopplerScaler) : Actor(front, top, position, velocity, cone)
@@ -297,10 +297,10 @@ Emitter^ Emitter::FromUnmanaged(X3DAUDIO_EMITTER* emitter)
 		if (emitter->pCone != NULL)
 			cone = Cone::FromUnmanaged(emitter->pCone);
 
-		Vector<Single>^ front = Actor::CopyUnmanagedVector(emitter->OrientFront);
-		Vector<Single>^ top = Actor::CopyUnmanagedVector(emitter->OrientTop);
-		Vector<Single>^ position = Actor::CopyUnmanagedVector(emitter->Position);
-		Vector<Single>^ velocity = Actor::CopyUnmanagedVector(emitter->Velocity);
+		Vector<Single> front = Actor::CopyUnmanagedVector(emitter->OrientFront);
+		Vector<Single> top = Actor::CopyUnmanagedVector(emitter->OrientTop);
+		Vector<Single> position = Actor::CopyUnmanagedVector(emitter->Position);
+		Vector<Single> velocity = Actor::CopyUnmanagedVector(emitter->Velocity);
 
 		List<Single>^ azimuths = nullptr;
 		if (emitter->pChannelAzimuths != NULL)
