@@ -10,6 +10,7 @@
 using namespace System;
 using namespace System::Text;
 using namespace Bardez::Projects::BasicStructures::Win32::Audio;
+using namespace Bardez::Projects::ReusableCode;
 
 
 namespace Bardez
@@ -94,25 +95,27 @@ namespace Bardez
 					/// <returns>A String representing the DeviceDetails Object contents</returns>
 					String^ ToDescriptionString()
 					{
-						String^ desc = nullptr;
-
 						StringBuilder^ builder = gcnew StringBuilder();
-						builder->Append("\tDevice ID:       ");
-						builder->Append(this->deviceId);
-						builder->AppendLine(System::String::Empty);
-						builder->Append("\tDevice name:     ");
-						builder->Append(this->displayName);
-						builder->AppendLine(System::String::Empty);
-						builder->Append("\tDevice Role:     ");
-						builder->Append(this->deviceRole.ToString());
-						builder->AppendLine(System::String::Empty);
-						builder->AppendLine("Output format:");
-						builder->Append(this->outputFormat->ToDescriptionString());
-						builder->AppendLine(System::String::Empty);
 
-						desc = builder->ToString();
+						this->WriteString(builder);
+
+						String^ desc = builder->ToString();
 	
 						return desc;
+					}
+					
+					/// <summary>This method prints a human-readable representation to the given StringBuilder</summary>
+					/// <param name="builder">StringBuilder to write to</param>
+					void WriteString(StringBuilder^ builder)
+					{
+						StringFormat::ToStringAlignment("Device ID", builder);
+						builder->Append(this->deviceId);
+						StringFormat::ToStringAlignment("Device name", builder);
+						builder->Append(this->displayName);
+						StringFormat::ToStringAlignment("Device Role", builder);
+						builder->Append(this->deviceRole.ToString());
+						StringFormat::ToStringAlignment("Output format", builder);
+						this->outputFormat->WriteString(builder);
 					}
 				};
 			}
