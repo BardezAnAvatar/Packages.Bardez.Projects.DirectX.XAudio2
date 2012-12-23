@@ -86,7 +86,7 @@ XAudio2Interface^ XAudio2Interface::NewInstance()
 
 	//write a new address to the pointer
 	UINT32 xaudio2Flags = 0;
-#if DEBUG
+#if _DEBUG
 	xaudio2Flags |= XAUDIO2_DEBUG_ENGINE;
 #endif
 
@@ -97,7 +97,7 @@ XAudio2Interface^ XAudio2Interface::NewInstance()
 
 	return newInstance;
 }
-					
+
 /// <summary>Applies the set of operation identified with operationSet</summary>
 /// <param name="operationSet">Operation set of the effect (XAUDIO2_COMMIT_NOW == 0?), identifiying a batch</param>
 /// <returns>S_OK on success, otherwise an error code.</returns>
