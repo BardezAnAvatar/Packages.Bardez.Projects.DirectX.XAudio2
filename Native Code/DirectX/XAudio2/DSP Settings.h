@@ -11,6 +11,7 @@
 
 using namespace System;
 using namespace System::Collections::Generic;
+using namespace System::Runtime::InteropServices;
 
 
 namespace Bardez
@@ -37,10 +38,10 @@ namespace Bardez
 					protected:
 						/// <summary>Matrix of volume level coefficients for source and destination channels</summary>
 						/// <remarks>This must be at least <see cref="channelCountSource" /> × <see cref="channelCountDestination" /> elements long.</remarks>
-						IList<Single>^ coefficientsMatrix;
+						array<Single>^ coefficientsMatrix;
 
 						/// <summary>Delay time array, which receives delays for each destination channel in milliseconds. This array must have at least <see cref="ChannelCountDestination" /> elements</summary>
-						IList<Single>^ delayTimes;
+						array<Single>^ delayTimes;
 
 						/// <summary>Number of source channels. This must be initialized to the number of emitter channels before calling <see cref="X3DAudio::CalculateAudio" />.</summary>
 						UInt32 channelCountSource;
@@ -71,6 +72,20 @@ namespace Bardez
 
 						/// <summary>Component of listener velocity vector projected onto the emitter -> listener vector in user-defined world units per second.</summary>
 						Single listenerVelocity;
+						
+						/// <summary>
+						///		Pointer to data that will not be garbage collected. Used to get a pointer to the Byte Array without using
+						///		Marshal to copy the data (which is unnecessarily slow). Populated in ToUnmanaged and referenced and cleared in
+						///		PopulateFromUnmanaged.
+						/// </summary>
+						GCHandle matrixHandle;
+						
+						/// <summary>
+						///		Pointer to data that will not be garbage collected. Used to get a pointer to the Byte Array without using
+						///		Marshal to copy the data (which is unnecessarily slow). Populated in ToUnmanaged and referenced and cleared in
+						///		PopulateFromUnmanaged.
+						/// </summary>
+						GCHandle delayHandle;
 					#pragma endregion
 
 
@@ -79,17 +94,17 @@ namespace Bardez
 					public:
 						/// <summary>Matrix of volume level coefficients for source and destination channels</summary>
 						/// <remarks>This must be at least <see cref="ChannelCountSource" /> × <see cref="ChannelCountDestination" /> elements long.</remarks>
-						property IList<Single>^ CoefficientsMatrix
+						property array<Single>^ CoefficientsMatrix
 						{
-							IList<Single>^ get();
-							void set(IList<Single>^ value);
+							array<Single>^ get();
+							void set(array<Single>^ value);
 						}
 
 						/// <summary>Delay time array, which receives delays for each destination channel in milliseconds. This array must have at least <see cref="ChannelCountDestination" /> elements</summary>
-						property IList<Single>^ DelayTimes
+						property array<Single>^ DelayTimes
 						{
-							IList<Single>^ get();
-							void set(IList<Single>^ value);
+							array<Single>^ get();
+							void set(array<Single>^ value);
 						}
 
 						/// <summary>Number of source channels. This must be initialized to the number of emitter channels before calling <see cref="X3DAudio::CalculateAudio" />.</summary>
@@ -181,6 +196,25 @@ namespace Bardez
 					#pragma endregion
 
 
+					#pragma region Destruction
+					public:
+						/// <summary>Destrutor</summary>
+						/// <remarks>Dispose()</remarks>
+						~DspSettings();
+
+						/// <summary>Destrutor</summary>
+						/// <remarks>Finalize()</remarks>
+						!DspSettings();
+
+					protected:
+						/// <summary>Releases memory allocated for Coefficients Matrix and Delay Times arrays in unmanaged code</summary>
+						void ReleaseUnmanaged();
+
+						/// <summary>Releases the memory allocated for managed resources, such as arrays and so on</summary>
+						void ReleaseManaged();
+					#pragma endregion
+
+
 
 					#pragma region Methods
 					internal:
@@ -199,9 +233,9 @@ namespace Bardez
 						/// <returns>The copied primitive array</returns>
 						array<Single>^ CopyUnmanagedArray(FLOAT32* source, Int64 count);
 
-						/// <summary>Releases up native memory allocated for an unmanaged X3DAUDIO_DSP_SETTINGS</summary>
+						/// <summary>Releases up native memory allocated for this unmanaged X3DAUDIO_DSP_SETTINGS</summary>
 						/// <param name="settings">Pointer to the DSP Settings to release memory for</param>
-						static void ReleaseMemory(X3DAUDIO_DSP_SETTINGS** settings);
+						void ReleaseMemory(X3DAUDIO_DSP_SETTINGS** settings);
 					#pragma endregion
 				};
 			}

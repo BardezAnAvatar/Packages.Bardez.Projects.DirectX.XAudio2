@@ -9,26 +9,26 @@ using namespace Bardez::Projects::DirectX::X3DAudio;
 #pragma region Properties
 /// <summary>Matrix of volume level coefficients for source and destination channels</summary>
 /// <remarks>This must be at least <see cref="ChannelCountSource" /> × <see cref="ChannelCountDestination" /> elements long.</remarks>
-IList<Single>^ DspSettings::CoefficientsMatrix::get()
+array<Single>^ DspSettings::CoefficientsMatrix::get()
 {
 	return this->coefficientsMatrix;
 }
 
 /// <summary>Matrix of volume level coefficients for source and destination channels</summary>
 /// <remarks>This must be at least <see cref="ChannelCountSource" /> × <see cref="ChannelCountDestination" /> elements long.</remarks>
-void DspSettings::CoefficientsMatrix::set(IList<Single>^ value)
+void DspSettings::CoefficientsMatrix::set(array<Single>^ value)
 {
 	this->coefficientsMatrix = value;
 }
 
 /// <summary>Delay time array, which receives delays for each destination channel in milliseconds. This array must have at least <see cref="ChannelCountDestination" /> elements</summary>
-IList<Single>^ DspSettings::DelayTimes::get()
+array<Single>^ DspSettings::DelayTimes::get()
 {
 	return this->delayTimes;
 }
 
 /// <summary>Delay time array, which receives delays for each destination channel in milliseconds. This array must have at least <see cref="ChannelCountDestination" /> elements</summary>
-void DspSettings::DelayTimes::set(IList<Single>^ value)
+void DspSettings::DelayTimes::set(array<Single>^ value)
 {
 	this->delayTimes = value;
 }
@@ -172,6 +172,10 @@ DspSettings::DspSettings(UInt32 sourceChannels, UInt32 destinationChannels)
 
 	this->channelCountSource = sourceChannels;
 	this->channelCountDestination = destinationChannels;
+	
+	//allocate matrix and delay arrays
+	this->coefficientsMatrix = gcnew array<Single>(this->channelCountSource * this->channelCountDestination);
+	this->delayTimes = gcnew array<Single>(this->channelCountDestination);
 }
 
 /// <summary>Constructs an instance from its unmanaged native equivalent</summary>
@@ -190,6 +194,43 @@ DspSettings^ DspSettings::FromUnmanaged(X3DAUDIO_DSP_SETTINGS* unmanaged)
 #pragma endregion
 
 
+#pragma region Destruction
+/// <summary>Destrutor</summary>
+/// <remarks>Dispose(). Also, implements the Dispose(true) pattern.</remarks>
+DspSettings::~DspSettings()
+{
+	this->!DspSettings();
+}
+
+/// <summary>Destrutor</summary>
+/// <remarks>Finalize()</remarks>
+DspSettings::!DspSettings()
+{
+	this->ReleaseManaged();
+	this->ReleaseUnmanaged();
+}
+
+/// <summary>Releases memory allocated for Coefficients Matrix and Delay Times arrays in unmanaged code</summary>
+void DspSettings::ReleaseUnmanaged()
+{
+	//delay array
+	if (this->delayHandle.IsAllocated)
+		this->delayHandle.Free(); //no way to set GCHandle to nullptr, etc? Setting its IntPtr to IntPtr.Zero errors.
+	
+	//matrix array
+	if (this->matrixHandle.IsAllocated)
+		this->matrixHandle.Free(); //no way to set GCHandle to nullptr, etc? Setting its IntPtr to IntPtr.Zero errors.
+}
+
+/// <summary>Releases the memory allocated for managed resources, such as arrays and so on</summary>
+void DspSettings::ReleaseManaged()
+{
+	this->coefficientsMatrix = nullptr;
+	this->delayTimes = nullptr;
+}
+#pragma endregion
+
+
 
 #pragma region Methods
 /// <summary>Populates this instance from its unmanaged native equivalent</summary>
@@ -199,8 +240,8 @@ void DspSettings::PopulateFromUnmanaged(X3DAUDIO_DSP_SETTINGS* unmanaged)
 	{
 		this->channelCountSource					= unmanaged->SrcChannelCount;
 		this->channelCountDestination				= unmanaged->DstChannelCount;
-		this->coefficientsMatrix					= (IList<Single>^)(DspSettings::CopyUnmanagedArray(unmanaged->pMatrixCoefficients, unmanaged->SrcChannelCount * unmanaged->DstChannelCount));
-		this->delayTimes							= (IList<Single>^)(DspSettings::CopyUnmanagedArray(unmanaged->pDelayTimes, unmanaged->DstChannelCount));
+		this->coefficientsMatrix					= (DspSettings::CopyUnmanagedArray(unmanaged->pMatrixCoefficients, unmanaged->SrcChannelCount * unmanaged->DstChannelCount));
+		this->delayTimes							= (DspSettings::CopyUnmanagedArray(unmanaged->pDelayTimes, unmanaged->DstChannelCount));
 		this->coefficientLowPassFilterDirect		= unmanaged->LPFDirectCoefficient;
 		this->coefficientLowPassFilterReverberation	= unmanaged->LPFReverbCoefficient;
 		this->reverberationLevel					= unmanaged->ReverbLevel;
@@ -220,6 +261,29 @@ X3DAUDIO_DSP_SETTINGS* DspSettings::ToUnmanaged()
 	//copy settings
 	unmanaged->SrcChannelCount = this->channelCountSource;
 	unmanaged->DstChannelCount = this->channelCountDestination;
+
+
+	//allocate matrix and delay arrays
+	if (this->coefficientsMatrix == nullptr)
+		this->coefficientsMatrix = gcnew array<Single>(this->channelCountSource * this->channelCountDestination);
+
+	if (this->delayTimes == nullptr)
+		this->delayTimes = gcnew array<Single>(this->channelCountDestination);
+
+
+	//clear the handles if they are currently allocated
+	this->ReleaseUnmanaged();
+
+
+	//take new handles
+	this->matrixHandle = GCHandle::Alloc(this->coefficientsMatrix, GCHandleType::Pinned);
+	this->delayHandle = GCHandle::Alloc(this->delayTimes, GCHandleType::Pinned);
+
+
+	//assign the allocated handles to the structure
+	unmanaged->pMatrixCoefficients = reinterpret_cast<FLOAT32*>(this->matrixHandle.AddrOfPinnedObject().ToPointer());
+	unmanaged->pDelayTimes = reinterpret_cast<FLOAT32*>(this->delayHandle.AddrOfPinnedObject().ToPointer());
+
 
 	return unmanaged;
 }
@@ -241,29 +305,6 @@ void DspSettings::SetDefaultValues()
 	this->listenerVelocity							= Single::NaN;
 }
 
-///// <summary>Copies a source array of unmanaged Primitives to a destination managed array of primitives</summary>
-///// <param name="Primitive">Type of primitive to copy</param>
-///// <param name="source">Source to read from</param>
-///// <param name="count">Count of records to copy</param>
-///// <returns>The copied primitive array</returns>
-//generic<class Primitive>
-//array<Primitive>^ DspSettings::CopyUnmanagedArray(void* source, Int64 count)
-//{
-//	array<Primitive>^ managed = nullptr;
-//
-//	if (source != NULL)
-//	{
-//		managed = gcnew array<Primitive>(count);
-//
-//		for (Int64 index = 0; index < count; ++index)
-//		{
-//			managed[index] = source[index];
-//		}
-//	}
-//
-//	return managed;
-//}
-
 /// <summary>Copies a source array of unmanaged FLOAT32 to a destination managed array of Singles</summary>
 /// <param name="source">Source to read from</param>
 /// <param name="count">Count of records to copy</param>
@@ -273,7 +314,7 @@ array<Single>^ DspSettings::CopyUnmanagedArray(FLOAT32* source, Int64 count)
 	array<Single>^ managed = nullptr;
 	if (source != NULL)
 	{
-		array<Single>^ delays = gcnew array<Single>(count);
+		managed = gcnew array<Single>(count);
 			
 		for (Int64 index = 0; index < count; ++index)
 			managed[index] = source[index];
@@ -282,23 +323,15 @@ array<Single>^ DspSettings::CopyUnmanagedArray(FLOAT32* source, Int64 count)
 	return managed;
 }
 
-/// <summary>Releases up native memory allocated for an unmanaged X3DAUDIO_DSP_SETTINGS</summary>
+/// <summary>Releases up native memory allocated for this unmanaged X3DAUDIO_DSP_SETTINGS</summary>
 /// <param name="settings">Pointer to the DSP Settings to release memory for</param>
 void DspSettings::ReleaseMemory(X3DAUDIO_DSP_SETTINGS** settings)
 {
 	if ((*settings) != NULL)
 	{
-		if ((*settings)->pMatrixCoefficients != NULL)
-		{
-			delete [] (*settings)->pMatrixCoefficients;
-			(*settings)->pMatrixCoefficients = NULL;
-		}
-
-		if ((*settings)->pDelayTimes != NULL)
-		{
-			delete [] (*settings)->pDelayTimes;
-			(*settings)->pDelayTimes = NULL;
-		}
+		this->ReleaseUnmanaged();
+		(*settings)->pMatrixCoefficients = NULL;
+		(*settings)->pDelayTimes = NULL;
 
 		delete *settings;
 		*settings = NULL;
