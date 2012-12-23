@@ -58,7 +58,7 @@ void X3DAudio::CalculateAudio(Listener^ listener, Emitter^ emitter, X3DAudioCalc
 {
 	//copy from manged to unmanaged
 	pin_ptr<BYTE> pinHandle = &(X3DAudio::hX3DAudio[0]);
-	BYTE* unmanaged = pinHandle;
+	const BYTE* unmanaged = pinHandle;
 
 	//listener and emitter are just read-pointers
 	X3DAUDIO_LISTENER* nativeListener = listener->ToUnmanaged();
@@ -76,7 +76,7 @@ void X3DAudio::CalculateAudio(Listener^ listener, Emitter^ emitter, X3DAudioCalc
 	********************/
 	Listener::ReleaseMemory(&nativeListener);
 	Emitter::ReleaseMemory(&nativeEmitter);
-	DspSettings::ReleaseMemory(&nativeSettings);
+	settings->ReleaseMemory(&nativeSettings);
 
 	//unnecessary to copy back to managed handle, since it is passed in as const
 	//X3DAudio::CopyFromUnmanged(unmanaged);
