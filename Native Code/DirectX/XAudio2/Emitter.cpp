@@ -75,7 +75,7 @@ void Emitter::ChannelRadius::set(Single value)
 ///		ChannelAzimuths must have at least <see cref="ChannelCount" /> elements. The table values must be within 0.0f to X3DAUDIO_2PI.
 ///		ChannelAzimuths is used with multi-channel emitters for matrix calculations.
 ///	</summary>
-IList<Single>^ Emitter::ChannelAzimuths::get()
+array<Single>^ Emitter::ChannelAzimuths::get()
 {
 	return this->channelAzimuths;
 }
@@ -87,7 +87,7 @@ IList<Single>^ Emitter::ChannelAzimuths::get()
 ///		ChannelAzimuths must have at least <see cref="ChannelCount" /> elements. The table values must be within 0.0f to X3DAUDIO_2PI.
 ///		ChannelAzimuths is used with multi-channel emitters for matrix calculations.
 ///	</summary>
-void Emitter::ChannelAzimuths::set(IList<Single>^ value)
+void Emitter::ChannelAzimuths::set(array<Single>^ value)
 {
 	this->channelAzimuths = value;
 }
@@ -267,7 +267,7 @@ Emitter::Emitter(UInt32 channels) : Actor()
 /// <param name="curveDistanceScaler">Curve distance scaler that is used to scale normalized distance curves to user-defined world units</param>
 /// <param name="dopplerScaler">Doppler shift scaler that is used to exaggerate Doppler shift effect</param>
 Emitter::Emitter(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Bardez::Projects::DirectX::X3DAudio::Cone^ cone,
-	Single innerRadius, Single innerRadiusAngle, UInt32 channelCount, Single channelRadius, IList<Single>^ channelAzimuths,
+	Single innerRadius, Single innerRadiusAngle, UInt32 channelCount, Single channelRadius, array<Single>^ channelAzimuths,
 	IList<DistanceSetting^>^ curveVolume, IList<DistanceSetting^>^ curveLFE, IList<DistanceSetting^>^ curveLpfDirect, IList<DistanceSetting^>^ curveLpfReverb, IList<DistanceSetting^>^ curveReverb,
 	Single curveDistanceScaler, Single dopplerScaler) : Actor(front, top, position, velocity, cone)
 {
@@ -302,12 +302,12 @@ Emitter^ Emitter::FromUnmanaged(X3DAUDIO_EMITTER* emitter)
 		Vector<Single> position = Actor::CopyUnmanagedVector(emitter->Position);
 		Vector<Single> velocity = Actor::CopyUnmanagedVector(emitter->Velocity);
 
-		List<Single>^ azimuths = nullptr;
+		array<Single>^ azimuths = nullptr;
 		if (emitter->pChannelAzimuths != NULL)
 		{
-			azimuths = gcnew List<Single>();
+			azimuths = gcnew array<Single>(emitter->ChannelCount);
 			for (UInt32 index = 0U; index < emitter->ChannelCount; ++index)
-				azimuths->Add(emitter->pChannelAzimuths[index]);
+				azimuths[index] = emitter->pChannelAzimuths[index];
 		}
 
 		IList<DistanceSetting^>^ curveVolume = Emitter::CopyCurveToList(emitter->pVolumeCurve);
@@ -339,12 +339,11 @@ X3DAUDIO_EMITTER* Emitter::ToUnmanaged()
 	if (this->cone != nullptr)
 		cone = this->cone->ToUnmanaged();
 
-	FLOAT32* azimuths = NULL;
+	//This cannot be null. It is required to be of length of at least ChannelCount elements
+	FLOAT32* azimuths = new FLOAT32[this->channelCount];
 	if (this->channelAzimuths != nullptr)
 	{
-		azimuths = new FLOAT32[this->channelAzimuths->Count];
-
-		for (Int32 index = 0; index < this->channelAzimuths->Count; ++index)
+		for (Int32 index = 0; index < this->channelCount; ++index)
 			azimuths[index] = this->channelAzimuths[index];
 	}
 

@@ -55,7 +55,7 @@ namespace Bardez
 						///		channelAzimuths must have at least <see cref="channelCount" /> elements. The table values must be within 0.0f to X3DAUDIO_2PI.
 						///		channelAzimuths is used with multi-channel emitters for matrix calculations.
 						///	</summary>
-						IList<Single>^ channelAzimuths;
+						array<Single>^ channelAzimuths;
 
 						/// <summary>
 						///		Volume-level distance curve, which is used only for matrix calculations.
@@ -149,10 +149,10 @@ namespace Bardez
 						///		ChannelAzimuths must have at least <see cref="ChannelCount" /> elements. The table values must be within 0.0f to X3DAUDIO_2PI.
 						///		ChannelAzimuths is used with multi-channel emitters for matrix calculations.
 						///	</summary>
-						property IList<Single>^ ChannelAzimuths
+						property array<Single>^ ChannelAzimuths
 						{
-							IList<Single>^ get();
-							void set(IList<Single>^ value);
+							array<Single>^ get();
+							void set(array<Single>^ value);
 						}
 
 						/// <summary>
@@ -257,7 +257,7 @@ namespace Bardez
 						/// <param name="curveDistanceScaler">Curve distance scaler that is used to scale normalized distance curves to user-defined world units</param>
 						/// <param name="dopplerScaler">Doppler shift scaler that is used to exaggerate Doppler shift effect</param>
 						Emitter(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Bardez::Projects::DirectX::X3DAudio::Cone^ cone,
-							Single innerRadius, Single innerRadiusAngle, UInt32 channelCount, Single channelRadius, IList<Single>^ channelAzimuths,
+							Single innerRadius, Single innerRadiusAngle, UInt32 channelCount, Single channelRadius, array<Single>^ channelAzimuths,
 							IList<DistanceSetting^>^ curveVolume, IList<DistanceSetting^>^ curveLFE, IList<DistanceSetting^>^ curveLpfDirect, IList<DistanceSetting^>^ curveLpfReverb, IList<DistanceSetting^>^ curveReverb,
 							Single curveDistanceScaler, Single dopplerScaler);
 						
