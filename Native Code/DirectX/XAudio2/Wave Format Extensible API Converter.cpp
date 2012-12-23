@@ -22,7 +22,7 @@ WaveFormatExtensible^ WaveFormatExtensibleWin32Converter::BuildWaveFormatExtensi
 
 		//WAVEFORMATEXTENSIBLE REMAINDER
 		waveFormat.Samples.wSamplesPerBlock,
-		(SpeakerPositions)(waveFormat.dwChannelMask),
+		(waveFormat.dwChannelMask),
 		System::Guid
 			(	waveFormat.SubFormat.Data1, waveFormat.SubFormat.Data2, waveFormat.SubFormat.Data3,
 				waveFormat.SubFormat.Data4[0], waveFormat.SubFormat.Data4[1], waveFormat.SubFormat.Data4[2], waveFormat.SubFormat.Data4[3], 
