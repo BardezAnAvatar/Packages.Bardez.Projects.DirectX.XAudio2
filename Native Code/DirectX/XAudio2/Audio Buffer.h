@@ -59,10 +59,10 @@ namespace Bardez
 					System::IntPtr context;
 
 					/// <summary>
-					///		Pointer to data that wll not be garbage collected. Used to get a pointer to the Byte Array without using
+					///		Pointer to data that will not be garbage collected. Used to get a pointer to the Byte Array without using
 					//		Marshal to copy the data (which is unnecessarily slow).
 					/// </summary>
-                    System::Runtime::InteropServices::GCHandle gcHandle;
+					System::Runtime::InteropServices::GCHandle gcHandle;
 				#pragma endregion
 
 

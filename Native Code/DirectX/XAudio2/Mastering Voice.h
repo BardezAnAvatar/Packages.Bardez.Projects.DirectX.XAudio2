@@ -61,7 +61,7 @@ namespace Bardez
 				public:
 					/// <summary>Destroys the voice.</summary>
 					/// <remarks>
-					///		Stops the voice as necessar, removing it from the audio graph.
+					///		Stops the voice as necessary, removing it from the audio graph.
 					///		Waits for audio thread to be idle, so may take a few ms.
 					///		Violates paradigm to call from within a callback, returning XAUDIO2_E_INVALID_CALL.
 					/// </remarks>
