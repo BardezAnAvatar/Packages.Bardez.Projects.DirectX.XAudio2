@@ -50,6 +50,7 @@ namespace Bardez
 					public:
 						/// <summary>No sample rate conversion is available on the voice. The voice's outputs must have the same sample rate.</summary>
 						/// <remarks>This flag causes the voice to behave as though the XAUDIO2_VOICE_NOPITCH flag also is specified.</remarks>
+						/// <value>0x0004</value>
 						static const System::UInt32 NoSampleRateConversion = XAUDIO2_VOICE_NOSRC;
 
 						/// <summary>No pitch control is available on the voice.</summary>
@@ -76,7 +77,7 @@ namespace Bardez
 						/// <summary>Maximum audio sample rate supported</summary>
 						/// <remarks>200000?</remarks>
 						static const System::UInt32 MaximumSampleRate = XAUDIO2_MAX_SAMPLE_RATE;
-						
+
 						/// <summary>XAudio2 constant indicating that the stream is expected to close after this buffer is finished.</summary>
 						/// <value>0x0040U</value>
 						static const System::UInt32 EndOfStream = XAUDIO2_END_OF_STREAM;
@@ -89,7 +90,7 @@ namespace Bardez
 					/// <summary>Pointer to an XAudio2 interface object</summary>
 					System::IntPtr ptrXAudio2;
 				#pragma endregion
-					
+
 
 
 				#pragma region Properties
@@ -103,7 +104,7 @@ namespace Bardez
 				#pragma endregion
 
 
-					
+
 				#pragma region Construction
 				internal:
 					/// <summary>Default construtor</summary>
@@ -111,7 +112,7 @@ namespace Bardez
 				#pragma endregion
 
 
-					
+
 				#pragma region Destruction
 				public:
 					/// <summary>Destructor</summary>
@@ -126,7 +127,7 @@ namespace Bardez
 					/// <remarks>There are only managed references, so either Finalize or Dispose would be calling</remarks>
 					void DisposeUnmanaged();
 				#pragma endregion
-					
+
 
 
 				#pragma region Methods
@@ -134,12 +135,12 @@ namespace Bardez
 					/// <summary>Creates &amp; initializes the XAudio2 Interface</summary>
 					/// <returns>A new XAudio2Interface object instance</returns>
 					static XAudio2Interface^ NewInstance();
-					
+
 					/// <summary>Applies the set of operation identified with operationSet</summary>
 					/// <param name="operationSet">Operation set of the effect (XAUDIO2_COMMIT_NOW == 0?), identifiying a batch</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CommitChanges(System::UInt32 operationSet);
-					
+
 					/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
 					/// <param name="masteringVoice">Mastering voice reference to assign</param>
 					/// <param name="channels">Number of input channels</param>
@@ -149,7 +150,7 @@ namespace Bardez
 					/// <param name="effectChain">List of effects for the mastering voice</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateMasteringVoice(MasteringVoice^% masteringVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 deviceIndex, System::Collections::Generic::List<EffectDescriptor^>^ effectChain);
-					
+
 					/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
 					/// <param name="masteringVoice">Mastering voice reference to assign</param>
 					/// <param name="channels">Number of input channels</param>
@@ -158,7 +159,7 @@ namespace Bardez
 					/// <param name="deviceIndex">Index of the output device. 0 means default.</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateMasteringVoice(MasteringVoice^% masteringVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 deviceIndex);
-					
+
 					/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
 					/// <param name="masteringVoice">Mastering voice reference to assign</param>
 					/// <param name="channels">Number of input channels</param>
@@ -166,25 +167,25 @@ namespace Bardez
 					/// <param name="flags">Flags that specify behavior of the mastering voice. Must be 0.</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateMasteringVoice(MasteringVoice^% masteringVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags);
-					
+
 					/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
 					/// <param name="masteringVoice">Mastering voice reference to assign</param>
 					/// <param name="channels">Number of input channels</param>
 					/// <param name="sampleRate">Input sample rate</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateMasteringVoice(MasteringVoice^% masteringVoice, System::UInt32 channels, System::UInt32 sampleRate);
-					
+
 					/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
 					/// <param name="masteringVoice">Mastering voice reference to assign</param>
 					/// <param name="channels">Number of input channels</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateMasteringVoice(MasteringVoice^% masteringVoice, System::UInt32 channels);
-					
+
 					/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
 					/// <param name="masteringVoice">Mastering voice reference to assign</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateMasteringVoice(MasteringVoice^% masteringVoice);
-					
+
 					/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
 					/// <param name="channels">Number of input channels</param>
 					/// <param name="sampleRate">Input sample rate</param>
@@ -193,7 +194,7 @@ namespace Bardez
 					/// <param name="effectChain">List of effects for the mastering voice</param>
 					/// <returns>A new Mastering voice reference.</returns>
 					MasteringVoice^ CreateMasteringVoice(System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 deviceIndex, System::Collections::Generic::List<EffectDescriptor^>^ effectChain);
-					
+
 					/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
 					/// <param name="channels">Number of input channels</param>
 					/// <param name="sampleRate">Input sample rate</param>
@@ -201,29 +202,29 @@ namespace Bardez
 					/// <param name="deviceIndex">Index of the output device. 0 means default.</param>
 					/// <returns>A new Mastering voice reference.</returns>
 					MasteringVoice^ CreateMasteringVoice(System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 deviceIndex);
-					
+
 					/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
 					/// <param name="channels">Number of input channels</param>
 					/// <param name="sampleRate">Input sample rate</param>
 					/// <param name="flags">Flags that specify behavior of the mastering voice. Must be 0.</param>
 					/// <returns>A new Mastering voice reference.</returns>
 					MasteringVoice^ CreateMasteringVoice(System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags);
-					
+
 					/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
 					/// <param name="channels">Number of input channels</param>
 					/// <param name="sampleRate">Input sample rate</param>
 					/// <returns>A new Mastering voice reference.</returns>
 					MasteringVoice^ CreateMasteringVoice(System::UInt32 channels, System::UInt32 sampleRate);
-					
+
 					/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
 					/// <param name="channels">Number of input channels</param>
 					/// <returns>A new Mastering voice reference.</returns>
 					MasteringVoice^ CreateMasteringVoice(System::UInt32 channels);
-					
+
 					/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
 					/// <returns>A new Mastering voice reference.</returns>
 					MasteringVoice^ CreateMasteringVoice();
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="sourceVoice">Source voice reference to assign</param>
 					/// <param name="format">Format of the source voice data</param>
@@ -241,7 +242,7 @@ namespace Bardez
 					/// <param name="effectChain">List of effects for the mastering voice</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateSourceVoice(SourceVoice^% sourceVoice, WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends, System::Collections::Generic::List<EffectDescriptor^>^ effectChain);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="sourceVoice">Source voice reference to assign</param>
 					/// <param name="format">Format of the source voice data</param>
@@ -258,7 +259,7 @@ namespace Bardez
 					/// <param name="sends">List of voices to output to</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateSourceVoice(SourceVoice^% sourceVoice, WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="sourceVoice">Source voice reference to assign</param>
 					/// <param name="format">Format of the source voice data</param>
@@ -274,7 +275,7 @@ namespace Bardez
 					/// <param name="callback">Client-defined callback interface</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateSourceVoice(SourceVoice^% sourceVoice, WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="sourceVoice">Source voice reference to assign</param>
 					/// <param name="format">Format of the source voice data</param>
@@ -289,7 +290,7 @@ namespace Bardez
 					///	</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateSourceVoice(SourceVoice^% sourceVoice, WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="sourceVoice">Source voice reference to assign</param>
 					/// <param name="format">Format of the source voice data</param>
@@ -300,13 +301,13 @@ namespace Bardez
 					/// </param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateSourceVoice(SourceVoice^% sourceVoice, WaveFormatEx^ format, System::UInt32 flags);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="sourceVoice">Source voice reference to assign</param>
 					/// <param name="format">Format of the source voice data</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateSourceVoice(SourceVoice^% sourceVoice, WaveFormatEx^ format);
-										
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="format">Format of the source voice data</param>
 					/// <param name="flags">
@@ -323,7 +324,7 @@ namespace Bardez
 					/// <param name="effectChain">List of effects for the mastering voice</param>
 					/// <returns>A new Source voice reference.</returns>
 					SourceVoice^ CreateSourceVoice(WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends, System::Collections::Generic::List<EffectDescriptor^>^ effectChain);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="format">Format of the source voice data</param>
 					/// <param name="flags">
@@ -339,7 +340,7 @@ namespace Bardez
 					/// <param name="sends">List of voices to output to</param>
 					/// <returns>A new Source voice reference.</returns>
 					SourceVoice^ CreateSourceVoice(WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="format">Format of the source voice data</param>
 					/// <param name="flags">
@@ -354,7 +355,7 @@ namespace Bardez
 					/// <param name="callback">Client-defined callback interface</param>
 					/// <returns>A new Source voice reference.</returns>
 					SourceVoice^ CreateSourceVoice(WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="format">Format of the source voice data</param>
 					/// <param name="flags">
@@ -368,7 +369,7 @@ namespace Bardez
 					///	</param>
 					/// <returns>A new Source voice reference.</returns>
 					SourceVoice^ CreateSourceVoice(WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="format">Format of the source voice data</param>
 					/// <param name="flags">
@@ -378,12 +379,12 @@ namespace Bardez
 					/// </param>
 					/// <returns>A new Source voice reference.</returns>
 					SourceVoice^ CreateSourceVoice(WaveFormatEx^ format, System::UInt32 flags);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="format">Format of the source voice data</param>
 					/// <returns>A new Source voice reference.</returns>
 					SourceVoice^ CreateSourceVoice(WaveFormatEx^ format);
-										
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="submixVoice">Submix voice reference to assign</param>
 					/// <param name="channels">Number of input channels</param>
@@ -401,7 +402,7 @@ namespace Bardez
 					/// <param name="effectChain">List of effects for the mastering voice</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateSubmixVoice(SubmixVoice^% submixVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends, System::Collections::Generic::List<EffectDescriptor^>^ effectChain);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="submixVoice">Submix voice reference to assign</param>
 					/// <param name="channels">Number of input channels</param>
@@ -418,7 +419,7 @@ namespace Bardez
 					/// <param name="sends">List of voices to output to</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateSubmixVoice(SubmixVoice^% submixVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="submixVoice">Submix voice reference to assign</param>
 					/// <param name="channels">Number of input channels</param>
@@ -434,7 +435,7 @@ namespace Bardez
 					///	</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateSubmixVoice(SubmixVoice^% submixVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="submixVoice">Submix voice reference to assign</param>
 					/// <param name="channels">Number of input channels</param>
@@ -452,7 +453,7 @@ namespace Bardez
 					/// <param name="sampleRate">Input sample rate</param>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode CreateSubmixVoice(SubmixVoice^% submixVoice, System::UInt32 channels, System::UInt32 sampleRate);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="channels">Number of input channels</param>
 					/// <param name="sampleRate">Input sample rate</param>
@@ -469,7 +470,7 @@ namespace Bardez
 					/// <param name="effectChain">List of effects for the mastering voice</param>
 					/// <returns>A new Submix voice reference.</returns>
 					SubmixVoice^ CreateSubmixVoice(System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends, System::Collections::Generic::List<EffectDescriptor^>^ effectChain);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="channels">Number of input channels</param>
 					/// <param name="sampleRate">Input sample rate</param>
@@ -485,7 +486,7 @@ namespace Bardez
 					/// <param name="sends">List of voices to output to</param>
 					/// <returns>A new Submix voice reference.</returns>
 					SubmixVoice^ CreateSubmixVoice(System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends);
-					
+
 					/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
 					/// <param name="channels">Number of input channels</param>
 					/// <param name="sampleRate">Input sample rate</param>
@@ -521,7 +522,7 @@ namespace Bardez
 					/// <summary>Returns the number of audio output devices available.</summary>
 					/// <returns>A UInt32 describing the device count</returns>
 					System::UInt32 GetDeviceCount();
-					
+
 					/// <summary>Gets the device details from XAudio2</summary>
 					/// <param name="index">Index of the device to be described</param>
 					/// <returns>A reference to a DeviceDetails instance describing the audio device</returns>
@@ -551,11 +552,11 @@ namespace Bardez
 
 					/// <summary>Sets the debug configuration data</summary>
 					void SetDebugConfiguration(DebugConfiguration^ config);
-					
+
 					/// <summary>Starts the audio processing thread</summary>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					ResultCode StartEngine();
-					
+
 					/// <summary>Stops the audio processing thread</summary>
 					/// <returns>S_OK on success, otherwise an error code.</returns>
 					void StopEngine();
@@ -576,7 +577,7 @@ namespace Bardez
 				#pragma endregion
 
 
-					
+
 				#pragma region Helper Methods
 				internal:
 					/// <summary>Gets a pointer to an XAudio2 effect chain for the API</summary>
