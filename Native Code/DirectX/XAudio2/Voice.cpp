@@ -2,6 +2,7 @@
 
 #include "Voice.h"
 
+
 using namespace Bardez::Projects::DirectX::XAudio2;
 
 
@@ -137,9 +138,11 @@ array<System::Single>^ Voice::GetChannelVolumes(System::UInt32 channels)
 
 	this->XAudio2Voice->GetChannelVolumes(channels, volumes);
 
-
 	for (System::UInt32 i = 0; i < channels; ++i)
 		outVolumes[i] = volumes[i];
+
+	//I just initialized the array, and the API copied into it. Now I'm done and this should not need to be persisted.
+	//delete [] volumes;
 
 	return outVolumes;
 }
@@ -219,6 +222,9 @@ array<System::Single>^ Voice::GetOutputMatrix(Voice^ destination, System::UInt32
 	// copy from unmanaged to managed
 	for (System::UInt32 i = 0; i < sourceChannels * destinationChannels; ++i)
 		outMatrix[i] = matrix[i];
+
+	//I just initialized the array, and the API copied into it. Now I'm done and this should not need to be persisted.
+	//delete [] matrix;
 
 	return outMatrix;
 }
@@ -409,3 +415,4 @@ ResultCode Voice::SetVolume(System::Single volume, System::UInt32 operationSet)
 	return (ResultCode)this->XAudio2Voice->SetVolume(volume, operationSet);
 }
 #pragma endregion
+
