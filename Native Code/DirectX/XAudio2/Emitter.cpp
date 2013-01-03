@@ -343,7 +343,7 @@ X3DAUDIO_EMITTER* Emitter::ToUnmanaged()
 	FLOAT32* azimuths = new FLOAT32[this->channelCount];
 	if (this->channelAzimuths != nullptr)
 	{
-		for (Int32 index = 0; index < this->channelCount; ++index)
+		for (UInt32 index = 0; index < this->channelCount; ++index)
 			azimuths[index] = this->channelAzimuths[index];
 	}
 
