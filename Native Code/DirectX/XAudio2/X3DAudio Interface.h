@@ -35,10 +35,10 @@ namespace Bardez
 				public ref class X3DAudio
 				{
 					#pragma region Fields
-					private:
+					protected:
 						/// <summary>"Pointer" to an X3DAudio instance</summary>
 						/// <remarks>This actually appears to be an array of 20 bytes rather than a pointer</remarks>
-						static array<Byte>^ hX3DAudio = gcnew array<Byte>(X3DAUDIO_HANDLE_BYTESIZE);
+						array<Byte>^ hX3DAudio;
 					#pragma endregion
 
 
@@ -59,12 +59,17 @@ namespace Bardez
 					public:
 						/// <summary>X3DAudio constructor</summary>
 						/// <param name="channelMask">Assignment of channels to speaker positions. This value must not be zero.</param>
-						static void Initialize(UInt32 channelMask);
+						X3DAudio(UInt32 channelMask);
 
 						/// <summary>X3DAudio constructor</summary>
 						/// <param name="channelMask">Assignment of channels to speaker positions. This value must not be zero.</param>
 						/// <param name="speedOfSound">Speed of sound, in user-defined world units per second. Use this value only for doppler calculations. It must be greater than or equal to FLT_MIN (1.175494351e-38F).</param>
-						static void Initialize(UInt32 channelMask, Single speedOfSound);
+						X3DAudio(UInt32 channelMask, Single speedOfSound);
+
+						/// <summary>X3DAudio constructor</summary>
+						/// <param name="channelMask">Assignment of channels to speaker positions. This value must not be zero.</param>
+						/// <param name="speedOfSound">Speed of sound, in user-defined world units per second. Use this value only for doppler calculations. It must be greater than or equal to FLT_MIN (1.175494351e-38F).</param>
+						void Initialize(UInt32 channelMask, Single speedOfSound);
 					#pragma endregion
 
 
@@ -83,7 +88,7 @@ namespace Bardez
 						///			* ChannelCountSource
 						///			* ChannelCountDestination
 						///	</param>
-						static void CalculateAudio(Listener^ listener, Emitter^ emitter, X3DAudioCalculationFlags flags, DspSettings^ settings);
+						void CalculateAudio(Listener^ listener, Emitter^ emitter, X3DAudioCalculationFlags flags, DspSettings^ settings);
 					#pragma endregion
 				};
 			}

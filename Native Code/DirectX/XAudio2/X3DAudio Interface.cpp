@@ -21,9 +21,17 @@ Single X3DAudio::SpeedOfSoundDefault::get()
 #pragma region Construction
 /// <summary>X3DAudio constructor</summary>
 /// <param name="channelMask">Assignment of channels to speaker positions. This value must not be zero.</param>
-void X3DAudio::Initialize(UInt32 channelMask)
+X3DAudio::X3DAudio(UInt32 channelMask)
 {
-	X3DAudio::Initialize(channelMask, X3DAudio::SpeedOfSoundDefault);
+	this->Initialize(channelMask, X3DAudio::SpeedOfSoundDefault);
+}
+
+/// <summary>X3DAudio constructor</summary>
+/// <param name="channelMask">Assignment of channels to speaker positions. This value must not be zero.</param>
+/// <param name="speedOfSound">Speed of sound, in user-defined world units per second. Use this value only for doppler calculations. It must be greater than or equal to FLT_MIN (1.175494351e-38F).</param>
+X3DAudio::X3DAudio(UInt32 channelMask, Single speedOfSound)
+{
+	this->Initialize(channelMask, speedOfSound);
 }
 
 /// <summary>X3DAudio constructor</summary>
@@ -32,7 +40,8 @@ void X3DAudio::Initialize(UInt32 channelMask)
 void X3DAudio::Initialize(UInt32 channelMask, Single speedOfSound)
 {
 	//copy from manged to unmanaged
-	pin_ptr<BYTE> pinHandle = &(X3DAudio::hX3DAudio[0]);
+	this->hX3DAudio = gcnew array<Byte>(X3DAUDIO_HANDLE_BYTESIZE);
+	pin_ptr<BYTE> pinHandle = &(this->hX3DAudio[0]);
 	BYTE* unmanaged = pinHandle;
 
 	X3DAudioInitialize(channelMask, speedOfSound, unmanaged);
@@ -57,7 +66,7 @@ void X3DAudio::Initialize(UInt32 channelMask, Single speedOfSound)
 void X3DAudio::CalculateAudio(Listener^ listener, Emitter^ emitter, X3DAudioCalculationFlags flags, DspSettings^ settings)
 {
 	//copy from manged to unmanaged
-	pin_ptr<BYTE> pinHandle = &(X3DAudio::hX3DAudio[0]);
+	pin_ptr<BYTE> pinHandle = &(this->hX3DAudio[0]);
 	const BYTE* unmanaged = pinHandle;
 
 	//listener and emitter are just read-pointers
