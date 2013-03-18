@@ -9,6 +9,7 @@
 
 
 using namespace System;
+using namespace System::Collections::Generic;
 
 
 namespace Bardez
@@ -62,6 +63,17 @@ namespace Bardez
 						/// <param name="setting">DSP control setting</param>
 						DistanceSetting(Single distance, Single setting);
 						
+						/// <summary>Copy constructor from the MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::DistanceCurvePoint" /> class</summary>
+						/// <param name="distance">Normalized distance. This must be within 0.0F to 1.0F.</param>
+						/// <param name="setting">DSP control setting</param>
+						DistanceSetting(Bardez::Projects::Multimedia::MediaBase::Render::Audio::DistanceCurvePoint^ curvePoint);
+
+					protected:
+						/// <summary>Definition method</summary>
+						/// <param name="distance">Normalized distance. This must be within 0.0F to 1.0F.</param>
+						/// <param name="setting">DSP control setting</param>
+						void DefineSetting(Single distance, Single setting);
+						
 					internal:
 						/// <summary>Unmanaged constructor</summary>
 						/// <param name="point">Unmanaged curve point to copy from.</param>
@@ -75,6 +87,10 @@ namespace Bardez
 						/// <summary>Generated an unmanaged copy for API calls</summary>
 						/// <returns>An unmanaged copy for API calls</returns>
 						X3DAUDIO_DISTANCE_CURVE_POINT ToUnmanaged();
+
+						/// <summary>Helper method to copy a collection of <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::DistanceCurvePoint" /> to a collection of DistanceSetting</summary>
+						/// <param name="curvePointCollection">Collection of <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::DistanceCurvePoint" /> to copy</param>
+						static IList<DistanceSetting^>^ CopyDistanceCurvePoint(IList<Bardez::Projects::Multimedia::MediaBase::Render::Audio::DistanceCurvePoint^>^ curvePointCollection);
 					#pragma endregion
 				};
 			}

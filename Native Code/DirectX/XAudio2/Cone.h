@@ -132,6 +132,22 @@ namespace Bardez
 						/// <param name="outerReverb">Reverb send level scaler on/beyond outer cone. This must be within 0.0f to 2.0f.</param>
 						Cone(Single innerAngle, Single outerAngle, Single innerVolume, Single outerVolume, Single innerLPF, Single outerLPF, Single innerReverb, Single outerReverb);
 
+						/// <summary>Copy constructor from the MediaBase <see cref="AudioCone" /> class</summary>
+						/// <param name="managedCone">Source MediaBase <see cref="AudioCone" /> to copy from</param>
+						Cone(Bardez::Projects::Multimedia::MediaBase::Render::Audio::AudioCone^ managedCone);
+
+					protected:
+						/// <summary>Definition method</summary>
+						/// <param name="innerAngle">Inner cone angle in radians. This value must be within 0.0f to 2 * Pi.</param>
+						/// <param name="outerAngle">Outer cone angle in radians. This value must be within <see cref="innerAngle" /> to 2 * Pi.</param>
+						/// <param name="innerVolume">Volume scaler on/within inner cone. This value must be within 0.0f to 2.0f.</param>
+						/// <param name="outerVolume">Volume scaler on/beyond outer cone. This value must be within 0.0f to 2.0f.</param>
+						/// <param name="innerLPF">LPF direct-path or reverb-path coefficient scaler on/within inner cone. This value is only used for LPF calculations and must be within 0.0f to 1.0f.</param>
+						/// <param name="outerLPF">LPF direct-path or reverb-path coefficient scaler on or beyond outer cone. This value is only used for LPF calculations and must be within 0.0f to 1.0f.</param>
+						/// <param name="innerReverb">Reverb send level scaler on or within inner cone. This must be within 0.0f to 2.0f.</param>
+						/// <param name="outerReverb">Reverb send level scaler on/beyond outer cone. This must be within 0.0f to 2.0f.</param>
+						void DefineCone(Single innerAngle, Single outerAngle, Single innerVolume, Single outerVolume, Single innerLPF, Single outerLPF, Single innerReverb, Single outerReverb);
+
 					internal:
 						/// <summary>Constructs a managed audio cone from an unmanaged source</summary>
 						/// <param name="cone">Unmanaged source cone to copy from</param>

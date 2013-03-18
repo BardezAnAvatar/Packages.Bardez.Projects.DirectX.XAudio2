@@ -75,7 +75,7 @@ void Emitter::ChannelRadius::set(Single value)
 ///		ChannelAzimuths must have at least <see cref="ChannelCount" /> elements. The table values must be within 0.0f to X3DAUDIO_2PI.
 ///		ChannelAzimuths is used with multi-channel emitters for matrix calculations.
 ///	</summary>
-array<Single>^ Emitter::ChannelAzimuths::get()
+IList<Single>^ Emitter::ChannelAzimuths::get()
 {
 	return this->channelAzimuths;
 }
@@ -87,7 +87,7 @@ array<Single>^ Emitter::ChannelAzimuths::get()
 ///		ChannelAzimuths must have at least <see cref="ChannelCount" /> elements. The table values must be within 0.0f to X3DAUDIO_2PI.
 ///		ChannelAzimuths is used with multi-channel emitters for matrix calculations.
 ///	</summary>
-void Emitter::ChannelAzimuths::set(array<Single>^ value)
+void Emitter::ChannelAzimuths::set(IList<Single>^ value)
 {
 	this->channelAzimuths = value;
 }
@@ -267,9 +267,44 @@ Emitter::Emitter(UInt32 channels) : Actor()
 /// <param name="curveDistanceScaler">Curve distance scaler that is used to scale normalized distance curves to user-defined world units</param>
 /// <param name="dopplerScaler">Doppler shift scaler that is used to exaggerate Doppler shift effect</param>
 Emitter::Emitter(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Bardez::Projects::DirectX::X3DAudio::Cone^ cone,
-	Single innerRadius, Single innerRadiusAngle, UInt32 channelCount, Single channelRadius, array<Single>^ channelAzimuths,
+	Single innerRadius, Single innerRadiusAngle, UInt32 channelCount, Single channelRadius, IList<Single>^ channelAzimuths,
 	IList<DistanceSetting^>^ curveVolume, IList<DistanceSetting^>^ curveLFE, IList<DistanceSetting^>^ curveLpfDirect, IList<DistanceSetting^>^ curveLpfReverb, IList<DistanceSetting^>^ curveReverb,
 	Single curveDistanceScaler, Single dopplerScaler) : Actor(front, top, position, velocity, cone)
+{
+	this->DefineEmitter(innerRadius, innerRadiusAngle, channelCount, channelRadius, channelAzimuths,
+		curveVolume, curveLFE, curveLpfDirect, curveLpfReverb, curveReverb, curveDistanceScaler, dopplerScaler);
+}
+
+/// <summary>Copy constructor from the MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::Emitter" /> class</summary>
+/// <param name="emitter">Source MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::Emitter" /> to copy from</param>
+Emitter::Emitter(Bardez::Projects::Multimedia::MediaBase::Render::Audio::Emitter^ emitter) : Actor(emitter)
+{
+	IList<DistanceSetting^>^ distanceCurveVolume = DistanceSetting::CopyDistanceCurvePoint(emitter->DistanceCurveVolume);
+	IList<DistanceSetting^>^ curveLFE = DistanceSetting::CopyDistanceCurvePoint(emitter->DistanceCurveLowFrequencyEffectRollOff);
+	IList<DistanceSetting^>^ curveLpfDirect = DistanceSetting::CopyDistanceCurvePoint(emitter->DistanceCurveLowPassFilterDirectPathCoefficient);
+	IList<DistanceSetting^>^ curveLpfReverb = DistanceSetting::CopyDistanceCurvePoint(emitter->DistanceCurveLowPassFilterReverb);
+	IList<DistanceSetting^>^ curveReverb = DistanceSetting::CopyDistanceCurvePoint(emitter->DistanceCurveReverb);
+
+	this->DefineEmitter(emitter->RadiusInner, emitter->RadiusAngleInner, emitter->ChannelCount, emitter->RadiusChannel, emitter->ChannelPositionAzimuths,
+		distanceCurveVolume, curveLFE, curveLpfDirect, curveLpfReverb, curveReverb, emitter->ScalerCurveDistance, emitter->ScalerDoppler);
+}
+
+/// <summary>Definition method</summary>
+/// <param name="innerRadius">Value to be used for the inner radius calculations</param>
+/// <param name="innerRadiusAngle">Value to be used for the inner radius angle calculations</param>
+/// <param name="channelCount">Number of emitters defined</param>
+/// <param name="channelRadius">Distance from <see cref="Position" /> that channels will be placed</param>
+/// <param name="channelAzimuths">Table of channel positions</param>
+/// <param name="curveVolume">Volume-level distance curve</param>
+/// <param name="curveLFE">LFE roll-off distance curve</param>
+/// <param name="curveLpfDirect">Low-pass filter (LPF) direct-path coefficient distance curve</param>
+/// <param name="curveLpfReverb">LPF reverb-path coefficient distance curve</param>
+/// <param name="curveReverb">Reverb send level distance curve</param>
+/// <param name="curveDistanceScaler">Curve distance scaler that is used to scale normalized distance curves to user-defined world units</param>
+/// <param name="dopplerScaler">Doppler shift scaler that is used to exaggerate Doppler shift effect</param>
+void Emitter::DefineEmitter(Single innerRadius, Single innerRadiusAngle, UInt32 channelCount, Single channelRadius, IList<Single>^ channelAzimuths,
+	IList<DistanceSetting^>^ curveVolume, IList<DistanceSetting^>^ curveLFE, IList<DistanceSetting^>^ curveLpfDirect, IList<DistanceSetting^>^ curveLpfReverb, IList<DistanceSetting^>^ curveReverb,
+	Single curveDistanceScaler, Single dopplerScaler)
 {
 	this->innerRadius = innerRadius;
 	this->innerRadiusAngle = innerRadiusAngle;
@@ -317,8 +352,8 @@ Emitter^ Emitter::FromUnmanaged(X3DAUDIO_EMITTER* emitter)
 		IList<DistanceSetting^>^ curveReverb = Emitter::CopyCurveToList(emitter->pReverbCurve);
 
 		managed = gcnew Emitter(front, top, position, velocity, cone,
-			emitter->InnerRadius, emitter->InnerRadiusAngle, emitter->ChannelCount, emitter->ChannelRadius, azimuths,
-			curveVolume, curveLfe, curveLpfDirect, curveLpfReverb, curveReverb,
+			emitter->InnerRadius, emitter->InnerRadiusAngle, emitter->ChannelCount, emitter->ChannelRadius,
+			safe_cast<IList<Single>^>(azimuths), curveVolume, curveLfe, curveLpfDirect, curveLpfReverb, curveReverb,
 			emitter->CurveDistanceScaler, emitter->DopplerScaler);
 	}
 
@@ -467,3 +502,4 @@ void Emitter::ReleaseMemory(X3DAUDIO_DISTANCE_CURVE** curve)
 	}
 }
 #pragma endregion
+

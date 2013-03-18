@@ -126,6 +126,18 @@ namespace Bardez
 						/// <param name="velocity">Velocity vector in user-defined world units per second</param>
 						/// <param name="cone">Cone interacting with the environment</param>
 						Actor(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Cone^ cone);
+						
+						/// <summary>MediaBase copy constructor</summary>
+						/// <param name="perspective">Source MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::Perspective" /> to copy from</param>
+						Actor(Bardez::Projects::Multimedia::MediaBase::Render::Audio::Perspective^ perspective);
+
+						/// <summary>Definition constructor</summary>
+						/// <param name="front">Orientation of front direction</param>
+						/// <param name="top">Orientation of top direction</param>
+						/// <param name="position">Position in user-defined world units</param>
+						/// <param name="velocity">Velocity vector in user-defined world units per second</param>
+						/// <param name="cone">Cone interacting with the environment</param>
+						void DefineActor(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Cone^ cone);
 					#pragma endregion
 
 

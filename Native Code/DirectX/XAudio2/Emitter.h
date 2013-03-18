@@ -55,7 +55,7 @@ namespace Bardez
 						///		channelAzimuths must have at least <see cref="channelCount" /> elements. The table values must be within 0.0f to X3DAUDIO_2PI.
 						///		channelAzimuths is used with multi-channel emitters for matrix calculations.
 						///	</summary>
-						array<Single>^ channelAzimuths;
+						IList<Single>^ channelAzimuths;
 
 						/// <summary>
 						///		Volume-level distance curve, which is used only for matrix calculations.
@@ -149,10 +149,10 @@ namespace Bardez
 						///		ChannelAzimuths must have at least <see cref="ChannelCount" /> elements. The table values must be within 0.0f to X3DAUDIO_2PI.
 						///		ChannelAzimuths is used with multi-channel emitters for matrix calculations.
 						///	</summary>
-						property array<Single>^ ChannelAzimuths
+						property IList<Single>^ ChannelAzimuths
 						{
-							array<Single>^ get();
-							void set(array<Single>^ value);
+							IList<Single>^ get();
+							void set(IList<Single>^ value);
 						}
 
 						/// <summary>
@@ -257,9 +257,31 @@ namespace Bardez
 						/// <param name="curveDistanceScaler">Curve distance scaler that is used to scale normalized distance curves to user-defined world units</param>
 						/// <param name="dopplerScaler">Doppler shift scaler that is used to exaggerate Doppler shift effect</param>
 						Emitter(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Bardez::Projects::DirectX::X3DAudio::Cone^ cone,
-							Single innerRadius, Single innerRadiusAngle, UInt32 channelCount, Single channelRadius, array<Single>^ channelAzimuths,
+							Single innerRadius, Single innerRadiusAngle, UInt32 channelCount, Single channelRadius, IList<Single>^ channelAzimuths,
 							IList<DistanceSetting^>^ curveVolume, IList<DistanceSetting^>^ curveLFE, IList<DistanceSetting^>^ curveLpfDirect, IList<DistanceSetting^>^ curveLpfReverb, IList<DistanceSetting^>^ curveReverb,
 							Single curveDistanceScaler, Single dopplerScaler);
+						
+						/// <summary>Copy constructor from the MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::Emitter" /> class</summary>
+						/// <param name="emitter">Source MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::Emitter" /> to copy from</param>
+						Emitter(Bardez::Projects::Multimedia::MediaBase::Render::Audio::Emitter^ emitter);
+
+					protected:
+						/// <summary>Definition method</summary>
+						/// <param name="innerRadius">Value to be used for the inner radius calculations</param>
+						/// <param name="innerRadiusAngle">Value to be used for the inner radius angle calculations</param>
+						/// <param name="channelCount">Number of emitters defined</param>
+						/// <param name="channelRadius">Distance from <see cref="Position" /> that channels will be placed</param>
+						/// <param name="channelAzimuths">Table of channel positions</param>
+						/// <param name="curveVolume">Volume-level distance curve</param>
+						/// <param name="curveLFE">LFE roll-off distance curve</param>
+						/// <param name="curveLpfDirect">Low-pass filter (LPF) direct-path coefficient distance curve</param>
+						/// <param name="curveLpfReverb">LPF reverb-path coefficient distance curve</param>
+						/// <param name="curveReverb">Reverb send level distance curve</param>
+						/// <param name="curveDistanceScaler">Curve distance scaler that is used to scale normalized distance curves to user-defined world units</param>
+						/// <param name="dopplerScaler">Doppler shift scaler that is used to exaggerate Doppler shift effect</param>
+						void DefineEmitter(Single innerRadius, Single innerRadiusAngle, UInt32 channelCount, Single channelRadius, IList<Single>^ channelAzimuths, IList<DistanceSetting^>^ curveVolume,
+							IList<DistanceSetting^>^ curveLFE, IList<DistanceSetting^>^ curveLpfDirect, IList<DistanceSetting^>^ curveLpfReverb, IList<DistanceSetting^>^ curveReverb, Single curveDistanceScaler,
+							Single dopplerScaler);
 						
 					internal:
 						/// <summary>X3DAudio constructor</summary>

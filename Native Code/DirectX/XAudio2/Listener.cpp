@@ -21,6 +21,10 @@ Listener::Listener() : Actor() { }
 /// <param name="cone">Listener cone</param>
 Listener::Listener(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Cone^ cone) : Actor(front, top, position, velocity, cone) { }
 						
+/// <summary>Copy constructor from the MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::Listener" /> class</summary>
+/// <param name="emitter">Source MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::Listener" /> to copy from</param>
+Listener::Listener(Bardez::Projects::Multimedia::MediaBase::Render::Audio::Listener^ listener) : Actor(listener->OrientationFront, listener->OrientationVertical, listener->Position, listener->Velocity, gcnew Cone(listener->Cone)) { }
+						
 /// <summary>X3DAudio constructor</summary>
 /// <param name="listener">Unmanaged listener to copy from.</param>
 Listener^ Listener::FromUnmanaged(X3DAUDIO_LISTENER* listener)

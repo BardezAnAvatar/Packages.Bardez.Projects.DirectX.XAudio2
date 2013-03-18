@@ -119,6 +119,24 @@ Actor::Actor()
 /// <param name="cone">Cone interacting with the environment</param>
 Actor::Actor(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Cone^ cone)
 {
+	this->DefineActor(front, top, position, velocity, cone);
+}
+
+/// <summary>MediaBase copy constructor</summary>
+/// <param name="perspective">Source MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::Perspective" /> to copy from</param>
+Actor::Actor(Bardez::Projects::Multimedia::MediaBase::Render::Audio::Perspective^ perspective)
+{
+	this->DefineActor(perspective->OrientationFront, perspective->OrientationVertical, perspective->Position, perspective->Velocity, gcnew Cone(perspective->Cone));
+}
+
+/// <summary>Definition constructor</summary>
+/// <param name="front">Orientation of front direction</param>
+/// <param name="top">Orientation of top direction</param>
+/// <param name="position">Position in user-defined world units</param>
+/// <param name="velocity">Velocity vector in user-defined world units per second</param>
+/// <param name="cone">Cone interacting with the environment</param>
+void Actor::DefineActor(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Cone^ cone)
+{
 	this->orientFront = front;
 	this->orientTop = top;
 	this->position = position;
