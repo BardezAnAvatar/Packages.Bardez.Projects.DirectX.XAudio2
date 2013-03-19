@@ -54,20 +54,25 @@ namespace Bardez
 						static const System::UInt32 NoSampleRateConversion = XAUDIO2_VOICE_NOSRC;
 
 						/// <summary>No pitch control is available on the voice.</summary>
+						/// <value>0x0002</value>
 						static const System::UInt32 NoPitchControl = XAUDIO2_VOICE_NOPITCH;
 
 						/// <summary>The filter effect should be available on this voice.</summary>
+						/// <value>0x0008</value>
 						static const System::UInt32 FilterEffectAvailable = XAUDIO2_VOICE_USEFILTER;
 
 						/// <summary>System default number of audio channels</summary>
-						/// <remarks>Used in CreateMasteringVoice. </remarks>
+						/// <remarks>Used in CreateMasteringVoice.</remarks>
+						/// <value>0x0000</value>
 						static const System::UInt32 DefaultAudioChannelCount = XAUDIO2_DEFAULT_CHANNELS;
 
 						/// <summary>Maximum channels in an audio stream</summary>
+						/// <value>64</value>
 						static const System::UInt32 MaximumAudioChannelCount = XAUDIO2_MAX_AUDIO_CHANNELS;
 
 						/// <summary>System default sample rate</summary>
 						/// <remarks>Used in CreateMasteringVoice. Translates into 44.1k or 48k depending on the driver</remarks>
+						/// <value>0x0000</value>
 						static const System::UInt32 DefaultSampleRate = XAUDIO2_DEFAULT_SAMPLERATE;
 
 						/// <summary>Minimum audio sample rate supported</summary>

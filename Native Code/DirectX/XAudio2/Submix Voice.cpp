@@ -31,21 +31,21 @@ SubmixVoice::SubmixVoice(IXAudio2SubmixVoice* pointer)
 
 
 #pragma region Destruction
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Dispose()</remarks>
 SubmixVoice::~SubmixVoice()
 {
 	this->DisposeUnmanaged();
 }
 
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Finalize()</remarks>
 SubmixVoice::!SubmixVoice()
 {
 	this->DisposeUnmanaged();
 }
 
-/// <summary>Destrutor logic, disposes the object</summary>
+/// <summary>Destructor logic, disposes the object</summary>
 void SubmixVoice::DisposeUnmanaged()
 {
 	// Dispose this voice

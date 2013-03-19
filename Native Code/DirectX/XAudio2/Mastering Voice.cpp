@@ -32,21 +32,21 @@ MasteringVoice::MasteringVoice(IXAudio2MasteringVoice* pointer)
 
 
 #pragma region Destruction
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Dispose()</remarks>
 MasteringVoice::~MasteringVoice()
 {
 	this->DisposeUnmanaged();
 }
 
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Finalize()</remarks>
 MasteringVoice::!MasteringVoice()
 {
 	this->DisposeUnmanaged();
 }
 
-/// <summary>Destrutor logic, disposes the object</summary>
+/// <summary>Destructor logic, disposes the object</summary>
 void MasteringVoice::DisposeUnmanaged()
 {
 	// Dispose this voice

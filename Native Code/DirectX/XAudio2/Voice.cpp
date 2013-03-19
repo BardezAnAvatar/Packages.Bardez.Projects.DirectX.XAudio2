@@ -58,21 +58,21 @@ Voice::Voice(IXAudio2Voice* pointer)
 
 
 #pragma region Destruction
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Dispose()</remarks>
 Voice::~Voice()
 {
 	this->DisposeUnmanaged();
 }
 
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Finalize()</remarks>
 Voice::!Voice()
 {
 	this->DisposeUnmanaged();
 }
 
-/// <summary>Destrutor logic, disposes the object</summary>
+/// <summary>Destructor logic, disposes the object</summary>
 void Voice::DisposeUnmanaged()
 {
 	// Dispose this voice

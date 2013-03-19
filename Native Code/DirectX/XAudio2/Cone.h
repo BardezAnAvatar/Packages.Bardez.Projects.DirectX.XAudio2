@@ -132,8 +132,8 @@ namespace Bardez
 						/// <param name="outerReverb">Reverb send level scaler on/beyond outer cone. This must be within 0.0f to 2.0f.</param>
 						Cone(Single innerAngle, Single outerAngle, Single innerVolume, Single outerVolume, Single innerLPF, Single outerLPF, Single innerReverb, Single outerReverb);
 
-						/// <summary>Copy constructor from the MediaBase <see cref="AudioCone" /> class</summary>
-						/// <param name="managedCone">Source MediaBase <see cref="AudioCone" /> to copy from</param>
+						/// <summary>Copy constructor from the MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::AudioCone" /> class</summary>
+						/// <param name="managedCone">Source MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::AudioCone" /> to copy from</param>
 						Cone(Bardez::Projects::Multimedia::MediaBase::Render::Audio::AudioCone^ managedCone);
 
 					protected:

@@ -44,11 +44,11 @@ namespace Bardez
 
 				#pragma region Destruction
 				public:
-					/// <summary>Destrutor</summary>
+					/// <summary>Destructor</summary>
 					/// <remarks>Dispose()</remarks>
 					~SubmixVoice();
 
-					/// <summary>Destrutor</summary>
+					/// <summary>Destructor</summary>
 					/// <remarks>Finalize()</remarks>
 					!SubmixVoice();
 

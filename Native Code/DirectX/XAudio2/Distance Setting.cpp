@@ -52,8 +52,7 @@ DistanceSetting::DistanceSetting(Single distance, Single setting)
 }
 						
 /// <summary>Copy constructor from the MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::DistanceCurvePoint" /> class</summary>
-/// <param name="distance">Normalized distance. This must be within 0.0F to 1.0F.</param>
-/// <param name="setting">DSP control setting</param>
+/// <param name="curvePoint">Source MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::DistanceCurvePoint" /> to copy from</param>
 DistanceSetting::DistanceSetting(Bardez::Projects::Multimedia::MediaBase::Render::Audio::DistanceCurvePoint^ curvePoint)
 {
 	this->DefineSetting(distance, setting);

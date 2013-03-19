@@ -46,21 +46,21 @@ SourceVoice::SourceVoice(IXAudio2SourceVoice* pointer, VoiceCallback^ callback)
 
 
 #pragma region Destruction
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Dispose()</remarks>
 SourceVoice::~SourceVoice()
 {
 	this->DisposeUnmanaged();
 }
 
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Finalize()</remarks>
 SourceVoice::!SourceVoice()
 {
 	this->DisposeUnmanaged();
 }
 
-/// <summary>Destrutor logic, disposes the object</summary>
+/// <summary>Destructor logic, disposes the object</summary>
 void SourceVoice::DisposeUnmanaged()
 {
 	// Dispose this voice

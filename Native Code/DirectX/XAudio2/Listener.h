@@ -39,7 +39,7 @@ namespace Bardez
 						Listener(Vector<Single> front, Vector<Single> top, Vector<Single> position, Vector<Single> velocity, Cone^ cone);
 						
 						/// <summary>Copy constructor from the MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::Listener" /> class</summary>
-						/// <param name="emitter">Source MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::Listener" /> to copy from</param>
+						/// <param name="listener">Source MediaBase <see cref="Bardez::Projects::Multimedia::MediaBase::Render::Audio::Listener" /> to copy from</param>
 						Listener(Bardez::Projects::Multimedia::MediaBase::Render::Audio::Listener^ listener);
 						
 					internal:

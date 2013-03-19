@@ -77,11 +77,11 @@ namespace Bardez
 
 				#pragma region Destruction
 				public:
-					/// <summary>Destrutor</summary>
+					/// <summary>Destructor</summary>
 					/// <remarks>Dispose()</remarks>
 					~Voice();
 
-					/// <summary>Destrutor</summary>
+					/// <summary>Destructor</summary>
 					/// <remarks>Finalize()</remarks>
 					!Voice();
 
