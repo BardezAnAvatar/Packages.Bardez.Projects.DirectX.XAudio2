@@ -18,6 +18,29 @@ namespace Bardez
 				/// <remarks>May be freed once assigned via SubmitSourceBuffer, but not the internal pointer</remarks>
 				public ref class AudioBuffer
 				{
+				#pragma region Constants
+				public:
+					/// <summary>Value indicating the maximum number of times to loop through a region</summary>
+					/// <value>254</value>
+//HACK: I want to expose a member with a macro's name
+#pragma push_macro("XAUDIO2_MAX_LOOP_COUNT")
+#undef XAUDIO2_MAX_LOOP_COUNT 
+					initonly static System::UInt32 XAUDIO2_MAX_LOOP_COUNT
+#pragma pop_macro("XAUDIO2_MAX_LOOP_COUNT")
+						= XAUDIO2_MAX_LOOP_COUNT;
+					
+					/// <summary>Value indicating the an infinite number of times to loop through a region</summary>
+					/// <value>255</value>
+//HACK: I want to expose a member with a macro's name
+#pragma push_macro("XAUDIO2_LOOP_INFINITE")
+#undef XAUDIO2_LOOP_INFINITE 
+					initonly static System::UInt32 XAUDIO2_LOOP_INFINITE
+#pragma pop_macro("XAUDIO2_LOOP_INFINITE")
+						= XAUDIO2_LOOP_INFINITE;
+				#pragma endregion
+
+
+
 				#pragma region Members
 				protected:
 					/// <summary>Flags that provide additional infor for the buffer.</summary>
