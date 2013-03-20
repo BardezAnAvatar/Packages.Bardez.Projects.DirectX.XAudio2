@@ -85,7 +85,7 @@ namespace Bardez
 					/// <remarks>Finalize()</remarks>
 					!Voice();
 
-					/// <summary>Destrutor logic, disposes the object</summary>
+					/// <summary>Destructor logic, disposes the object</summary>
 					void DisposeUnmanaged();
 				#pragma endregion
 

@@ -180,7 +180,7 @@ AudioBuffer::AudioBuffer(XAUDIO2_BUFFER buffer)
 
 
 #pragma region Destruction
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Dispose()</remarks>
 AudioBuffer::~AudioBuffer()
 {
@@ -188,14 +188,14 @@ AudioBuffer::~AudioBuffer()
 	this->audioData = nullptr;
 }
 
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Finalize()</remarks>
 AudioBuffer::!AudioBuffer()
 {
 	this->DisposeUnmanaged();
 }
 
-/// <summary>Destrutor logic, disposes the object</summary>
+/// <summary>Destructor logic, disposes the object</summary>
 void AudioBuffer::DisposeUnmanaged()
 {
 	// Dispose this voice

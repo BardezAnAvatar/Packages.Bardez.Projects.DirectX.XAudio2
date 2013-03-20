@@ -195,14 +195,14 @@ DspSettings^ DspSettings::FromUnmanaged(X3DAUDIO_DSP_SETTINGS* unmanaged)
 
 
 #pragma region Destruction
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Dispose(). Also, implements the Dispose(true) pattern.</remarks>
 DspSettings::~DspSettings()
 {
 	this->!DspSettings();
 }
 
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Finalize()</remarks>
 DspSettings::!DspSettings()
 {

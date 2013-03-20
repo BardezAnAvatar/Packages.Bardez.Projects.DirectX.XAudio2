@@ -198,11 +198,11 @@ namespace Bardez
 
 					#pragma region Destruction
 					public:
-						/// <summary>Destrutor</summary>
+						/// <summary>Destructor</summary>
 						/// <remarks>Dispose()</remarks>
 						~DspSettings();
 
-						/// <summary>Destrutor</summary>
+						/// <summary>Destructor</summary>
 						/// <remarks>Finalize()</remarks>
 						!DspSettings();
 

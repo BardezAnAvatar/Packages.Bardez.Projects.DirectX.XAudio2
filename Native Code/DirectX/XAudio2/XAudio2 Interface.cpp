@@ -38,21 +38,21 @@ XAudio2Interface::XAudio2Interface()
 
 
 #pragma region Destruction
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Dispose()</remarks>
 XAudio2Interface::~XAudio2Interface()
 {
 	this->DisposeUnmanaged();
 }
 
-/// <summary>Destrutor</summary>
+/// <summary>Destructor</summary>
 /// <remarks>Finalize()</remarks>
 XAudio2Interface::!XAudio2Interface()
 {
 	this->DisposeUnmanaged();
 }
 
-/// <summary>Destrutor logic, disposes the object</summary>
+/// <summary>Destructor logic, disposes the object</summary>
 /// <remarks>There are only managed references, so either Finalize or Dispose would be calling</remarks>
 void XAudio2Interface::DisposeUnmanaged()
 {

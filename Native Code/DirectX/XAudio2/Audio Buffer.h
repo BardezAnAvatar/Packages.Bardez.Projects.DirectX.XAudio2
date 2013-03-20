@@ -195,15 +195,15 @@ namespace Bardez
 
 				#pragma region Destruction
 				public:
-					/// <summary>Destrutor</summary>
+					/// <summary>Destructor</summary>
 					/// <remarks>Dispose()</remarks>
 					~AudioBuffer();
 
-					/// <summary>Destrutor</summary>
+					/// <summary>Destructor</summary>
 					/// <remarks>Finalize()</remarks>
 					!AudioBuffer();
 
-					/// <summary>Destrutor logic, disposes the object</summary>
+					/// <summary>Destructor logic, disposes the object</summary>
 					void DisposeUnmanaged();
 				#pragma endregion
 

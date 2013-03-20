@@ -128,7 +128,7 @@ namespace Bardez
 					/// <remarks>Finalize()</remarks>
 					!XAudio2Interface();
 
-					/// <summary>Destrutor logic, disposes the object</summary>
+					/// <summary>Destructor logic, disposes the object</summary>
 					/// <remarks>There are only managed references, so either Finalize or Dispose would be calling</remarks>
 					void DisposeUnmanaged();
 				#pragma endregion
