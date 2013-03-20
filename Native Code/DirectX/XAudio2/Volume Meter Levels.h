@@ -35,16 +35,16 @@ namespace Bardez
 						/// <summary>Collection of values indicating maximum absolute level for each channel over a processing pass</summary>
 						/// <value>Must have <see cref="channelCount" /> elements or may be null if <see cref="rootMeanSquareLevels" /> is non-null.</value>
 						IList<Single>^ peakLevels;
-						
+
 						/// <summary>Collection of values indicating maximum Root Mean Square level for each channel over a processing pass</summary>
 						/// <value>Must have <see cref="channelCount" /> elements or may be null if <see cref="peakLevels" /> is non-null.</value>
 						IList<Single>^ rootMeanSquareLevels;
-						
+
 						/// <summary>Number of channels being processed by the volume meter APO</summary>
 						UInt32 channelCount;
 					#pragma endregion
 
-						
+
 
 					#pragma region Properties
 					public:
@@ -55,7 +55,7 @@ namespace Bardez
 							IList<Single>^ get();
 							void set(IList<Single>^ value);
 						}
-						
+
 						/// <summary>Collection of values indicating maximum Root Mean Square level for each channel over a processing pass</summary>
 						/// <value>Must have <see cref="ChannelCount" /> elements or may be null if <see cref="PeakLevels" /> is non-null.</value>
 						property IList<Single>^ RootMeanSquareLevels
@@ -63,7 +63,7 @@ namespace Bardez
 							IList<Single>^ get();
 							void set(IList<Single>^ value);
 						}
-						
+
 						/// <summary>Number of channels being processed by the volume meter APO</summary>
 						property UInt32 ChannelCount
 						{
@@ -100,7 +100,7 @@ namespace Bardez
 					public:
 						/// <summary>Default constructor</summary>
 						VolumeMeterLevels();
-						
+
 						/// <summary>Definition constructor</summary>
 						/// <param name="peaks">Peak levels table</param>
 						/// <param name="rms">Root mean square levels table</param>
@@ -129,7 +129,7 @@ namespace Bardez
 						virtual void DisposeUnmanaged() override;
 					#pragma endregion
 
-				
+
 
 					#pragma region Methods
 					internal:

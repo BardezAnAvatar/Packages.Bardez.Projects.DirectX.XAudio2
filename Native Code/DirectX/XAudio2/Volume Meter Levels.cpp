@@ -4,7 +4,7 @@
 
 
 using namespace Bardez::Projects::DirectX::XAudio2::FX;
-						
+
 
 #pragma region Properties
 /// <summary>Collection of values indicating maximum absolute level for each channel over a processing pass</summary>
@@ -20,27 +20,27 @@ void VolumeMeterLevels::PeakLevels::set(IList<Single>^ value)
 {
 	this->peakLevels = value;
 }
-						
+
 /// <summary>Collection of values indicating maximum Root Mean Square level for each channel over a processing pass</summary>
 /// <value>Must have <see cref="ChannelCount" /> elements or may be null if <see cref="PeakLevels" /> is non-null.</value>
 IList<Single>^ VolumeMeterLevels::RootMeanSquareLevels::get()
 {
 	return this->rootMeanSquareLevels;
 }
-						
+
 /// <summary>Collection of values indicating maximum Root Mean Square level for each channel over a processing pass</summary>
 /// <param name="value">Must have <see cref="ChannelCount" /> elements or may be null if <see cref="PeakLevels" /> is non-null.</param>
 void VolumeMeterLevels::RootMeanSquareLevels::set(IList<Single>^ value)
 {
 	this->rootMeanSquareLevels = value;
 }
-						
+
 /// <summary>Number of channels being processed by the volume meter APO</summary>
 UInt32 VolumeMeterLevels::ChannelCount::get()
 {
 	return this->channelCount;
 }
-						
+
 /// <summary>Number of channels being processed by the volume meter APO</summary>
 /// <value>Number of channels to be processed by the volume meter APO</value>
 void VolumeMeterLevels::ChannelCount::set(UInt32 value)
@@ -100,7 +100,7 @@ VolumeMeterLevels::VolumeMeterLevels()
 	this->peakLevels = gcnew List<Single>();
 	this->rootMeanSquareLevels = gcnew List<Single>();
 }
-						
+
 /// <summary>Definition constructor</summary>
 /// <param name="peaks">Peak levels table</param>
 /// <param name="rms">Root mean square levels table</param>
@@ -123,15 +123,15 @@ VolumeMeterLevels::VolumeMeterLevels(XAUDIO2FX_VOLUMEMETER_LEVELS* unmanaged)
 	this->channelCount = unmanaged->ChannelCount;
 	this->peakLevels = nullptr;
 	this->rootMeanSquareLevels = nullptr;
-	
+
 	if (unmanaged->pPeakLevels != NULL)
 	{
 		this->peakLevels = gcnew List<Single>();
-		
+
 		for (UInt32 index = 0; index < unmanaged->ChannelCount; ++index)
 			this->peakLevels->Add(unmanaged->pPeakLevels[index]);
 	}
-	
+
 	if (unmanaged->pRMSLevels != NULL)
 	{
 		this->rootMeanSquareLevels = gcnew List<Single>();
@@ -171,7 +171,7 @@ void VolumeMeterLevels::DisposeUnmanaged()
 }
 #pragma endregion
 
-				
+
 
 #pragma region Methods
 /// <summary>Returns an unmanaged version of this object</summary>
@@ -213,7 +213,7 @@ void VolumeMeterLevels::ReleaseMemory(XAUDIO2FX_VOLUMEMETER_LEVELS** levels)
 			delete [] (*levels)->pPeakLevels;
 			(*levels)->pPeakLevels = NULL;
 		}
-	
+
 		if ((*levels)->pRMSLevels != NULL)
 		{
 			delete [] (*levels)->pRMSLevels;
