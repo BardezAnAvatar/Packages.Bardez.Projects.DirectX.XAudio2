@@ -52,6 +52,12 @@
     <Filter Include="Source Files\Wave Formats">
       <UniqueIdentifier>{1f29d00a-9e2b-495c-86ff-119076683cf1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\XAudio2FX">
+      <UniqueIdentifier>{dde832e8-b40b-4428-9328-a1399b43f964}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\XAudio2FX">
+      <UniqueIdentifier>{f4a91373-7cdf-4535-a948-ef5cfbbcc86b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="XAudio2 Interface.h">
@@ -168,6 +174,18 @@
     <ClInclude Include="Distance Setting.h">
       <Filter>Header Files\X3DAudio</Filter>
     </ClInclude>
+    <ClInclude Include="Reverb Parameters.h">
+      <Filter>Header Files\XAudio2FX</Filter>
+    </ClInclude>
+    <ClInclude Include="Reverb Parameters I3DL2.h">
+      <Filter>Header Files\XAudio2FX</Filter>
+    </ClInclude>
+    <ClInclude Include="Volume Meter Levels.h">
+      <Filter>Header Files\XAudio2FX</Filter>
+    </ClInclude>
+    <ClInclude Include="Reverb Parameters I3DL2 Helper.h">
+      <Filter>Header Files\XAudio2FX</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Effect Base.cpp">
@@ -256,6 +274,12 @@
     </ClCompile>
     <ClCompile Include="DSP Settings.cpp">
       <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="Volume Meter Levels.cpp">
+      <Filter>Source Files\XAudio2FX</Filter>
+    </ClCompile>
+    <ClCompile Include="Reverb Parameters I3DL2.cpp">
+      <Filter>Source Files\XAudio2FX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

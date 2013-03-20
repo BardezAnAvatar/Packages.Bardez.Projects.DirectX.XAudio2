@@ -172,6 +172,9 @@
     <ClInclude Include="Performance Data.h" />
     <ClInclude Include="Processor.h" />
     <ClInclude Include="Mastering Voice.h" />
+    <ClInclude Include="Reverb Parameters I3DL2 Helper.h" />
+    <ClInclude Include="Reverb Parameters I3DL2.h" />
+    <ClInclude Include="Reverb Parameters.h" />
     <ClInclude Include="Source Voice.h" />
     <ClInclude Include="Submix Voice.h" />
     <ClInclude Include="Trace Mask.h" />
@@ -186,6 +189,7 @@
     <ClInclude Include="Voice.h" />
     <ClInclude Include="Device Details.h" />
     <ClInclude Include="Device Role.h" />
+    <ClInclude Include="Volume Meter Levels.h" />
     <ClInclude Include="Wave Format Ex API Converter.h" />
     <ClInclude Include="Wave Format Extensible API Converter.h" />
     <ClInclude Include="WMA Buffer.h" />
@@ -208,6 +212,7 @@
     <ClCompile Include="Listener.cpp" />
     <ClCompile Include="Mastering Voice.cpp" />
     <ClCompile Include="Performance Data.cpp" />
+    <ClCompile Include="Reverb Parameters I3DL2.cpp" />
     <ClCompile Include="Source Voice.cpp" />
     <ClCompile Include="Submix Voice.cpp" />
     <ClCompile Include="Audio Buffer.cpp" />
@@ -218,6 +223,7 @@
     <ClCompile Include="Voice Send Descriptor.cpp" />
     <ClCompile Include="Voice State.cpp" />
     <ClCompile Include="Voice.cpp" />
+    <ClCompile Include="Volume Meter Levels.cpp" />
     <ClCompile Include="Wave Format Ex API Converter.cpp" />
     <ClCompile Include="Wave Format Extensible API Converter.cpp" />
     <ClCompile Include="WMA Buffer.cpp" />
