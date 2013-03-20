@@ -129,7 +129,7 @@ array<System::Single>^ SubmixVoice::GetChannelVolumes(System::UInt32 channels)
 ResultCode SubmixVoice::GetEffectParameters(System::UInt32 effectIndex, [System::Runtime::InteropServices::Out] EffectParameterBase^ %parameters)
 {
 	parameters = nullptr;
-	void* parameter = this->effects[effectIndex]->Effect->Parameters->UnmanagedReference;
+	void* parameter = this->effects[effectIndex]->Effect->Parameters->DataPointer;
 	System::UInt32 size = this->effects[effectIndex]->Effect->Parameters->UnmanagedSize;
 
 	ResultCode result = (ResultCode)this->XAudio2SubmixVoice->GetEffectParameters(effectIndex, parameter, size);
@@ -292,7 +292,7 @@ ResultCode SubmixVoice::SetEffectChain(System::Collections::Generic::List<Effect
 /// </remarks>
 ResultCode SubmixVoice::SetEffectParameters(System::UInt32 effectIndex, EffectParameterBase^ parameters, System::UInt32 operationSet)
 {
-	void* parameter = parameters->UnmanagedReference;
+	void* parameter = parameters->DataPointer;
 	System::UInt32 size = parameters->UnmanagedSize;
 
 	ResultCode result = (ResultCode)this->XAudio2SubmixVoice->SetEffectParameters(effectIndex, parameter, size);

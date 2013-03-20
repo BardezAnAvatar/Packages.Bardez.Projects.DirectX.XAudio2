@@ -144,7 +144,7 @@ array<System::Single>^ SourceVoice::GetChannelVolumes(System::UInt32 channels)
 ResultCode SourceVoice::GetEffectParameters(System::UInt32 effectIndex, [System::Runtime::InteropServices::Out] EffectParameterBase^ %parameters)
 {
 	parameters = nullptr;
-	void* parameter = this->effects[effectIndex]->Effect->Parameters->UnmanagedReference;
+	void* parameter = this->effects[effectIndex]->Effect->Parameters->DataPointer;
 	System::UInt32 size = this->effects[effectIndex]->Effect->Parameters->UnmanagedSize;
 
 	ResultCode result = (ResultCode)this->XAudio2SourceVoice->GetEffectParameters(effectIndex, parameter, size);
@@ -307,7 +307,7 @@ ResultCode SourceVoice::SetEffectChain(System::Collections::Generic::List<Effect
 /// </remarks>
 ResultCode SourceVoice::SetEffectParameters(System::UInt32 effectIndex, EffectParameterBase^ parameters, System::UInt32 operationSet)
 {
-	void* parameter = parameters->UnmanagedReference;
+	void* parameter = parameters->DataPointer;
 	System::UInt32 size = parameters->UnmanagedSize;
 
 	ResultCode result = (ResultCode)this->XAudio2SourceVoice->SetEffectParameters(effectIndex, parameter, size);
