@@ -55,3 +55,11 @@ Volume Meter	XAudio2CreateVolumeMeter
 Further note:
 "You can apply volume and pitch values calculated by X3DAudio to a voice with the IXAudio2Voice::SetOutputMatrix and IXAudio2SourceVoice::SetFrequencyRatio methods."
 "Other values calculated by X3DAudio will need to be applied to a reverb effect using the IXAudio2Voice::SetEffectParameters method."
+
+
+
+
+/*
+*	Additional notes
+*/
+You can set the environmental settings based off of XAudio2fx.h This requires setting a Submix Voice intermediate, I believe. See XAudio2Sound3D sample project.
