@@ -352,7 +352,7 @@ ResultCode SourceVoice::SetOutputFilterParameters(Voice^ destination, FilterPara
 ///		The level sent from source channel S to destination channel D is returned in the form pLevelMatrix[DestinationChannels × S + D].
 ///		Volume levels are expressed as floating-point amplitude multipliers between -224 to 224, with a maximum gain of 144.5 dB.
 ///		A volume level of 1 means there is no attenuation or gain and 0 means silence.
-///		This method applies only to source and Source voices, because mastering voices write directly to the device with no matrix mixing.
+///		This method applies only to source and submix voices, because mastering voices write directly to the device with no matrix mixing.
 ///	</remarks>
 ResultCode SourceVoice::SetOutputMatrix(Voice^ destination, System::UInt32 sourceChannels, System::UInt32 destinationChannels, array<System::Single>^ volumeMatrix, System::UInt32 operationSet)
 {
