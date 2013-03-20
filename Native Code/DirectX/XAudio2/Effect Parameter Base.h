@@ -22,6 +22,9 @@ namespace Bardez
 					protected:
 						/// <summary>The internal pointer</summary>
 						System::IntPtr unmanagedStruct;
+						
+						/// <summary>Returns the unmanaged data size</summary>
+						System::UInt32 unmanagedSize;
 					#pragma endregion
 
 
@@ -29,7 +32,7 @@ namespace Bardez
 					#pragma region Properties
 					internal:
 						/// <summary>Returns the internal pointer</summary>
-						virtual property void* UnmanagedReference
+						virtual property void* DataPointer
 						{
 							void* get() abstract;
 							void set(void* value) abstract;
@@ -41,6 +44,22 @@ namespace Bardez
 							System::UInt32 get() abstract;
 							void set(System::UInt32 value) abstract;
 						}
+					#pragma endregion
+
+
+
+					#pragma region Destruction
+					public:
+						/// <summary>Destructor</summary>
+						/// <remarks>Dispose()</remarks>
+						~EffectParameterBase() { };
+
+						/// <summary>Destructor</summary>
+						/// <remarks>Finalize()</remarks>
+						!EffectParameterBase() { };
+
+						/// <summary>Destructor logic, disposes the object</summary>
+						virtual void DisposeUnmanaged() abstract;
 					#pragma endregion
 
 
