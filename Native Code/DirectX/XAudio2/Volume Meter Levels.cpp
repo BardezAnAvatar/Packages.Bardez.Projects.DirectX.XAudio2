@@ -206,7 +206,7 @@ XAUDIO2FX_VOLUMEMETER_LEVELS VolumeMeterLevels::ToUnmanaged()
 /// <param name="levels">The pointer to the structure to release memory for</param>
 void VolumeMeterLevels::ReleaseMemory(XAUDIO2FX_VOLUMEMETER_LEVELS** levels)
 {
-	if (levels != NULL)
+	if (levels != NULL && (*levels) != NULL)
 	{
 		if ((*levels)->pPeakLevels != NULL)
 		{
@@ -220,9 +220,23 @@ void VolumeMeterLevels::ReleaseMemory(XAUDIO2FX_VOLUMEMETER_LEVELS** levels)
 			(*levels)->pRMSLevels = NULL;
 		}
 
-		delete levels;
+		delete (*levels);
 		levels = NULL;
 	}
+}
+
+/// <summary>Generates a managed copy of an unmanaged parameter struct</summary>
+/// <param name="source">Source pointer to the unmanaged parameter struct</param>
+/// <param name="size">Size of data located at the source pointer</param>
+/// <returns>A Reference to the Managed copy</returns>
+VolumeMeterLevels^ VolumeMeterLevels::GenerateFromUnmanaged(void* source, UInt32 size)
+{
+	VolumeMeterLevels^ levels = nullptr;
+
+	if (source != NULL)
+		levels = gcnew VolumeMeterLevels(reinterpret_cast<XAUDIO2FX_VOLUMEMETER_LEVELS*>(source));
+
+	return levels;
 }
 #pragma endregion
 

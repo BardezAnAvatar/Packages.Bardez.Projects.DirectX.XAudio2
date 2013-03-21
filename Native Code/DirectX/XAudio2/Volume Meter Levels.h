@@ -140,6 +140,12 @@ namespace Bardez
 						/// <summary>Releases up native memory allocated for an unmanaged XAUDIO2FX_VOLUMEMETER_LEVELS</summary>
 						/// <param name="levels">The structure to release memory for</param>
 						static void ReleaseMemory(XAUDIO2FX_VOLUMEMETER_LEVELS** levels);
+
+						/// <summary>Generates a managed copy of an unmanaged parameter struct</summary>
+						/// <param name="source">Source pointer to the unmanaged parameter struct</param>
+						/// <param name="size">Size of data located at the source pointer</param>
+						/// <returns>A Reference to the Managed copy</returns>
+						static VolumeMeterLevels^ GenerateFromUnmanaged(void* source, UInt32 size);
 					#pragma endregion
 					};
 				}
