@@ -4,6 +4,7 @@
 
 
 using namespace System;
+using namespace System::Runtime::InteropServices;
 using namespace Bardez::Projects::DirectX::XAudio2::FX;
 
 
@@ -369,46 +370,6 @@ void ReverbParameters::RoomSize::set(Single value)
 #pragma endregion
 
 
-#pragma region Effect Parameter Base properties
-/// <summary>Native pointer to the effect parameters</summary>
-XAUDIO2FX_REVERB_PARAMETERS* ReverbParameters::UnmanagedPointer::get()
-{
-	return static_cast<XAUDIO2FX_REVERB_PARAMETERS*>(this->unmanagedStruct.ToPointer());
-}
-
-/// <summary>Native pointer to the effect parameters</summary>
-void ReverbParameters::UnmanagedPointer::set(XAUDIO2FX_REVERB_PARAMETERS* value)
-{
-	this->unmanagedStruct = IntPtr(value);
-}
-
-/// <summary>Returns the internal pointer</summary>
-void* ReverbParameters::DataPointer::get()
-{
-	return static_cast<void*>(this->unmanagedStruct.ToPointer());
-}
-
-/// <summary>Returns the internal pointer</summary>
-void ReverbParameters::DataPointer::set(void* value)
-{
-	this->unmanagedStruct = IntPtr(value);
-}
-
-/// <summary>Returns the unmanaged size</summary>
-UInt32 ReverbParameters::UnmanagedSize::get()
-{
-	return this->UnmanagedSize;
-}
-
-/// <summary>Returns the unmanaged size</summary>
-void ReverbParameters::UnmanagedSize::set(UInt32 value)
-{
-	this->UnmanagedSize = value;
-}
-#pragma endregion
-#pragma endregion
-
-
 
 #pragma region Construction
 /// <summary>Default constructor</summary>
@@ -472,7 +433,7 @@ ReverbParameters::ReverbParameters(
 	Single decayTime, Single density, Single roomSize)
 {
 	this->DefineReverbParameters
-		( wetDry, reflectionsDelay, reverbDelay, rearDelay, positionLeft, positionRight, positionMatrixLeft, positionMatrixRight,
+		(	wetDry, reflectionsDelay, reverbDelay, rearDelay, positionLeft, positionRight, positionMatrixLeft, positionMatrixRight,
 			earlyDiffusion, lateDiffusion, lowEQgain, lowEQcutoff, highEQgain, highEQcutoff,
 			roomFilterFrequency, roomFilterMain, roomFilterHighFrequency, reflectionsGain, reverbGain,
 			decayTime, density, roomSize
@@ -483,7 +444,21 @@ ReverbParameters::ReverbParameters(
 /// <param name="unmanaged">Unmanaged instance to copy from</param>
 ReverbParameters::ReverbParameters(XAUDIO2FX_REVERB_PARAMETERS* unmanaged)
 {
-	throw gcnew NotImplementedException("I need to think about this.");
+	this->DefineFromUnmanaged(unmanaged);
+}
+						
+/// <summary>Unmanaged copy method</summary>
+/// <param name="unmanaged">Unmanaged instance to copy from</param>
+void ReverbParameters::DefineFromUnmanaged(XAUDIO2FX_REVERB_PARAMETERS* unmanaged)
+{
+	this->DefineReverbParameters
+		(	unmanaged->WetDryMix, unmanaged->ReflectionsDelay, unmanaged->ReverbDelay, unmanaged->RearDelay,
+			unmanaged->PositionLeft, unmanaged->PositionRight, unmanaged->PositionMatrixLeft, unmanaged->PositionMatrixRight,
+			unmanaged->EarlyDiffusion, unmanaged->LateDiffusion, unmanaged->LowEQGain, unmanaged->LowEQCutoff,
+			unmanaged->HighEQGain, unmanaged->HighEQCutoff,
+			unmanaged->RoomFilterFreq, unmanaged->RoomFilterMain, unmanaged->RoomFilterHF,
+			unmanaged->ReflectionsGain, unmanaged->ReverbGain, unmanaged->DecayTime, unmanaged->Density, unmanaged->RoomSize
+		);
 }
 
 /// <summary>Definition method</summary>
@@ -510,42 +485,33 @@ ReverbParameters::ReverbParameters(XAUDIO2FX_REVERB_PARAMETERS* unmanaged)
 /// <param name="density">Controls the modal density in the late field reverberation</param>
 /// <param name="roomSize">The apparent size of the acoustic space</param>
 void ReverbParameters::DefineReverbParameters(Single wetDry, UInt32 reflectionsDelay, Byte reverbDelay, Byte rearDelay,
-Byte positionLeft, Byte positionRight, Byte positionMatrixLeft, Byte positionMatrixRight,
-Byte earlyDiffusion, Byte lateDiffusion, Byte lowEQgain, Byte lowEQcutoff, Byte highEQgain, Byte highEQcutoff,
-Single roomFilterFrequency, Single roomFilterMain, Single roomFilterHighFrequency, Single reflectionsGain, Single reverbGain,
-Single decayTime, Single density, Single roomSize)
+	Byte positionLeft, Byte positionRight, Byte positionMatrixLeft, Byte positionMatrixRight,
+	Byte earlyDiffusion, Byte lateDiffusion, Byte lowEQgain, Byte lowEQcutoff, Byte highEQgain, Byte highEQcutoff,
+	Single roomFilterFrequency, Single roomFilterMain, Single roomFilterHighFrequency, Single reflectionsGain,
+	Single reverbGain, Single decayTime, Single density, Single roomSize)
 {
-	throw gcnew NotImplementedException("I need to think about this.");
-}
-#pragma endregion
-
-
-
-#pragma region Destruction
-/// <summary>Destructor</summary>
-/// <remarks>Dispose()</remarks>
-ReverbParameters::~ReverbParameters()
-{
-	this->DisposeUnmanaged();
-	GC::SuppressFinalize(this);
-}
-
-/// <summary>Destructor</summary>
-/// <remarks>Finalize()</remarks>
-ReverbParameters::!ReverbParameters()
-{
-	this->DisposeUnmanaged();
-}
-
-/// <summary>Destructor logic, disposes the object</summary>
-void ReverbParameters::DisposeUnmanaged()
-{
-	if (this->unmanagedStruct != IntPtr::Zero)
-	{
-		XAUDIO2FX_REVERB_PARAMETERS* pointer = this->UnmanagedPointer;
-		ReverbParameters::ReleaseMemory(&pointer);
-		this->unmanagedStruct = IntPtr::Zero;
-	}
+	this->wetDryMix = wetDry;
+	this->reflectionsDelay = reflectionsDelay;
+	this->reverbDelay = reverbDelay;
+	this->rearDelay = rearDelay;
+	this->positionLeft = positionLeft;
+	this->positionRight = positionRight;
+	this->positionMatrixLeft = positionMatrixLeft;
+	this->positionMatrixRight = positionMatrixRight;
+	this->earlyDiffusion = earlyDiffusion;
+	this->lateDiffusion = lateDiffusion;
+	this->lowEQGain = lowEQgain;
+	this->lowEQCutoff = lowEQcutoff;
+	this->highEQGain = highEQgain;
+	this->highEQCutoff = highEQcutoff;
+	this->roomFilterFrequency = roomFilterFrequency;
+	this->roomFilterMain = roomFilterMain;
+	this->roomFilterHighFrequency = roomFilterHighFrequency;
+	this->reflectionsGain = reflectionsGain;
+	this->reverbGain = reverbGain;
+	this->decayTime = decayTime;
+	this->density = density;
+	this->roomSize = roomSize;
 }
 #pragma endregion
 
@@ -553,10 +519,48 @@ void ReverbParameters::DisposeUnmanaged()
 
 #pragma region Methods
 /// <summary>Returns an unmanaged version of this object</summary>
-/// <returns>An unmanaged XAUDIO2FX_REVERB_PARAMETERS struct</returns>
-XAUDIO2FX_REVERB_PARAMETERS ReverbParameters::ToUnmanaged()
+/// <returns>An unmanaged XAUDIO2FX_REVERB_PARAMETERS struct pointer</returns>
+XAUDIO2FX_REVERB_PARAMETERS* ReverbParameters::ToUnmanaged()
 {
-	throw gcnew NotImplementedException("I need to think about this.");
+	XAUDIO2FX_REVERB_PARAMETERS* reverb = new XAUDIO2FX_REVERB_PARAMETERS;
+
+	reverb->WetDryMix = this->wetDryMix;
+	reverb->ReflectionsDelay = this->reflectionsDelay;
+	reverb->ReverbDelay = this->reverbDelay;
+	reverb->RearDelay = this->rearDelay;
+	reverb->PositionLeft = this->positionLeft;
+	reverb->PositionRight = this->positionRight;
+	reverb->PositionMatrixLeft = this->positionMatrixLeft;
+	reverb->PositionMatrixRight = this->positionMatrixRight;
+	reverb->EarlyDiffusion = this->earlyDiffusion;
+	reverb->LateDiffusion = this->lateDiffusion;
+	reverb->LowEQGain = this->lowEQGain;
+	reverb->LowEQCutoff = this->lowEQCutoff;
+	reverb->HighEQGain = this->highEQGain;
+	reverb->HighEQCutoff = this->highEQCutoff;
+	reverb->RoomFilterFreq = this->roomFilterFrequency;
+	reverb->RoomFilterMain = this->roomFilterMain;
+	reverb->RoomFilterHF = this->roomFilterHighFrequency;
+	reverb->ReflectionsGain = this->reflectionsGain;
+	reverb->ReverbGain = this->reverbGain;
+	reverb->DecayTime = this->decayTime;
+	reverb->Density = this->density;
+	reverb->RoomSize = this->roomSize;
+
+	return reverb;
+}
+
+/// <summary>Generates the unmanaged data required for this type</summary>
+/// <param name="unmanaged">Output pointer to the unmanaged parameter struct</param>
+/// <param name="size">Output pointer to the size of data located at the source pointer</param>
+void ReverbParameters::ToUnmanaged(void** unmanaged, UInt32* size)
+{
+	XAUDIO2FX_REVERB_PARAMETERS* reverb = this->ToUnmanaged();
+	size = new UInt32;
+	(*size) = Marshal::SizeOf(XAUDIO2FX_REVERB_PARAMETERS::typeid);
+
+	unmanaged = new void*;
+	(*unmanaged) = reinterpret_cast<void*>(reverb);
 }
 
 
@@ -566,24 +570,26 @@ void ReverbParameters::ReleaseMemory(XAUDIO2FX_REVERB_PARAMETERS** reverb)
 {
 	if (reverb != NULL && (*reverb) != NULL)
 	{
-		delete (*reverb);
+		delete (*reverb);	//delete the struct
+		delete reverb;		//delete the pointer
 		reverb = NULL;
 	}
 }
 
+/// <summary>Releases up native memory allocated for an unmanaged parameters structure</summary>
+/// <param name="data">The structure to release memory for</param>
+void ReverbParameters::ReleaseMemory(void** data)
+{
+	ReverbParameters::ReleaseMemory(reinterpret_cast<XAUDIO2FX_REVERB_PARAMETERS**>(data));
+}
 
-/// <summary>Generates a managed copy of an unmanaged parameter struct</summary>
+/// <summary>Repopulated the managed copy from an unmanaged parameter struct</summary>
 /// <param name="source">Source pointer to the unmanaged parameter struct</param>
 /// <param name="size">Size of data located at the source pointer</param>
 /// <returns>A Reference to the Managed copy</returns>
-ReverbParameters^ ReverbParameters::GenerateFromUnmanaged(void* source, UInt32 size)
+void ReverbParameters::RepopulateFromUnmanaged(void* source, UInt32 size)
 {
-	ReverbParameters^ levels = nullptr;
-
-	if (source != NULL)
-		levels = gcnew ReverbParameters(reinterpret_cast<XAUDIO2FX_REVERB_PARAMETERS*>(source));
-
-	return levels;
+	this->DefineFromUnmanaged(reinterpret_cast<XAUDIO2FX_REVERB_PARAMETERS*>(source));
 }
 #pragma endregion
 

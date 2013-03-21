@@ -102,7 +102,7 @@ namespace Bardez
 					///		The data in [parameters] is completely effect-specific and determined by the implementation of the IXAPOParameters::SetParameters function.
 					///		The data passed to SetParameters can be used to set the state of the XAPO and control the behavior of the IXAPO::Process function.
 					/// </remarks>
-					virtual ResultCode GetEffectParameters(System::UInt32 effectIndex, [System::Runtime::InteropServices::Out] EffectParameterBase^ %parameters) override;
+					virtual ResultCode GetEffectParameters(System::UInt32 effectIndex, [System::Runtime::InteropServices::Out] IEffectParameter^ %parameters) override;
 
 					/// <summary>Gets the state of the specified effect</summary>
 					/// <param name="effectIndex">Index of the effect to get the parameters of</param>
@@ -190,7 +190,7 @@ namespace Bardez
 					///			during the first processing pass after the IXAudio2::CommitChanges function is called with the same
 					///			OperationSet argument.
 					/// </remarks>
-					virtual ResultCode SetEffectParameters(System::UInt32 effectIndex, EffectParameterBase^ parameters, System::UInt32 operationSet) override;
+					virtual ResultCode SetEffectParameters(System::UInt32 effectIndex, IEffectParameter^ parameters, System::UInt32 operationSet) override;
 
 					/// <summary>Sets the voice's parameters</summary>
 					/// <param name="parameter">A FilterParameter object containing filter parameter info</param>

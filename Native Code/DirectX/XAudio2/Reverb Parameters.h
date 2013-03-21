@@ -5,7 +5,7 @@
 
 
 #include <XAudio2fx.h>
-#include "Effect Parameter Base.h"
+#include "IEffectParameter.h"
 
 
 using namespace System;
@@ -23,7 +23,7 @@ namespace Bardez
 				namespace FX
 				{
 					/// <summary>Managed representation of an XAudio2 XAUDIO2FX_REVERB_PARAMETERS structure</summary>
-					public ref class ReverbParameters : EffectParameterBase
+					public ref class ReverbParameters : public IEffectParameter
 					{
 					#pragma region Fields
 					protected:
@@ -355,31 +355,6 @@ namespace Bardez
 							void set(Single value);
 						}
 					#pragma endregion
-
-
-					#pragma region Effect Parameter Base properties
-					internal:
-						/// <summary>Native pointer to the effect parameters</summary>
-						property XAUDIO2FX_REVERB_PARAMETERS* UnmanagedPointer
-						{
-							XAUDIO2FX_REVERB_PARAMETERS* get();
-							void set(XAUDIO2FX_REVERB_PARAMETERS* value);
-						}
-
-						/// <summary>Returns the internal pointer</summary>
-						virtual property void* DataPointer
-						{
-							void* get() override;
-							void set(void* value) override;
-						}
-
-						/// <summary>Returns the unmanaged size</summary>
-						virtual property System::UInt32 UnmanagedSize
-						{
-							System::UInt32 get() override;
-							void set(System::UInt32 value) override;
-						}
-					#pragma endregion
 					#pragma endregion
 
 
@@ -422,6 +397,10 @@ namespace Bardez
 						/// <summary>Unmanaged copy constructor</summary>
 						/// <param name="unmanaged">Unmanaged instance to copy from</param>
 						ReverbParameters(XAUDIO2FX_REVERB_PARAMETERS* unmanaged);
+						
+						/// <summary>Unmanaged copy method</summary>
+						/// <param name="unmanaged">Unmanaged instance to copy from</param>
+						void DefineFromUnmanaged(XAUDIO2FX_REVERB_PARAMETERS* unmanaged);
 
 					protected:
 						/// <summary>Definition method</summary>
@@ -456,37 +435,30 @@ namespace Bardez
 
 
 
-					#pragma region Destruction
-					public:
-						/// <summary>Destructor</summary>
-						/// <remarks>Dispose()</remarks>
-						~ReverbParameters();
-
-						/// <summary>Destructor</summary>
-						/// <remarks>Finalize()</remarks>
-						!ReverbParameters();
-
-						/// <summary>Destructor logic, disposes the object</summary>
-						virtual void DisposeUnmanaged() override;
-					#pragma endregion
-
-
-
 					#pragma region Methods
 					internal:
 						/// <summary>Returns an unmanaged version of this object</summary>
-						/// <returns>An unmanaged XAUDIO2FX_REVERB_PARAMETERS struct</returns>
-						XAUDIO2FX_REVERB_PARAMETERS ToUnmanaged();
+						/// <returns>An unmanaged XAUDIO2FX_REVERB_PARAMETERS struct pointer</returns>
+						XAUDIO2FX_REVERB_PARAMETERS* ToUnmanaged();
+
+						/// <summary>Generates the unmanaged data required for this type</summary>
+						/// <param name="unmanaged">Output pointer to the unmanaged parameter struct</param>
+						/// <param name="size">Output pointer to the size of data located at the source pointer</param>
+						virtual void ToUnmanaged(void** unmanaged, UInt32* size);
 
 						/// <summary>Releases up native memory allocated for an unmanaged XAUDIO2FX_REVERB_PARAMETERS</summary>
 						/// <param name="levels">The structure to release memory for</param>
 						static void ReleaseMemory(XAUDIO2FX_REVERB_PARAMETERS** reverb);
 
-						/// <summary>Generates a managed copy of an unmanaged parameter struct</summary>
+						/// <summary>Releases up native memory allocated for an unmanaged parameters structure</summary>
+						/// <param name="data">The structure to release memory for</param>
+						virtual void ReleaseMemory(void** data);
+
+						/// <summary>Repopulated the managed copy from an unmanaged parameter struct</summary>
 						/// <param name="source">Source pointer to the unmanaged parameter struct</param>
 						/// <param name="size">Size of data located at the source pointer</param>
 						/// <returns>A Reference to the Managed copy</returns>
-						static ReverbParameters^ GenerateFromUnmanaged(void* source, UInt32 size);
+						virtual void RepopulateFromUnmanaged(void* source, UInt32 size);
 					#pragma endregion
 					};
 				}

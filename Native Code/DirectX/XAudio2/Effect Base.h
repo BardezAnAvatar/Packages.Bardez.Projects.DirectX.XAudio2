@@ -23,7 +23,7 @@ namespace Bardez
 					#pragma region Members
 					protected:
 						/// <summary>The parameters to this effect</summary>
-						EffectParameterBase^ parameters;
+						IEffectParameter^ parameters;
 						
 						/// <summary>Pointer to the effect COM object/interface</summary>
 						System::IntPtr effect;
@@ -32,10 +32,10 @@ namespace Bardez
 					#pragma region Properties
 					public:
 						/// <summary>The parameters to this effect</summary>
-						property EffectParameterBase^ Parameters
+						property IEffectParameter^ Parameters
 						{
-							EffectParameterBase^ get();
-							void set(EffectParameterBase^ value);
+							IEffectParameter^ get();
+							void set(IEffectParameter^ value);
 						}
 
 						/// <summary>Pointer to the effect COM object/interface</summary>

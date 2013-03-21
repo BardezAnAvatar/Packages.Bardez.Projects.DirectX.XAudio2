@@ -32,6 +32,7 @@ namespace Bardez
 					{
 					#pragma region Preset reverb settings
 					public:
+						/*
 						/// <summary>Constant for default preset</summary>
 						initonly static ReverbParametersI3DL2^ Default = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Default);
 
@@ -121,6 +122,7 @@ namespace Bardez
 
 						/// <summary>Constant for plate preset</summary>
 						initonly static ReverbParametersI3DL2^ Plate = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Plate);
+						*/
 					#pragma endregion
 
 

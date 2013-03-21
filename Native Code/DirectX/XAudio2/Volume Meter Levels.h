@@ -4,7 +4,7 @@
 #define XAUDIO2_Volume_Meter_Levels
 
 
-#include "Effect Parameter Base.h"
+#include "IEffectParameter.h"
 extern "C"
 {
 	#include <XAudio2fx.h>
@@ -28,7 +28,7 @@ namespace Bardez
 				{
 					/// <summary>Managed representation of an XAudio2 XAUDIO2FX_VOLUMEMETER_LEVELS structure</summary>
 					/// <remarks>Host to an I3DL2 standard compliant parameter set</remarks>
-					public ref class VolumeMeterLevels : EffectParameterBase
+					public ref class VolumeMeterLevels : public IEffectParameter
 					{
 					#pragma region Fields
 					protected:
@@ -70,28 +70,6 @@ namespace Bardez
 							UInt32 get();
 							void set(UInt32 value);
 						}
-
-					internal:
-						/// <summary>Native pointer to the effect parameters</summary>
-						property XAUDIO2FX_VOLUMEMETER_LEVELS* UnmanagedPointer
-						{
-							XAUDIO2FX_VOLUMEMETER_LEVELS* get();
-							void set(XAUDIO2FX_VOLUMEMETER_LEVELS* value);
-						}
-
-						/// <summary>Returns the internal pointer</summary>
-						virtual property void* DataPointer
-						{
-							void* get() override;
-							void set(void* value) override;
-						}
-
-						/// <summary>Returns the unmanaged size</summary>
-						virtual property System::UInt32 UnmanagedSize
-						{
-							System::UInt32 get() override;
-							void set(System::UInt32 value) override;
-						}
 					#pragma endregion
 
 
@@ -111,22 +89,10 @@ namespace Bardez
 						/// <summary>Unmanaged constructor</summary>
 						/// <param name="unmanaged">Source XAUDIO2FX_VOLUMEMETER_LEVELS structure</param>
 						VolumeMeterLevels(XAUDIO2FX_VOLUMEMETER_LEVELS* unmanaged);
-					#pragma endregion
-
-
-
-					#pragma region Destruction
-					public:
-						/// <summary>Destructor</summary>
-						/// <remarks>Dispose()</remarks>
-						~VolumeMeterLevels();
-
-						/// <summary>Destructor</summary>
-						/// <remarks>Finalize()</remarks>
-						!VolumeMeterLevels();
-
-						/// <summary>Destructor logic, disposes the object</summary>
-						virtual void DisposeUnmanaged() override;
+						
+						/// <summary>Unmanaged copy method</summary>
+						/// <param name="unmanaged">Source XAUDIO2FX_VOLUMEMETER_LEVELS structure</param>
+						void DefineFromUnmanaged(XAUDIO2FX_VOLUMEMETER_LEVELS* unmanaged);
 					#pragma endregion
 
 
@@ -134,18 +100,27 @@ namespace Bardez
 					#pragma region Methods
 					internal:
 						/// <summary>Returns an unmanaged version of this object</summary>
-						/// <returns>An unmanaged XAUDIO2FX_VOLUMEMETER_LEVELS struct</returns>
-						XAUDIO2FX_VOLUMEMETER_LEVELS ToUnmanaged();
+						/// <returns>An unmanaged XAUDIO2FX_VOLUMEMETER_LEVELS struct pointer</returns>
+						XAUDIO2FX_VOLUMEMETER_LEVELS* ToUnmanaged();
+
+						/// <summary>Generates the unmanaged data required for this type</summary>
+						/// <param name="unmanaged">Output pointer to the unmanaged parameter struct</param>
+						/// <param name="size">Output pointer to the size of data located at the source pointer</param>
+						virtual void ToUnmanaged(void** unmanaged, UInt32* size);
 
 						/// <summary>Releases up native memory allocated for an unmanaged XAUDIO2FX_VOLUMEMETER_LEVELS</summary>
 						/// <param name="levels">The structure to release memory for</param>
 						static void ReleaseMemory(XAUDIO2FX_VOLUMEMETER_LEVELS** levels);
 
-						/// <summary>Generates a managed copy of an unmanaged parameter struct</summary>
+						/// <summary>Releases up native memory allocated for an unmanaged parameters structure</summary>
+						/// <param name="data">The structure to release memory for</param>
+						virtual void ReleaseMemory(void** data);
+
+						/// <summary>Repopulated the managed copy from an unmanaged parameter struct</summary>
 						/// <param name="source">Source pointer to the unmanaged parameter struct</param>
 						/// <param name="size">Size of data located at the source pointer</param>
 						/// <returns>A Reference to the Managed copy</returns>
-						static VolumeMeterLevels^ GenerateFromUnmanaged(void* source, UInt32 size);
+						virtual void RepopulateFromUnmanaged(void* source, UInt32 size);
 					#pragma endregion
 					};
 				}

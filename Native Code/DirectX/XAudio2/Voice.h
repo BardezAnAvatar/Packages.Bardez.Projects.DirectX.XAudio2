@@ -2,16 +2,19 @@
 #ifndef Bardez_Projects_Directx_XAudio2_Voice
 #define Bardez_Projects_Directx_XAudio2_Voice
 
+
 #include "Effect Base.h"
 #include "Effect Descriptor.h"
-#include "Effect Parameter Base.h"
+#include "IEffectParameter.h"
 #include "Filter Parameter.h"
 #include "Voice Details.h"
 #include "Voice Send Descriptor.h"
 
+
 using namespace System;
 using namespace Bardez::Projects::BasicStructures::Win32;
 using namespace Bardez::Projects::DirectX::XAudio2::XAPO;
+
 
 namespace Bardez
 {
@@ -22,6 +25,7 @@ namespace Bardez
 			namespace XAudio2
 			{
 				/// <summary>Base class of Source, Submix and Mastering Voices for the Voice audio graph</summary>
+				//TODO: reinstate the abstractness of this class. It was not abstract for my output first pass, which is now deprecated.
 				public ref class Voice //abstract
 				{
 				#pragma region Members
@@ -136,7 +140,7 @@ namespace Bardez
 					///		The data in [parameters] is completely effect-specific and determined by the implementation of the IXAPOParameters::SetParameters function.
 					///		The data passed to SetParameters can be used to set the state of the XAPO and control the behavior of the IXAPO::Process function.
 					/// </remarks>
-					virtual ResultCode GetEffectParameters(System::UInt32 effectIndex, [System::Runtime::InteropServices::Out] EffectParameterBase^ %parameters);
+					virtual ResultCode GetEffectParameters(System::UInt32 effectIndex, [System::Runtime::InteropServices::Out] IEffectParameter^ %parameters);
 
 					/// <summary>Gets the state of the specified effect</summary>
 					/// <param name="effectIndex">Index of the effect to get the parameters of</param>
@@ -224,7 +228,7 @@ namespace Bardez
 					///			during the first processing pass after the IXAudio2::CommitChanges function is called with the same
 					///			OperationSet argument.
 					/// </remarks>
-					virtual ResultCode SetEffectParameters(System::UInt32 effectIndex, EffectParameterBase^ parameters, System::UInt32 operationSet);
+					virtual ResultCode SetEffectParameters(System::UInt32 effectIndex, IEffectParameter^ parameters, System::UInt32 operationSet);
 
 					/// <summary>Sets the voice's parameters</summary>
 					/// <param name="parameter">A FilterParameter object containing filter parameter info</param>

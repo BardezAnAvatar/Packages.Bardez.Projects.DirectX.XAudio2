@@ -162,7 +162,7 @@
     <ClInclude Include="Distance Setting.h" />
     <ClInclude Include="DSP Settings.h" />
     <ClInclude Include="Effect Base.h" />
-    <ClInclude Include="Effect Parameter Base.h" />
+    <ClInclude Include="IEffectParameter.h" />
     <ClInclude Include="Effect Descriptor.h" />
     <ClInclude Include="Emitter.h" />
     <ClInclude Include="Engine Callback.h" />

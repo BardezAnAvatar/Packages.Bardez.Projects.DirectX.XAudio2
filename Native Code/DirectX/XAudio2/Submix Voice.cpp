@@ -126,16 +126,22 @@ array<System::Single>^ SubmixVoice::GetChannelVolumes(System::UInt32 channels)
 ///		The data in [parameters] is completely effect-specific and determined by the implementation of the IXAPOParameters::SetParameters function.
 ///		The data passed to SetParameters can be used to set the state of the XAPO and control the behavior of the IXAPO::Process function.
 /// </remarks>
-ResultCode SubmixVoice::GetEffectParameters(System::UInt32 effectIndex, [System::Runtime::InteropServices::Out] EffectParameterBase^ %parameters)
+ResultCode SubmixVoice::GetEffectParameters(System::UInt32 effectIndex, [System::Runtime::InteropServices::Out] IEffectParameter^ %parameters)
 {
 	parameters = nullptr;
-	void* parameter = this->effects[effectIndex]->Effect->Parameters->DataPointer;
-	System::UInt32 size = this->effects[effectIndex]->Effect->Parameters->UnmanagedSize;
+	void** parameter;
+	System::UInt32* size;
+	this->effects[effectIndex]->Effect->Parameters->ToUnmanaged(parameter, size);
 
-	ResultCode result = (ResultCode)this->XAudio2SubmixVoice->GetEffectParameters(effectIndex, parameter, size);
+	//This just writes to the struct pointed to, no memory allocaction
+	ResultCode result = (ResultCode)this->XAudio2SubmixVoice->GetEffectParameters(effectIndex, *parameter, *size);
 
 	if (result == ResultCode::Success_OK)
-		parameters = this->effects[effectIndex]->Effect->Parameters->GenerateFromUnmanaged(parameter);
+		this->effects[effectIndex]->Effect->Parameters->RepopulateFromUnmanaged(*parameter, *size);
+
+	//deallocate the copied, unmanaged pointer
+	this->effects[effectIndex]->Effect->Parameters->ReleaseMemory(parameter);
+	delete size;
 
 	return result;
 }
@@ -290,12 +296,17 @@ ResultCode SubmixVoice::SetEffectChain(System::Collections::Generic::List<Effect
 ///			during the first processing pass after the IXAudio2::CommitChanges function is called with the same
 ///			OperationSet argument.
 /// </remarks>
-ResultCode SubmixVoice::SetEffectParameters(System::UInt32 effectIndex, EffectParameterBase^ parameters, System::UInt32 operationSet)
+ResultCode SubmixVoice::SetEffectParameters(System::UInt32 effectIndex, IEffectParameter^ parameters, System::UInt32 operationSet)
 {
-	void* parameter = parameters->DataPointer;
-	System::UInt32 size = parameters->UnmanagedSize;
+	void** parameter;
+	System::UInt32* size;
+	parameters->ToUnmanaged(parameter, size);
 
-	ResultCode result = (ResultCode)this->XAudio2SubmixVoice->SetEffectParameters(effectIndex, parameter, size);
+	ResultCode result = (ResultCode)this->XAudio2SubmixVoice->SetEffectParameters(effectIndex, *parameter, *size);
+
+	//deallocate the pointers
+	parameters->ReleaseMemory(parameter);
+	delete size;
 
 	return result;
 }

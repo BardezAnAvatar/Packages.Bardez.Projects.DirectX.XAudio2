@@ -90,9 +90,6 @@
     <ClInclude Include="Effect Base.h">
       <Filter>Header Files\XAPO</Filter>
     </ClInclude>
-    <ClInclude Include="Effect Parameter Base.h">
-      <Filter>Header Files\XAPO</Filter>
-    </ClInclude>
     <ClInclude Include="Mastering Voice.h">
       <Filter>Header Files\XAudio2 Classes</Filter>
     </ClInclude>
@@ -185,6 +182,9 @@
     </ClInclude>
     <ClInclude Include="Reverb Parameters Constants.h">
       <Filter>Header Files\XAudio2FX</Filter>
+    </ClInclude>
+    <ClInclude Include="IEffectParameter.h">
+      <Filter>Header Files\XAPO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

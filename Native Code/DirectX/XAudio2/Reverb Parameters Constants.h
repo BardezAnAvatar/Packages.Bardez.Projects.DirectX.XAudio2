@@ -246,37 +246,37 @@ namespace Bardez
 					XAUDIO2FX_REVERB_I3DL2_PARAMETERS ReverbParametersConstants::I3DL2_Plate			=	XAUDIO2FX_I3DL2_PRESET_PLATE;
 
 					/* Populate the native constants */
-					ReverbConvertI3DL2ToNative(&ReverbParametersConstants::I3DL2_Default, &ReverbParametersConstants::Native_Default);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Default			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Default);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Generic			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Generic);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_PaddedCell		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_PaddedCell);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_GenericRoom		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_GenericRoom);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_BathRoom			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_BathRoom);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_LivingRoom		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_LivingRoom);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_StoneRoom			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_StoneRoom);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Auditorum			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Auditorum);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_ConcertHall		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_ConcertHall);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Cave				=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Cave);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Arena				=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Arena);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Hangar			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Hangar);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_CarpetedHallway	=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_CarpetedHallway);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Hallway			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Hallway);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_StoneCorridor		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_StoneCorridor);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Alley				=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Alley);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Forest			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Forest);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_City				=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_City);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Mountains			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Mountains);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Quarry			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Quarry);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Plain				=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Plain);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_ParkingLot		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_ParkingLot);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_SewerPipe			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_SewerPipe);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Underwater		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Underwater);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_SmallRoom			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_SmallRoom);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_MediumRoom		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_MediumRoom);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_LargeRoom			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_LargeRoom);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_MediumHall		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_MediumHall);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_LargeHall			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_LargeHall);
-					XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Plate				=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Plate);
+					//ReverbConvertI3DL2ToNative(&ReverbParametersConstants::I3DL2_Default, &ReverbParametersConstants::Native_Default);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Default			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Default);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Generic			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Generic);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_PaddedCell		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_PaddedCell);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_GenericRoom		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_GenericRoom);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_BathRoom			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_BathRoom);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_LivingRoom		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_LivingRoom);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_StoneRoom			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_StoneRoom);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Auditorum			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Auditorum);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_ConcertHall		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_ConcertHall);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Cave				=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Cave);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Arena				=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Arena);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Hangar			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Hangar);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_CarpetedHallway	=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_CarpetedHallway);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Hallway			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Hallway);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_StoneCorridor		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_StoneCorridor);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Alley				=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Alley);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Forest			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Forest);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_City				=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_City);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Mountains			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Mountains);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Quarry			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Quarry);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Plain				=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Plain);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_ParkingLot		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_ParkingLot);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_SewerPipe			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_SewerPipe);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Underwater		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Underwater);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_SmallRoom			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_SmallRoom);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_MediumRoom		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_MediumRoom);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_LargeRoom			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_LargeRoom);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_MediumHall		=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_MediumHall);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_LargeHall			=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_LargeHall);
+					//XAUDIO2FX_REVERB_PARAMETERS ReverbParametersConstants::Native_Plate				=	ReverbConvertI3DL2ToNative(ReverbParametersConstants::I3DL2_Plate);
 				}
 			}
 		}
