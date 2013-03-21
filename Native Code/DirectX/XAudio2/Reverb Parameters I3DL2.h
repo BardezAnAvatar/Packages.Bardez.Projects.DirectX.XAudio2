@@ -9,7 +9,7 @@ extern "C"
 	#include <XAudio2fx.h>
 }
 #include "Effect Parameter Base.h"
-#include "Reverb Parameters I3DL2 Helper.h"
+#include "Reverb Parameters Constants.h"
 
 
 using namespace System;
@@ -31,99 +31,96 @@ namespace Bardez
 					public ref class ReverbParametersI3DL2
 					{
 					#pragma region Preset reverb settings
-					private:
-						//initonly static XAUDIO2FX_REVERB_I3DL2_PARAMETERS _Default = {100,-10000,    0,0.0f, 1.00f,0.50f,-10000,0.020f,-10000,0.040f,100.0f,100.0f,5000.0f};
-
 					public:
 						/// <summary>Constant for default preset</summary>
-						initonly static ReverbParametersI3DL2^ Default = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Default);
+						initonly static ReverbParametersI3DL2^ Default = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Default);
 
 						/// <summary>Constant for generic preset</summary>
-						initonly static ReverbParametersI3DL2^ Generic = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Generic);
+						initonly static ReverbParametersI3DL2^ Generic = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Generic);
 
 						/// <summary>Constant for padded cell preset</summary>
-						initonly static ReverbParametersI3DL2^ PaddedCell = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::PaddedCell);
+						initonly static ReverbParametersI3DL2^ PaddedCell = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_PaddedCell);
 
 						/// <summary>Constant for a generic "room" preset</summary>
-						initonly static ReverbParametersI3DL2^ GenericRoom = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::GenericRoom);
+						initonly static ReverbParametersI3DL2^ GenericRoom = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_GenericRoom);
 
 						/// <summary>Constant for bathroom preset</summary>
-						initonly static ReverbParametersI3DL2^ BathRoom = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::BathRoom);
+						initonly static ReverbParametersI3DL2^ BathRoom = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_BathRoom);
 
 						/// <summary>Constant for living room preset</summary>
-						initonly static ReverbParametersI3DL2^ LivingRoom = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::LivingRoom);
+						initonly static ReverbParametersI3DL2^ LivingRoom = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_LivingRoom);
 
 						/// <summary>Constant for stone room preset</summary>
-						initonly static ReverbParametersI3DL2^ StoneRoom = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::StoneRoom);
+						initonly static ReverbParametersI3DL2^ StoneRoom = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_StoneRoom);
 
 						/// <summary>Constant for auditorium preset</summary>
-						initonly static ReverbParametersI3DL2^ Auditorum = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Auditorum);
+						initonly static ReverbParametersI3DL2^ Auditorum = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Auditorum);
 
 						/// <summary>Constant for concert hall preset</summary>
-						initonly static ReverbParametersI3DL2^ ConcertHall = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::ConcertHall);
+						initonly static ReverbParametersI3DL2^ ConcertHall = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_ConcertHall);
 
 						/// <summary>Constant for cave preset</summary>
-						initonly static ReverbParametersI3DL2^ Cave = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Cave);
+						initonly static ReverbParametersI3DL2^ Cave = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Cave);
 
 						/// <summary>Constant for arena preset</summary>
-						initonly static ReverbParametersI3DL2^ Arena = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Arena);
+						initonly static ReverbParametersI3DL2^ Arena = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Arena);
 
 						/// <summary>Constant for hangar preset</summary>
-						initonly static ReverbParametersI3DL2^ Hangar = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Hangar);
+						initonly static ReverbParametersI3DL2^ Hangar = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Hangar);
 
 						/// <summary>Constant for carpeted hallway preset</summary>
-						initonly static ReverbParametersI3DL2^ CarpetedHallway = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::CarpetedHallway);
+						initonly static ReverbParametersI3DL2^ CarpetedHallway = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_CarpetedHallway);
 
 						/// <summary>Constant for hallway preset</summary>
-						initonly static ReverbParametersI3DL2^ Hallway = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Hallway);
+						initonly static ReverbParametersI3DL2^ Hallway = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Hallway);
 
 						/// <summary>Constant for stone corridor preset</summary>
-						initonly static ReverbParametersI3DL2^ StoneCorridor = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::StoneCorridor);
+						initonly static ReverbParametersI3DL2^ StoneCorridor = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_StoneCorridor);
 
 						/// <summary>Constant for alley preset</summary>
-						initonly static ReverbParametersI3DL2^ Alley = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Alley);
+						initonly static ReverbParametersI3DL2^ Alley = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Alley);
 
 						/// <summary>Constant for forest preset</summary>
-						initonly static ReverbParametersI3DL2^ Forest = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Forest);
+						initonly static ReverbParametersI3DL2^ Forest = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Forest);
 
 						/// <summary>Constant for city preset</summary>
-						initonly static ReverbParametersI3DL2^ City = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::City);
+						initonly static ReverbParametersI3DL2^ City = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_City);
 
 						/// <summary>Constant for mountains preset</summary>
-						initonly static ReverbParametersI3DL2^ Mountains = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Mountains);
+						initonly static ReverbParametersI3DL2^ Mountains = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Mountains);
 
 						/// <summary>Constant for quarry preset</summary>
-						initonly static ReverbParametersI3DL2^ Quarry = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Quarry);
+						initonly static ReverbParametersI3DL2^ Quarry = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Quarry);
 
 						/// <summary>Constant for plain preset</summary>
-						initonly static ReverbParametersI3DL2^ Plain = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Plain);
+						initonly static ReverbParametersI3DL2^ Plain = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Plain);
 
 						/// <summary>Constant for parking lot preset</summary>
-						initonly static ReverbParametersI3DL2^ ParkingLot = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::ParkingLot);
+						initonly static ReverbParametersI3DL2^ ParkingLot = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_ParkingLot);
 
 						/// <summary>Constant for sewer pipe preset</summary>
-						initonly static ReverbParametersI3DL2^ SewerPipe = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::SewerPipe);
+						initonly static ReverbParametersI3DL2^ SewerPipe = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_SewerPipe);
 
 						/// <summary>Constant for underwater preset</summary>
-						initonly static ReverbParametersI3DL2^ Underwater = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Underwater);
+						initonly static ReverbParametersI3DL2^ Underwater = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Underwater);
 
 						/// <summary>Constant for small room preset</summary>
-						initonly static ReverbParametersI3DL2^ SmallRoom = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::SmallRoom);
+						initonly static ReverbParametersI3DL2^ SmallRoom = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_SmallRoom);
 
 						/// <summary>Constant for medium room preset</summary>
-						initonly static ReverbParametersI3DL2^ MediumRoom = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::MediumRoom);
+						initonly static ReverbParametersI3DL2^ MediumRoom = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_MediumRoom);
 
 						/// <summary>Constant for large room preset</summary>
-						initonly static ReverbParametersI3DL2^ LargeRoom = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::LargeRoom);
+						initonly static ReverbParametersI3DL2^ LargeRoom = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_LargeRoom);
 
 						/// <summary>Constant for medium hall preset</summary>
-						initonly static ReverbParametersI3DL2^ MediumHall = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::MediumHall);
+						initonly static ReverbParametersI3DL2^ MediumHall = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_MediumHall);
 
 						/// <summary>Constant for large hall preset</summary>
-						initonly static ReverbParametersI3DL2^ LargeHall = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::LargeHall);
+						initonly static ReverbParametersI3DL2^ LargeHall = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_LargeHall);
 
 						/// <summary>Constant for plate preset</summary>
-						initonly static ReverbParametersI3DL2^ Plate = gcnew ReverbParametersI3DL2(ReverbParametersI3DL2Helper::Plate);
+						initonly static ReverbParametersI3DL2^ Plate = gcnew ReverbParametersI3DL2(ReverbParametersConstants::Native_Plate);
 					#pragma endregion
 
 
