@@ -183,7 +183,7 @@
     <ClInclude Include="Volume Meter Levels.h">
       <Filter>Header Files\XAudio2FX</Filter>
     </ClInclude>
-    <ClInclude Include="Reverb Parameters I3DL2 Helper.h">
+    <ClInclude Include="Reverb Parameters Constants.h">
       <Filter>Header Files\XAudio2FX</Filter>
     </ClInclude>
   </ItemGroup>
@@ -279,6 +279,9 @@
       <Filter>Source Files\XAudio2FX</Filter>
     </ClCompile>
     <ClCompile Include="Reverb Parameters I3DL2.cpp">
+      <Filter>Source Files\XAudio2FX</Filter>
+    </ClCompile>
+    <ClCompile Include="Reverb Parameters.cpp">
       <Filter>Source Files\XAudio2FX</Filter>
     </ClCompile>
   </ItemGroup>
