@@ -106,7 +106,7 @@ ResultCode XAudio2Interface::CommitChanges(System::UInt32 operationSet)
 	return (ResultCode)this->XAudio2Handle->CommitChanges(operationSet);
 }
 
-/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a mastering voice associated with this instance of XAudio2</summary>
 /// <param name="masteringVoice">Mastering voice reference to assign</param>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
@@ -114,7 +114,7 @@ ResultCode XAudio2Interface::CommitChanges(System::UInt32 operationSet)
 /// <param name="deviceIndex">Index of the output device. 0 means default.</param>
 /// <param name="effectChain">List of effects for the mastering voice</param>
 /// <returns>S_OK on success, otherwise an error code.</returns>
-ResultCode XAudio2Interface::CreateMasteringVoice(MasteringVoice^% masteringVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 deviceIndex, System::Collections::Generic::List<EffectDescriptor^>^ effectChain)
+ResultCode XAudio2Interface::CreateMasteringVoice(MasteringVoice^% masteringVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 deviceIndex, System::Collections::Generic::IList<EffectDescriptor^>^ effectChain)
 {
 	IXAudio2MasteringVoice* ptr;
 	XAUDIO2_EFFECT_CHAIN* chain = GetEffectChain(effectChain);	//static method
@@ -125,7 +125,7 @@ ResultCode XAudio2Interface::CreateMasteringVoice(MasteringVoice^% masteringVoic
 	return result;
 }
 
-/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a mastering voice associated with this instance of XAudio2</summary>
 /// <param name="masteringVoice">Mastering voice reference to assign</param>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
@@ -137,7 +137,7 @@ ResultCode XAudio2Interface::CreateMasteringVoice(MasteringVoice^% masteringVoic
 	return this->CreateMasteringVoice(masteringVoice, channels, sampleRate, flags, deviceIndex, nullptr);
 }
 
-/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a mastering voice associated with this instance of XAudio2</summary>
 /// <param name="masteringVoice">Mastering voice reference to assign</param>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
@@ -148,7 +148,7 @@ ResultCode XAudio2Interface::CreateMasteringVoice(MasteringVoice^% masteringVoic
 	return this->CreateMasteringVoice(masteringVoice, channels, sampleRate, flags, 0);
 }
 
-/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a mastering voice associated with this instance of XAudio2</summary>
 /// <param name="masteringVoice">Mastering voice reference to assign</param>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
@@ -158,7 +158,7 @@ ResultCode XAudio2Interface::CreateMasteringVoice(MasteringVoice^% masteringVoic
 	return this->CreateMasteringVoice(masteringVoice, channels, sampleRate, 0);
 }
 
-/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a mastering voice associated with this instance of XAudio2</summary>
 /// <param name="masteringVoice">Mastering voice reference to assign</param>
 /// <param name="channels">Number of input channels</param>
 /// <returns>S_OK on success, otherwise an error code.</returns>
@@ -167,7 +167,7 @@ ResultCode XAudio2Interface::CreateMasteringVoice(MasteringVoice^% masteringVoic
 	return this->CreateMasteringVoice(masteringVoice, channels, XAUDIO2_DEFAULT_SAMPLERATE /* 0 */);
 }
 
-/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a mastering voice associated with this instance of XAudio2</summary>
 /// <param name="masteringVoice">Mastering voice reference to assign</param>
 /// <returns>S_OK on success, otherwise an error code.</returns>
 ResultCode XAudio2Interface::CreateMasteringVoice(MasteringVoice^% masteringVoice)
@@ -175,21 +175,21 @@ ResultCode XAudio2Interface::CreateMasteringVoice(MasteringVoice^% masteringVoic
 	return this->CreateMasteringVoice(masteringVoice, XAUDIO2_DEFAULT_CHANNELS /* 0 */);
 }
 
-/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a mastering voice associated with this instance of XAudio2</summary>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
 /// <param name="flags">Flags that specify behavior of the mastering voice. Must be 0.</param>
 /// <param name="deviceIndex">Index of the output device. 0 means default.</param>
 /// <param name="effectChain">List of effects for the mastering voice</param>
 /// <returns>A new Mastering voice reference.</returns>
-MasteringVoice^ XAudio2Interface::CreateMasteringVoice(System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 deviceIndex, System::Collections::Generic::List<EffectDescriptor^>^ effectChain)
+MasteringVoice^ XAudio2Interface::CreateMasteringVoice(System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 deviceIndex, System::Collections::Generic::IList<EffectDescriptor^>^ effectChain)
 {
 	MasteringVoice^ voice = nullptr;
 	this->CreateMasteringVoice(voice, channels, sampleRate, flags, deviceIndex, effectChain);
 	return voice;
 }
 
-/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a mastering voice associated with this instance of XAudio2</summary>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
 /// <param name="flags">Flags that specify behavior of the mastering voice. Must be 0.</param>
@@ -200,7 +200,7 @@ MasteringVoice^ XAudio2Interface::CreateMasteringVoice(System::UInt32 channels, 
 	return this->CreateMasteringVoice(channels, sampleRate, flags, deviceIndex, nullptr);
 }
 
-/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a mastering voice associated with this instance of XAudio2</summary>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
 /// <param name="flags">Flags that specify behavior of the mastering voice. Must be 0.</param>
@@ -210,7 +210,7 @@ MasteringVoice^ XAudio2Interface::CreateMasteringVoice(System::UInt32 channels, 
 	return this->CreateMasteringVoice(channels, sampleRate, flags, 0);
 }
 
-/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a mastering voice associated with this instance of XAudio2</summary>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
 /// <returns>A new Mastering voice reference.</returns>
@@ -219,7 +219,7 @@ MasteringVoice^ XAudio2Interface::CreateMasteringVoice(System::UInt32 channels, 
 	return this->CreateMasteringVoice(channels, sampleRate, 0);
 }
 
-/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a mastering voice associated with this instance of XAudio2</summary>
 /// <param name="channels">Number of input channels</param>
 /// <returns>A new Mastering voice reference.</returns>
 MasteringVoice^ XAudio2Interface::CreateMasteringVoice(System::UInt32 channels)
@@ -227,14 +227,14 @@ MasteringVoice^ XAudio2Interface::CreateMasteringVoice(System::UInt32 channels)
 	return this->CreateMasteringVoice(channels, XAUDIO2_DEFAULT_SAMPLERATE /* 0 */);
 }
 
-/// <summary>Crates a mastering voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a mastering voice associated with this instance of XAudio2</summary>
 /// <returns>A new Mastering voice reference.</returns>
 MasteringVoice^ XAudio2Interface::CreateMasteringVoice()
 {
 	return this->CreateMasteringVoice(XAUDIO2_DEFAULT_CHANNELS /* 0 */);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="sourceVoice">Source voice reference to assign</param>
 /// <param name="format">Format of the source voice data</param>
 /// <param name="flags">
@@ -250,7 +250,7 @@ MasteringVoice^ XAudio2Interface::CreateMasteringVoice()
 /// <param name="sends">List of voices to output to</param>
 /// <param name="effectChain">List of effects for the mastering voice</param>
 /// <returns>S_OK on success, otherwise an error code.</returns>
-ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends, System::Collections::Generic::List<EffectDescriptor^>^ effectChain)
+ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::IList<VoiceSendDescriptor^>^ sends, System::Collections::Generic::IList<EffectDescriptor^>^ effectChain)
 {
 	IXAudio2SourceVoice* ptr = NULL;
 	XAUDIO2_EFFECT_CHAIN* chain = GetEffectChain(effectChain);	//static method
@@ -269,7 +269,7 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 	return result;
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="sourceVoice">Source voice reference to assign</param>
 /// <param name="format">Format of the source voice data</param>
 /// <param name="flags">
@@ -284,12 +284,12 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 /// <param name="callback">Client-defined callback interface</param>
 /// <param name="sends">List of voices to output to</param>
 /// <returns>S_OK on success, otherwise an error code.</returns>
-ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends)
+ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::IList<VoiceSendDescriptor^>^ sends)
 {
 	return this->CreateSourceVoice(sourceVoice, format, flags, freqRatio, callback, sends, nullptr);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="sourceVoice">Source voice reference to assign</param>
 /// <param name="format">Format of the source voice data</param>
 /// <param name="flags">
@@ -308,7 +308,7 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 	return this->CreateSourceVoice(sourceVoice, format, flags, freqRatio, callback, nullptr);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="sourceVoice">Source voice reference to assign</param>
 /// <param name="format">Format of the source voice data</param>
 /// <param name="flags">
@@ -326,7 +326,7 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 	return this->CreateSourceVoice(sourceVoice, format, flags, freqRatio, nullptr);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="sourceVoice">Source voice reference to assign</param>
 /// <param name="format">Format of the source voice data</param>
 /// <param name="flags">
@@ -340,7 +340,7 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 	return this->CreateSourceVoice(sourceVoice, format, flags, XAUDIO2_DEFAULT_FREQ_RATIO /* 2.0f */);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="sourceVoice">Source voice reference to assign</param>
 /// <param name="format">Format of the source voice data</param>
 /// <returns>S_OK on success, otherwise an error code.</returns>
@@ -349,7 +349,7 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 	return this->CreateSourceVoice(sourceVoice, format, 0);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="format">Format of the source voice data</param>
 /// <param name="flags">
 ///		Flags that specify behavior of the mastering voice.
@@ -364,14 +364,14 @@ ResultCode XAudio2Interface::CreateSourceVoice(SourceVoice^% sourceVoice, WaveFo
 /// <param name="sends">List of voices to output to</param>
 /// <param name="effectChain">List of effects for the mastering voice</param>
 /// <returns>A new Source voice reference.</returns>
-SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends, System::Collections::Generic::List<EffectDescriptor^>^ effectChain)
+SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::IList<VoiceSendDescriptor^>^ sends, System::Collections::Generic::IList<EffectDescriptor^>^ effectChain)
 {
 	SourceVoice^ voice;
 	this->CreateSourceVoice(voice, format, flags, freqRatio, callback, sends, effectChain);
 	return voice;
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="format">Format of the source voice data</param>
 /// <param name="flags">
 ///		Flags that specify behavior of the mastering voice.
@@ -385,12 +385,12 @@ SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format, System::U
 /// <param name="callback">Client-defined callback interface</param>
 /// <param name="sends">List of voices to output to</param>
 /// <returns>A new Source voice reference.</returns>
-SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends)
+SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format, System::UInt32 flags, System::Single freqRatio, VoiceCallback^ callback, System::Collections::Generic::IList<VoiceSendDescriptor^>^ sends)
 {
 	return this->CreateSourceVoice(format, flags, freqRatio, callback, sends, nullptr);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="format">Format of the source voice data</param>
 /// <param name="flags">
 ///		Flags that specify behavior of the mastering voice.
@@ -408,7 +408,7 @@ SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format, System::U
 	return this->CreateSourceVoice(format, flags, freqRatio, callback, nullptr);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="format">Format of the source voice data</param>
 /// <param name="flags">
 ///		Flags that specify behavior of the source voice.
@@ -425,7 +425,7 @@ SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format, System::U
 	return this->CreateSourceVoice(format, flags, freqRatio, nullptr);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="format">Format of the source voice data</param>
 /// <param name="flags">
 ///		Flags that specify behavior of the mastering voice.
@@ -438,7 +438,7 @@ SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format, System::U
 	return this->CreateSourceVoice(format, flags, XAUDIO2_DEFAULT_FREQ_RATIO /* 2.0f */);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="format">Format of the source voice data</param>
 /// <returns>A new Source voice reference.</returns>
 SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format)
@@ -446,7 +446,7 @@ SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format)
 	return this->CreateSourceVoice(format, 0);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="submixVoice">Submix voice reference to assign</param>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
@@ -462,7 +462,7 @@ SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format)
 /// <param name="sends">List of voices to output to</param>
 /// <param name="effectChain">List of effects for the mastering voice</param>
 /// <returns>S_OK on success, otherwise an error code.</returns>
-ResultCode XAudio2Interface::CreateSubmixVoice(SubmixVoice^% submixVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends, System::Collections::Generic::List<EffectDescriptor^>^ effectChain)
+ResultCode XAudio2Interface::CreateSubmixVoice(SubmixVoice^% submixVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::IList<VoiceSendDescriptor^>^ sends, System::Collections::Generic::IList<EffectDescriptor^>^ effectChain)
 {
 	IXAudio2SubmixVoice* ptr;
 	XAUDIO2_EFFECT_CHAIN* chain = GetEffectChain(effectChain);	//static method
@@ -474,7 +474,7 @@ ResultCode XAudio2Interface::CreateSubmixVoice(SubmixVoice^% submixVoice, System
 	return result;
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="submixVoice">Submix voice reference to assign</param>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
@@ -489,12 +489,12 @@ ResultCode XAudio2Interface::CreateSubmixVoice(SubmixVoice^% submixVoice, System
 ///	</param>
 /// <param name="sends">List of voices to output to</param>
 /// <returns>S_OK on success, otherwise an error code.</returns>
-ResultCode XAudio2Interface::CreateSubmixVoice(SubmixVoice^% submixVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends)
+ResultCode XAudio2Interface::CreateSubmixVoice(SubmixVoice^% submixVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::IList<VoiceSendDescriptor^>^ sends)
 {
 	return this->CreateSubmixVoice(submixVoice, channels, sampleRate, flags, stage, sends, nullptr);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="submixVoice">Submix voice reference to assign</param>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
@@ -513,7 +513,7 @@ ResultCode XAudio2Interface::CreateSubmixVoice(SubmixVoice^% submixVoice, System
 	return this->CreateSubmixVoice(submixVoice, channels, sampleRate, flags, stage, nullptr);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="submixVoice">Submix voice reference to assign</param>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
@@ -527,7 +527,7 @@ ResultCode XAudio2Interface::CreateSubmixVoice(SubmixVoice^% submixVoice, System
 	return this->CreateSubmixVoice(submixVoice, channels, sampleRate, flags, 0);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="submixVoice">Submix voice reference to assign</param>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
@@ -537,7 +537,7 @@ ResultCode XAudio2Interface::CreateSubmixVoice(SubmixVoice^% submixVoice, System
 	return this->CreateSubmixVoice(submixVoice, channels, sampleRate, 0);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
 /// <param name="flags">
@@ -552,14 +552,14 @@ ResultCode XAudio2Interface::CreateSubmixVoice(SubmixVoice^% submixVoice, System
 /// <param name="sends">List of voices to output to</param>
 /// <param name="effectChain">List of effects for the mastering voice</param>
 /// <returns>A new Submix voice reference.</returns>
-SubmixVoice^ XAudio2Interface::CreateSubmixVoice(System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends, System::Collections::Generic::List<EffectDescriptor^>^ effectChain)
+SubmixVoice^ XAudio2Interface::CreateSubmixVoice(System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::IList<VoiceSendDescriptor^>^ sends, System::Collections::Generic::IList<EffectDescriptor^>^ effectChain)
 {
 	SubmixVoice^ voice;
 	this->CreateSubmixVoice(voice, channels, sampleRate, flags, stage, sends, effectChain);
 	return voice;
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
 /// <param name="flags">
@@ -573,12 +573,12 @@ SubmixVoice^ XAudio2Interface::CreateSubmixVoice(System::UInt32 channels, System
 ///	</param>
 /// <param name="sends">List of voices to output to</param>
 /// <returns>A new Submix voice reference.</returns>
-SubmixVoice^ XAudio2Interface::CreateSubmixVoice(System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::List<VoiceSendDescriptor^>^ sends)
+SubmixVoice^ XAudio2Interface::CreateSubmixVoice(System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::IList<VoiceSendDescriptor^>^ sends)
 {
 	return this->CreateSubmixVoice(channels, sampleRate, flags, stage, sends, nullptr);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
 /// <param name="flags">
@@ -596,7 +596,7 @@ SubmixVoice^ XAudio2Interface::CreateSubmixVoice(System::UInt32 channels, System
 	return this->CreateSubmixVoice(channels, sampleRate, flags, stage, nullptr);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
 /// <param name="flags">
@@ -609,7 +609,7 @@ SubmixVoice^ XAudio2Interface::CreateSubmixVoice(System::UInt32 channels, System
 	return this->CreateSubmixVoice(channels, sampleRate, flags, 0);
 }
 
-/// <summary>Crates a Source voice associated with this instance of XAudio2</summary>
+/// <summary>Creates a Source voice associated with this instance of XAudio2</summary>
 /// <param name="channels">Number of input channels</param>
 /// <param name="sampleRate">Input sample rate</param>
 /// <returns>A new Submix voice reference.</returns>
@@ -733,7 +733,7 @@ void XAudio2Interface::UnregisterForCallbacks(EngineCallback^ callback)
 /// <summary>Gets a pointer to an XAudio2 effect chain for the API</summary>
 /// <param name="effectChain">List of effects for the voice</param>
 /// <returns>A pointer to a XAUDIO2_EFFECT_CHAIN struct</returns>
-XAUDIO2_EFFECT_CHAIN* XAudio2Interface::GetEffectChain(System::Collections::Generic::List<EffectDescriptor^>^ effectChain)
+XAUDIO2_EFFECT_CHAIN* XAudio2Interface::GetEffectChain(System::Collections::Generic::IList<EffectDescriptor^>^ effectChain)
 {
 	XAUDIO2_EFFECT_CHAIN* chain;
 
@@ -756,7 +756,7 @@ XAUDIO2_EFFECT_CHAIN* XAudio2Interface::GetEffectChain(System::Collections::Gene
 /// <summary>Gets a pointer to an XAudio2 voice output structure for the API</summary>
 /// <param name="sends">List of Voice sends for the generating voice</param>
 /// <returns>A pointer to a XAUDIO2_VOICE_SENDS struct</returns>
-XAUDIO2_VOICE_SENDS* XAudio2Interface::GetVoiceSends(System::Collections::Generic::List<VoiceSendDescriptor^>^ sends)
+XAUDIO2_VOICE_SENDS* XAudio2Interface::GetVoiceSends(System::Collections::Generic::IList<VoiceSendDescriptor^>^ sends)
 {
 	XAUDIO2_VOICE_SENDS* output = NULL;
 
