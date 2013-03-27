@@ -1,7 +1,10 @@
 
+
 #include "Submix Voice.h"
 
+
 using namespace Bardez::Projects::DirectX::XAudio2;
+
 
 #pragma region Properties
 /// <summary>Property to access the XAudio2MasteringVoice pointer, wrapping to a .NET IntPtr</summary>
@@ -46,4 +49,5 @@ SubmixVoice::!SubmixVoice()
 	this->DisposeUnmanaged();
 }
 #pragma endregion
+
 
