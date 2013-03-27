@@ -74,14 +74,14 @@ VolumeMeterLevels::VolumeMeterLevels(IList<Single>^ peaks, IList<Single>^ rms, U
 
 /// <summary>Unmanaged constructor</summary>
 /// <param name="unmanaged">Source XAUDIO2FX_VOLUMEMETER_LEVELS structure</param>
-VolumeMeterLevels::VolumeMeterLevels(XAUDIO2FX_VOLUMEMETER_LEVELS* unmanaged)
+VolumeMeterLevels::VolumeMeterLevels(const XAUDIO2FX_VOLUMEMETER_LEVELS* unmanaged)
 {
 	this->DefineFromUnmanaged(unmanaged);
 }
 						
 /// <summary>Unmanaged copy method</summary>
 /// <param name="unmanaged">Source XAUDIO2FX_VOLUMEMETER_LEVELS structure</param>
-void VolumeMeterLevels::DefineFromUnmanaged(XAUDIO2FX_VOLUMEMETER_LEVELS* unmanaged)
+void VolumeMeterLevels::DefineFromUnmanaged(const XAUDIO2FX_VOLUMEMETER_LEVELS* unmanaged)
 {
 	this->channelCount = (unmanaged == NULL) ? 0U : unmanaged->ChannelCount;
 	this->peakLevels = nullptr;
@@ -141,54 +141,53 @@ XAUDIO2FX_VOLUMEMETER_LEVELS* VolumeMeterLevels::ToUnmanaged()
 /// <summary>Generates the unmanaged data required for this type</summary>
 /// <param name="unmanaged">Output pointer to the unmanaged parameter struct</param>
 /// <param name="size">Output pointer to the size of data located at the source pointer</param>
-void VolumeMeterLevels::ToUnmanaged(void** unmanaged, UInt32* size)
+void VolumeMeterLevels::ToUnmanaged(void*& unmanaged, UInt32& size)
 {
 	XAUDIO2FX_VOLUMEMETER_LEVELS* levels = this->ToUnmanaged();
-	size = new UInt32;
-	(*size) = Marshal::SizeOf(XAUDIO2FX_VOLUMEMETER_LEVELS::typeid);
+	size = Marshal::SizeOf(XAUDIO2FX_VOLUMEMETER_LEVELS::typeid);
 
-	unmanaged = new void*;
-	(*unmanaged) = reinterpret_cast<void*>(levels);
+	unmanaged = reinterpret_cast<void*>(levels);
 }
 
 /// <summary>Releases up native memory allocated for an unmanaged XAUDIO2FX_VOLUMEMETER_LEVELS</summary>
 /// <param name="levels">The pointer to the structure to release memory for</param>
-void VolumeMeterLevels::ReleaseMemory(XAUDIO2FX_VOLUMEMETER_LEVELS** levels)
+void VolumeMeterLevels::ReleaseMemory(XAUDIO2FX_VOLUMEMETER_LEVELS*& levels)
 {
-	if (levels != NULL && (*levels) != NULL)
+	if (levels != NULL)
 	{
-		if ((*levels)->pPeakLevels != NULL)
+		if (levels->pPeakLevels != NULL)
 		{
-			delete [] (*levels)->pPeakLevels;
-			(*levels)->pPeakLevels = NULL;
+			delete [] levels->pPeakLevels;
+			levels->pPeakLevels = NULL;
 		}
 
-		if ((*levels)->pRMSLevels != NULL)
+		if (levels->pRMSLevels != NULL)
 		{
-			delete [] (*levels)->pRMSLevels;
-			(*levels)->pRMSLevels = NULL;
+			delete [] levels->pRMSLevels;
+			levels->pRMSLevels = NULL;
 		}
 
-		delete (*levels);	//delete the struct
-		delete levels;		//delete the pointer
+		delete levels;	//delete the struct
 		levels = NULL;
 	}
 }
 
 /// <summary>Releases up native memory allocated for an unmanaged parameters structure</summary>
 /// <param name="data">The structure to release memory for</param>
-void VolumeMeterLevels::ReleaseMemory(void** data)
+void VolumeMeterLevels::ReleaseMemory(void*& data)
 {
-	VolumeMeterLevels::ReleaseMemory(reinterpret_cast<XAUDIO2FX_VOLUMEMETER_LEVELS**>(data));
+	XAUDIO2FX_VOLUMEMETER_LEVELS* pointer = reinterpret_cast<XAUDIO2FX_VOLUMEMETER_LEVELS*>(data);
+	VolumeMeterLevels::ReleaseMemory(pointer);
+	data = reinterpret_cast<void*>(pointer);
 }
 
 /// <summary>Repopulated the managed copy from an unmanaged parameter struct</summary>
 /// <param name="source">Source pointer to the unmanaged parameter struct</param>
 /// <param name="size">Size of data located at the source pointer</param>
 /// <returns>A Reference to the Managed copy</returns>
-void VolumeMeterLevels::RepopulateFromUnmanaged(void* source, UInt32 size)
+void VolumeMeterLevels::RepopulateFromUnmanaged(const void* source, UInt32 size)
 {
-	this->DefineFromUnmanaged(reinterpret_cast<XAUDIO2FX_VOLUMEMETER_LEVELS*>(source));
+	this->DefineFromUnmanaged(reinterpret_cast<const XAUDIO2FX_VOLUMEMETER_LEVELS*>(source));
 }
 #pragma endregion
 

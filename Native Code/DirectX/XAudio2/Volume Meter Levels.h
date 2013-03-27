@@ -88,11 +88,11 @@ namespace Bardez
 					internal:
 						/// <summary>Unmanaged constructor</summary>
 						/// <param name="unmanaged">Source XAUDIO2FX_VOLUMEMETER_LEVELS structure</param>
-						VolumeMeterLevels(XAUDIO2FX_VOLUMEMETER_LEVELS* unmanaged);
+						VolumeMeterLevels(const XAUDIO2FX_VOLUMEMETER_LEVELS* unmanaged);
 						
 						/// <summary>Unmanaged copy method</summary>
 						/// <param name="unmanaged">Source XAUDIO2FX_VOLUMEMETER_LEVELS structure</param>
-						void DefineFromUnmanaged(XAUDIO2FX_VOLUMEMETER_LEVELS* unmanaged);
+						void DefineFromUnmanaged(const XAUDIO2FX_VOLUMEMETER_LEVELS* unmanaged);
 					#pragma endregion
 
 
@@ -103,24 +103,25 @@ namespace Bardez
 						/// <returns>An unmanaged XAUDIO2FX_VOLUMEMETER_LEVELS struct pointer</returns>
 						XAUDIO2FX_VOLUMEMETER_LEVELS* ToUnmanaged();
 
-						/// <summary>Generates the unmanaged data required for this type</summary>
-						/// <param name="unmanaged">Output pointer to the unmanaged parameter struct</param>
-						/// <param name="size">Output pointer to the size of data located at the source pointer</param>
-						virtual void ToUnmanaged(void** unmanaged, UInt32* size);
-
 						/// <summary>Releases up native memory allocated for an unmanaged XAUDIO2FX_VOLUMEMETER_LEVELS</summary>
 						/// <param name="levels">The structure to release memory for</param>
-						static void ReleaseMemory(XAUDIO2FX_VOLUMEMETER_LEVELS** levels);
+						static void ReleaseMemory(XAUDIO2FX_VOLUMEMETER_LEVELS*& levels);
 
-						/// <summary>Releases up native memory allocated for an unmanaged parameters structure</summary>
-						/// <param name="data">The structure to release memory for</param>
-						virtual void ReleaseMemory(void** data);
-
+					public:
 						/// <summary>Repopulated the managed copy from an unmanaged parameter struct</summary>
 						/// <param name="source">Source pointer to the unmanaged parameter struct</param>
 						/// <param name="size">Size of data located at the source pointer</param>
 						/// <returns>A Reference to the Managed copy</returns>
-						virtual void RepopulateFromUnmanaged(void* source, UInt32 size);
+						virtual void RepopulateFromUnmanaged(const void* source, UInt32 size);
+
+						/// <summary>Generates the unmanaged data required for this type</summary>
+						/// <param name="unmanaged">Output pointer to the unmanaged parameter struct</param>
+						/// <param name="size">Output pointer to the size of data located at the source pointer</param>
+						virtual void ToUnmanaged(void*& unmanaged, UInt32& size);
+
+						/// <summary>Releases up native memory allocated for an unmanaged parameters structure</summary>
+						/// <param name="data">The structure to release memory for</param>
+						virtual void ReleaseMemory(void*& data);
 					#pragma endregion
 					};
 				}
