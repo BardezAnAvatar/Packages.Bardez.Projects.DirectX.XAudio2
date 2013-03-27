@@ -22,7 +22,7 @@ namespace Bardez
 				namespace XAPO
 				{
 					/// <summary>Interface for defining XAPO audio effect classes</summary>
-					private interface class IEffectBase : public IDisposable
+					public interface class IEffectBase : public IDisposable
 					{
 					#pragma region Properties
 					public:
