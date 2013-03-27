@@ -87,9 +87,6 @@
     <ClInclude Include="Voice Send Descriptor.h">
       <Filter>Header Files\XAudio2 Components</Filter>
     </ClInclude>
-    <ClInclude Include="Effect Base.h">
-      <Filter>Header Files\XAPO</Filter>
-    </ClInclude>
     <ClInclude Include="Mastering Voice.h">
       <Filter>Header Files\XAudio2 Classes</Filter>
     </ClInclude>
@@ -171,26 +168,23 @@
     <ClInclude Include="Distance Setting.h">
       <Filter>Header Files\X3DAudio</Filter>
     </ClInclude>
-    <ClInclude Include="Reverb Parameters.h">
-      <Filter>Header Files\XAudio2FX</Filter>
-    </ClInclude>
-    <ClInclude Include="Reverb Parameters I3DL2.h">
-      <Filter>Header Files\XAudio2FX</Filter>
-    </ClInclude>
     <ClInclude Include="Volume Meter Levels.h">
-      <Filter>Header Files\XAudio2FX</Filter>
-    </ClInclude>
-    <ClInclude Include="Reverb Parameters Constants.h">
       <Filter>Header Files\XAudio2FX</Filter>
     </ClInclude>
     <ClInclude Include="IEffectParameter.h">
       <Filter>Header Files\XAPO</Filter>
     </ClInclude>
+    <ClInclude Include="Environmental Reverb Effect.h">
+      <Filter>Header Files\XAPO</Filter>
+    </ClInclude>
+    <ClInclude Include="IEffectBase.h">
+      <Filter>Header Files\XAPO</Filter>
+    </ClInclude>
+    <ClInclude Include="Environmental Reverb Parameters.h">
+      <Filter>Header Files\XAudio2FX</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Effect Base.cpp">
-      <Filter>Source Files\XAPO</Filter>
-    </ClCompile>
     <ClCompile Include="XAudio2 Interface.cpp">
       <Filter>Source Files\XAudio2 Classes</Filter>
     </ClCompile>
@@ -199,9 +193,6 @@
     </ClCompile>
     <ClCompile Include="Voice Details.cpp">
       <Filter>Source Files\XAudio2 Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Effect Parameter Base.cpp">
-      <Filter>Source Files\XAPO</Filter>
     </ClCompile>
     <ClCompile Include="Filter Parameter.cpp">
       <Filter>Source Files\XAudio2 Components</Filter>
@@ -278,10 +269,10 @@
     <ClCompile Include="Volume Meter Levels.cpp">
       <Filter>Source Files\XAudio2FX</Filter>
     </ClCompile>
-    <ClCompile Include="Reverb Parameters I3DL2.cpp">
-      <Filter>Source Files\XAudio2FX</Filter>
+    <ClCompile Include="Environmental Reverb Effect.cpp">
+      <Filter>Source Files\XAPO</Filter>
     </ClCompile>
-    <ClCompile Include="Reverb Parameters.cpp">
+    <ClCompile Include="Environmental Reverb Parameters.cpp">
       <Filter>Source Files\XAudio2FX</Filter>
     </ClCompile>
   </ItemGroup>
