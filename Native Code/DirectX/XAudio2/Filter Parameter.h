@@ -34,7 +34,7 @@ namespace Bardez
 					System::Single frequency;
 
 					/// <summary>
-					///		From MSDN: Reciprocal of Q factor. Controls how quickly frequencies beyond Frequency are dampened. Larger values
+					///		From MSDN: Reciprocal of Quality factor. Controls how quickly frequencies beyond Frequency are dampened. Larger values
 					///		result in quicker dampening while smaller values cause dampening to occur more gradually. Must be greater than 0
 					///		and less than or equal to XAUDIO2_MAX_FILTER_ONEOVERQ (1.5f). 
 					/// </summary>
