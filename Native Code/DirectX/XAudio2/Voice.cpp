@@ -59,6 +59,14 @@ Voice::Voice(IXAudio2Voice* pointer)
 
 
 #pragma region Destruction
+/// <summary>Destructor</summary>
+/// <remarks>Dispose()</remarks>
+Voice::~Voice()
+{
+	this->DisposeUnmanaged();
+	GC::SuppressFinalize(this);
+}
+
 /// <summary>Destructor logic, disposes the object</summary>
 void Voice::DisposeUnmanaged()
 {
@@ -306,7 +314,7 @@ ResultCode Voice::SetEffectChain(System::Collections::Generic::IList<EffectDescr
 
 	return result;
 }
-					
+
 /// <summary>Sets the parameters for  an effect in this voice's effect in the chain as specified in the index</summary>
 /// <param name="effectIndex">Index within the effect chain to set parameters for</param>
 /// <param name="parameters">EffectParameterBase class to set</param>
@@ -332,7 +340,7 @@ ResultCode Voice::SetEffectParameters(System::UInt32 effectIndex, IEffectParamet
 	System::UInt32 size;
 	parameters->ToUnmanaged(parameter, size);
 
-	ResultCode result = (ResultCode)this->XAudio2Voice->SetEffectParameters(effectIndex, parameter, size);
+	ResultCode result = (ResultCode)this->XAudio2Voice->SetEffectParameters(effectIndex, parameter, size, operationSet);
 
 	//deallocate the pointers
 	parameters->ReleaseMemory(parameter);

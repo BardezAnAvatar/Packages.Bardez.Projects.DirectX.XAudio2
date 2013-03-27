@@ -26,7 +26,7 @@ namespace Bardez
 			namespace XAudio2
 			{
 				/// <summary>Base class of Source, Submix and Mastering Voices for the Voice audio graph</summary>
-				public ref class Voice abstract
+				public ref class Voice abstract : public IDisposable
 				{
 				#pragma region Members
 				protected:
@@ -81,6 +81,10 @@ namespace Bardez
 
 				#pragma region Destruction
 				protected:
+					/// <summary>Destructor</summary>
+					/// <remarks>Dispose()</remarks>
+					~Voice();
+
 					/// <summary>Destructor logic, disposes the object</summary>
 					void DisposeUnmanaged();
 				#pragma endregion
