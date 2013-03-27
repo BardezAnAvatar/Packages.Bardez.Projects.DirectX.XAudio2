@@ -1,10 +1,14 @@
 
+
 #ifndef Bardez_Projects_Directx_XAudio2_VoiceDescriptor
 #define Bardez_Projects_Directx_XAudio2_VoiceDescriptor
 
+
 #include <xaudio2.h>
 
+
 using namespace System;
+
 
 namespace Bardez
 {
@@ -32,6 +36,7 @@ namespace Bardez
 				#pragma endregion
 
 
+
 				#pragma region Properties
 				public:
 					/// <summary>Indicates whether filter should be used on data sent to the voice.</summary>
@@ -51,6 +56,7 @@ namespace Bardez
 				#pragma endregion
 
 
+
 				#pragma region Construction
 				public:
 					/// <summary>Default constructor</summary>
@@ -60,12 +66,8 @@ namespace Bardez
 					/// <param name="flag">Indicates whether filter should be used on data sent to the voice</param>
 					/// <param name="target">Voice to be the target of the send. Cannot be null without error</param>
 					VoiceSendDescriptor(System::UInt32 flag, Voice^ target);
-
-				internal:
-					/// <summary>Unmanaged constructor</summary>
-					/// <param name="params">Unmanaged parameters struct</param>
-					VoiceSendDescriptor(XAUDIO2_SEND_DESCRIPTOR params);
 				#pragma endregion
+
 				
 
 				#pragma region Methods
@@ -81,3 +83,4 @@ namespace Bardez
 }
 
 #endif
+

@@ -1,8 +1,11 @@
 
+
 #include "Voice Send Descriptor.h"
 #include "Voice.h"
 
+
 using namespace Bardez::Projects::DirectX::XAudio2;
+
 
 #pragma region Properties
 /// <summary>Indicates whether filter should be used on data sent to the voice.</summary>
@@ -43,16 +46,9 @@ VoiceSendDescriptor::VoiceSendDescriptor(System::UInt32 flag, Voice^ target)
 	this->flags = flag;
 	this->outputVoice = target;
 }
-
-/// <summary>Unmanaged constructor</summary>
-/// <param name="params">Unmanaged parameters struct</param>
-VoiceSendDescriptor::VoiceSendDescriptor(XAUDIO2_SEND_DESCRIPTOR send)
-{
-	this->flags = send.Flags;
-	this->outputVoice = gcnew Voice(send.pOutputVoice);
-}
 #pragma endregion
 				
+
 
 #pragma region Methods
 /// <summary>Returns an unmanaged version of this object</summary>
