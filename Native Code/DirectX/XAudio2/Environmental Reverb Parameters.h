@@ -23,8 +23,193 @@ namespace Bardez
 				namespace FX
 				{
 					/// <summary>Managed representation of an XAudio2 XAUDIO2FX_REVERB_PARAMETERS structure</summary>
-					public ref class ReverbParameters : public IEffectParameter
+					public ref class EnvironmentalReverbParameters : public IEffectParameter
 					{
+					#pragma region Constants
+					public:
+						/// <summary>Constant for default preset</summary>
+						static property EnvironmentalReverbParameters^ Default
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+						
+						/// <summary>Constant for generic preset</summary>
+						static property EnvironmentalReverbParameters^ Generic
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+						
+						/// <summary>Constant for padded cell preset</summary>
+						static property EnvironmentalReverbParameters^ PaddedCell
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+						
+						/// <summary>Constant for a generic "room" preset</summary>
+						static property EnvironmentalReverbParameters^ GenericRoom
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for bathroom preset</summary>
+						static property EnvironmentalReverbParameters^ BathRoom
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for living room preset</summary>
+						static property EnvironmentalReverbParameters^ LivingRoom
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for stone room preset</summary>
+						static property EnvironmentalReverbParameters^ StoneRoom
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for auditorium preset</summary>
+						static property EnvironmentalReverbParameters^ Auditorum
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for concert hall preset</summary>
+						static property EnvironmentalReverbParameters^ ConcertHall
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for cave preset</summary>
+						static property EnvironmentalReverbParameters^ Cave
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for arena preset</summary>
+						static property EnvironmentalReverbParameters^ Arena
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for hangar preset</summary>
+						static property EnvironmentalReverbParameters^ Hangar
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for carpeted hallway preset</summary>
+						static property EnvironmentalReverbParameters^ CarpetedHallway
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for hallway preset</summary>
+						static property EnvironmentalReverbParameters^ Hallway
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for stone corridor preset</summary>
+						static property EnvironmentalReverbParameters^ StoneCorridor
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for alley preset</summary>
+						static property EnvironmentalReverbParameters^ Alley
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for forest preset</summary>
+						static property EnvironmentalReverbParameters^ Forest
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for city preset</summary>
+						static property EnvironmentalReverbParameters^ City
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for mountains preset</summary>
+						static property EnvironmentalReverbParameters^ Mountains
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for quarry preset</summary>
+						static property EnvironmentalReverbParameters^ Quarry
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for plain preset</summary>
+						static property EnvironmentalReverbParameters^ Plain
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for parking lot preset</summary>
+						static property EnvironmentalReverbParameters^ ParkingLot
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for sewer pipe preset</summary>
+						static property EnvironmentalReverbParameters^ SewerPipe
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for underwater preset</summary>
+						static property EnvironmentalReverbParameters^ Underwater
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for small room preset</summary>
+						static property EnvironmentalReverbParameters^ SmallRoom
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for medium room preset</summary>
+						static property EnvironmentalReverbParameters^ MediumRoom
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for large room preset</summary>
+						static property EnvironmentalReverbParameters^ LargeRoom
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for medium hall preset</summary>
+						static property EnvironmentalReverbParameters^ MediumHall
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for large hall preset</summary>
+						static property EnvironmentalReverbParameters^ LargeHall
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+
+						/// <summary>Constant for plate preset</summary>
+						static property EnvironmentalReverbParameters^ Plate
+						{
+							EnvironmentalReverbParameters^ get();
+						}
+					#pragma endregion
+
+
+
 					#pragma region Fields
 					protected:
 						/// <summary>Ratio of wet (processed) signal to dry (original) signal</summary>
@@ -362,7 +547,7 @@ namespace Bardez
 					#pragma region Construction
 					public:
 						/// <summary>Default constructor</summary>
-						ReverbParameters();
+						EnvironmentalReverbParameters();
 
 						/// <summary>Definition constructor</summary>
 						/// <param name="wetDry">Ratio of wet (processed) signal to dry (original) signal</param>
@@ -387,7 +572,7 @@ namespace Bardez
 						/// <param name="decayTime">Reverberation decay time at 1 kHz. </param>
 						/// <param name="density">Controls the modal density in the late field reverberation</param>
 						/// <param name="roomSize">The apparent size of the acoustic space</param>
-						ReverbParameters(Single wetDry, UInt32 reflectionsDelay, Byte reverbDelay, Byte rearDelay,
+						EnvironmentalReverbParameters(Single wetDry, UInt32 reflectionsDelay, Byte reverbDelay, Byte rearDelay,
 							Byte positionLeft, Byte positionRight, Byte positionMatrixLeft, Byte positionMatrixRight,
 							Byte earlyDiffusion, Byte lateDiffusion, Byte lowEQgain, Byte lowEQcutoff, Byte highEQgain, Byte highEQcutoff,
 							Single roomFilterFrequency, Single roomFilterMain, Single roomFilterHighFrequency, Single reflectionsGain, Single reverbGain,
@@ -396,11 +581,11 @@ namespace Bardez
 					internal:
 						/// <summary>Unmanaged copy constructor</summary>
 						/// <param name="unmanaged">Unmanaged instance to copy from</param>
-						ReverbParameters(XAUDIO2FX_REVERB_PARAMETERS* unmanaged);
+						EnvironmentalReverbParameters(const XAUDIO2FX_REVERB_PARAMETERS* unmanaged);
 						
 						/// <summary>Unmanaged copy method</summary>
 						/// <param name="unmanaged">Unmanaged instance to copy from</param>
-						void DefineFromUnmanaged(XAUDIO2FX_REVERB_PARAMETERS* unmanaged);
+						void DefineFromUnmanaged(const XAUDIO2FX_REVERB_PARAMETERS* unmanaged);
 
 					protected:
 						/// <summary>Definition method</summary>
@@ -441,24 +626,25 @@ namespace Bardez
 						/// <returns>An unmanaged XAUDIO2FX_REVERB_PARAMETERS struct pointer</returns>
 						XAUDIO2FX_REVERB_PARAMETERS* ToUnmanaged();
 
-						/// <summary>Generates the unmanaged data required for this type</summary>
-						/// <param name="unmanaged">Output pointer to the unmanaged parameter struct</param>
-						/// <param name="size">Output pointer to the size of data located at the source pointer</param>
-						virtual void ToUnmanaged(void** unmanaged, UInt32* size);
-
 						/// <summary>Releases up native memory allocated for an unmanaged XAUDIO2FX_REVERB_PARAMETERS</summary>
-						/// <param name="levels">The structure to release memory for</param>
-						static void ReleaseMemory(XAUDIO2FX_REVERB_PARAMETERS** reverb);
-
-						/// <summary>Releases up native memory allocated for an unmanaged parameters structure</summary>
-						/// <param name="data">The structure to release memory for</param>
-						virtual void ReleaseMemory(void** data);
-
+						/// <param name="reverb">The structure to release memory for</param>
+						static void ReleaseMemory(XAUDIO2FX_REVERB_PARAMETERS*& reverb);
+					
+					public:
 						/// <summary>Repopulated the managed copy from an unmanaged parameter struct</summary>
 						/// <param name="source">Source pointer to the unmanaged parameter struct</param>
 						/// <param name="size">Size of data located at the source pointer</param>
 						/// <returns>A Reference to the Managed copy</returns>
-						virtual void RepopulateFromUnmanaged(void* source, UInt32 size);
+						virtual void RepopulateFromUnmanaged(const void* source, UInt32 size);
+
+						/// <summary>Generates the unmanaged data required for this type</summary>
+						/// <param name="unmanaged">Output pointer to the unmanaged parameter struct</param>
+						/// <param name="size">Output pointer to the size of data located at the source pointer</param>
+						virtual void ToUnmanaged(void*& unmanaged, UInt32& size);
+
+						/// <summary>Releases up native memory allocated for an unmanaged parameters structure</summary>
+						/// <param name="data">The structure to release memory for</param>
+						virtual void ReleaseMemory(void*& data);
 					#pragma endregion
 					};
 				}
