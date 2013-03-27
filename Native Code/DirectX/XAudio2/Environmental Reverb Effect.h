@@ -53,12 +53,12 @@ namespace Bardez
 						EnvironmentalReverbEffect();
 
 						/// <summary>Definition constructor</summary>
-						/// <param name="flags">Flags used when constructing hte reverb. Must be 0.</param>
+						/// <param name="flags">Flags used when constructing the reverb. Must be 0.</param>
 						EnvironmentalReverbEffect(UInt32 flags);
 
 					protected:
 						/// <summary>Definition method</summary>
-						/// <param name="flags">Flags used when constructing hte reverb. Must be 0.</param>
+						/// <param name="flags">Flags used when constructing the reverb. Must be 0.</param>
 						void CreateReverb(UInt32 flags);
 					#pragma endregion
 
