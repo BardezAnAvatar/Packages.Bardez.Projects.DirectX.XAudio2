@@ -63,3 +63,72 @@ Further note:
 *	Additional notes
 */
 You can set the environmental settings based off of XAudio2fx.h This requires setting a Submix Voice intermediate, I believe. See XAudio2Sound3D sample project.
+
+
+
+/*
+*	Occlusion and Obstruction definitions:
+*
+one resource to buy:
+buy: http://www.valorebooks.com/textbooks/game-audio-programming-1st-edition/9781584502456?utm_medium=referral&utm_campaign=Froogle&utm_source=Froogle
+
+http://flylib.com/books/en/3.375.1.40/1/
+"Obstruction Property
+
+"The Obstruction property is in the range of -10,000 (-100 dB, indicating that no direct sound gets through) to 0 (0 dB, indicating that all direct sound gets through). The lower this value is below zero, the greater the muffling effect of the obstruction.
+
+"Remember that an obstructed sound source is one where the direct path to the listener is blocked, but where there is a clear airway to the listener, so that early and late reflections and reverberations are not affected by the obstruction (see Figure 7.1).
+
+"Obstruction LF Ratio Property
+
+"The Obstruction LF Ratio property is a ratio that sets how low-frequency sound is attenuated relative to high-frequency sound. If the value is 0.0, there is no attenuation for low-frequency sound (it all gets through). If the value is 1.0 (the maximum), it is attenuated at the same rate as high-frequency sound.
+
+"Occlusion Property
+
+"The values and ranges for the Occlusion and Occlusion LF Ratio properties have a very similar effect as those for obstruction. A value of -10,000 (-100 dB) for Occlusion indicates full occlusion (no sound gets through), and any value above this indicates that some source sound gets through.
+
+"Remember that occlusion occurs when there is no direct airway from the sound source to the listener. An example of occlusion occurs when you are in a room with the doors and windows closed, but can still hear noises from outside (see Figure 7.1).
+
+"Occlusion LF Ratio Property
+
+"The Occlusion LF Ratio property determines the ratio of how the occlusion muffling of low-frequency sound compares to high-frequency sound. A fully occluded listener (indicated by an occlusion setting of -10,000) will still be able to hear plenty of low-frequency sound if Occlusion LF Ratio is set between 0.0 and 0.5 (0.25 is the default).
+
+"Occlusion Room Ratio Property
+
+"The Occlusion Room Ratio property applies only to early reflections and late reverberations; it does not apply to the source sound. It applies an additional attenuation factor for these sounds. The value ranges from 0.0 (indicating no additional attenuation) up to 10 (indicating ten times the attenuation). The default value is 0.5.
+
+"The characteristics of an occlusion depend on the type of material creating the occlusion; in other words, the material that stands between the sound source and the listener (for example, a metal door, a glass window, a stone wall, or a wooden floor). The  eax.h header file includes some presets to give you an idea of the occlusion properties of different materials."
+
+
+
+
+/********************************
+*	Take-aways from research	*
+********************************/
+1) Sound has three major points that you observe:
+	a) Direct path
+	b) First order reflection from other surfaces (early)
+	c) Second order reflections from other surfaces (late)
+2) The presets for reverberation are the Reverb filter, and the presets are the EAX-equivlents, as defined in the I3DL2 spec.
+3) There are four types of audio reaching the target listener: Direct, Obstruction, Occlusion and Exclusion. These are calculated via DSP (Digital sound processing) Settings
+	a) Direct is when a direct path can be ray-traced from the source to the target listener
+		i) The preferred example is when there is a source emitter and target listener in one wise-open room with no other objects in between the two
+	b) Obstruction is when a direct path of audio cannot be so ray-traced, but the reflections are able to get straight through via ray tracing.
+		i) The preferred example is a column in front of the target, between the emitter and listener
+	c) Occlusion is when neither a direct path nor a reflected path can be found to the target.
+		i) The preferred example is a wall between the source and target
+	d) Exclusion is when only a direct path is present from the source to the listener, but reflections are not able to be observed
+		i) The preferred example is a wall between the source and target, with a hole directly between the source and target
+			allowing just the direct path but preventing the reflections
+4)	The Occlusion and Obstruction and Exclusion effects are just low-pass filters (see I3DL2, page 8, Paragraph 2, sentence 2).
+
+
+How to apply the Obstruction and Exclusion effects:
+	Do not know. Using low-pass filters, I think, but not sure how yet.
+	To audibly invalidate a filter (not programatically), set it to Type low pass, freq to 1.0F, 1/Q of 1.0F
+	To use a filter, it must be declared when creating the voice (i.e.: "CreateSourceVoice( &g_source, sfx.wf(), XAUDIO2_VOICE_USEFILTER );" )
+
+3) In the X3DAudio API calculations are performed to represent the emitter, listener and the attenuation of the audio signal.
+4) Doppler effect's frequency ratio (pitch), output matrix goes to source vource
+6) Direct coefficient goes on the source voice via filter parameters
+5) Reverb coefficient goes to a submix voice via output matrix
