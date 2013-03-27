@@ -1,9 +1,10 @@
 
+
 #ifndef Bardez_Projects_Directx_XAudio2_Voice
 #define Bardez_Projects_Directx_XAudio2_Voice
 
 
-#include "Effect Base.h"
+#include "IEffectBase.h"
 #include "Effect Descriptor.h"
 #include "IEffectParameter.h"
 #include "Filter Parameter.h"
@@ -25,8 +26,7 @@ namespace Bardez
 			namespace XAudio2
 			{
 				/// <summary>Base class of Source, Submix and Mastering Voices for the Voice audio graph</summary>
-				//TODO: reinstate the abstractness of this class. It was not abstract for my output first pass, which is now deprecated.
-				public ref class Voice //abstract
+				public ref class Voice abstract
 				{
 				#pragma region Members
 				protected:
@@ -34,7 +34,7 @@ namespace Bardez
 					System::IntPtr ptrVoice;
 
 					/// <summary>The list of effects</summary>
-					System::Collections::Generic::List<EffectDescriptor^>^ effects;
+					System::Collections::Generic::IList<EffectDescriptor^>^ effects;
 				#pragma endregion
 
 
@@ -49,10 +49,10 @@ namespace Bardez
 					}
 
 					/// <summary>The list of effects</summary>
-					property System::Collections::Generic::List<EffectDescriptor^>^ Effects
+					property System::Collections::Generic::IList<EffectDescriptor^>^ Effects
 					{
-						System::Collections::Generic::List<EffectDescriptor^>^ get();
-						void set(System::Collections::Generic::List<EffectDescriptor^>^ value);
+						System::Collections::Generic::IList<EffectDescriptor^>^ get();
+						void set(System::Collections::Generic::IList<EffectDescriptor^>^ value);
 					}
 
 				internal:
@@ -80,15 +80,7 @@ namespace Bardez
 
 
 				#pragma region Destruction
-				public:
-					/// <summary>Destructor</summary>
-					/// <remarks>Dispose()</remarks>
-					~Voice();
-
-					/// <summary>Destructor</summary>
-					/// <remarks>Finalize()</remarks>
-					!Voice();
-
+				protected:
 					/// <summary>Destructor logic, disposes the object</summary>
 					void DisposeUnmanaged();
 				#pragma endregion
@@ -207,7 +199,7 @@ namespace Bardez
 					///		If any portion of the effect chain fails, the entire chain fails and none of it is applied.
 					///		After attaching an effect, the client should no longer reference it, as XAudio2 will handle it going forward.
 					/// </remarks>
-					virtual ResultCode SetEffectChain(System::Collections::Generic::List<EffectDescriptor^>^ chain);
+					virtual ResultCode SetEffectChain(System::Collections::Generic::IList<EffectDescriptor^>^ chain);
 
 					/// <summary>Sets the parameters for  an effect in this voice's effect in the chain as specified in the index</summary>
 					/// <param name="effectIndex">Index within the effect chain to set parameters for</param>

@@ -1,6 +1,7 @@
 
 
 #include "Voice.h"
+#include "IEffectParameter.h"
 
 
 using namespace Bardez::Projects::DirectX::XAudio2;
@@ -32,13 +33,13 @@ void Voice::XAudio2Voice::set(IXAudio2Voice* value)
 }
 					
 /// <summary>The list of effects</summary>
-System::Collections::Generic::List<EffectDescriptor^>^ Voice::Effects::get()
+System::Collections::Generic::IList<EffectDescriptor^>^ Voice::Effects::get()
 {
 	return this->effects;
 }
 					
 /// <summary>The list of effects</summary>
-void Voice::Effects::set(System::Collections::Generic::List<EffectDescriptor^>^ value)
+void Voice::Effects::set(System::Collections::Generic::IList<EffectDescriptor^>^ value)
 {
 	this->effects = value;
 }
@@ -58,20 +59,6 @@ Voice::Voice(IXAudio2Voice* pointer)
 
 
 #pragma region Destruction
-/// <summary>Destructor</summary>
-/// <remarks>Dispose()</remarks>
-Voice::~Voice()
-{
-	this->DisposeUnmanaged();
-}
-
-/// <summary>Destructor</summary>
-/// <remarks>Finalize()</remarks>
-Voice::!Voice()
-{
-	this->DisposeUnmanaged();
-}
-
 /// <summary>Destructor logic, disposes the object</summary>
 void Voice::DisposeUnmanaged()
 {
@@ -142,7 +129,7 @@ array<System::Single>^ Voice::GetChannelVolumes(System::UInt32 channels)
 		outVolumes[i] = volumes[i];
 
 	//I just initialized the array, and the API copied into it. Now I'm done and this should not need to be persisted.
-	//delete [] volumes;
+	delete [] volumes;
 
 	return outVolumes;
 }
@@ -159,19 +146,23 @@ array<System::Single>^ Voice::GetChannelVolumes(System::UInt32 channels)
 ResultCode Voice::GetEffectParameters(System::UInt32 effectIndex, [System::Runtime::InteropServices::Out] IEffectParameter^ %parameters)
 {
 	parameters = nullptr;
-	void** parameter;
-	System::UInt32* size;
-	this->effects[effectIndex]->Effect->Parameters->ToUnmanaged(parameter, size);
+
+	void* parameter = NULL;
+	System::UInt32 size;
+	IEffectParameter^ paramClass = this->effects[effectIndex]->Effect->CreateParameters();
+	paramClass->ToUnmanaged(parameter, size);
 
 	//This just writes to the struct pointed to, no memory allocaction
-	ResultCode result = (ResultCode)this->XAudio2Voice->GetEffectParameters(effectIndex, *parameter, *size);
+	ResultCode result = (ResultCode)this->XAudio2Voice->GetEffectParameters(effectIndex, parameter, size);
 
 	if (result == ResultCode::Success_OK)
-		this->effects[effectIndex]->Effect->Parameters->RepopulateFromUnmanaged(*parameter, *size);
+	{
+		paramClass->RepopulateFromUnmanaged(parameter, size);
+		parameters = paramClass;
+	}
 
 	//deallocate the copied, unmanaged pointer
-	this->effects[effectIndex]->Effect->Parameters->ReleaseMemory(parameter);
-	delete size;
+	paramClass->ReleaseMemory(parameter);
 
 	return result;
 }
@@ -230,7 +221,7 @@ array<System::Single>^ Voice::GetOutputMatrix(Voice^ destination, System::UInt32
 		outMatrix[i] = matrix[i];
 
 	//I just initialized the array, and the API copied into it. Now I'm done and this should not need to be persisted.
-	//delete [] matrix;
+	delete [] matrix;
 
 	return outMatrix;
 }
@@ -275,7 +266,11 @@ ResultCode Voice::SetChannelVolumes(array<System::Single>^ volumes, System::UInt
 {
 	float* unmanagedVol = new float[volumes->Length];
 	System::Runtime::InteropServices::Marshal::Copy(volumes, 0, IntPtr(unmanagedVol), volumes->Length);
-	return (ResultCode)this->XAudio2Voice->SetChannelVolumes(volumes->Length, unmanagedVol, operationSet);
+	ResultCode result = (ResultCode)this->XAudio2Voice->SetChannelVolumes(volumes->Length, unmanagedVol, operationSet);
+
+	delete [] unmanagedVol;
+
+	return result;
 }
 					
 /// <summary>Replaces this Voice's effect chain.</summary>
@@ -286,7 +281,7 @@ ResultCode Voice::SetChannelVolumes(array<System::Single>^ volumes, System::UInt
 ///		If any portion of the effect chain fails, the entire chain fails and none of it is applied.
 ///		After attaching an effect, the client should no longer reference it, as XAudio2 will handle it going forward.
 /// </remarks>
-ResultCode Voice::SetEffectChain(System::Collections::Generic::List<EffectDescriptor^>^ chain)
+ResultCode Voice::SetEffectChain(System::Collections::Generic::IList<EffectDescriptor^>^ chain)
 {
 	this->effects = chain;
 	ResultCode result;
@@ -305,6 +300,8 @@ ResultCode Voice::SetEffectChain(System::Collections::Generic::List<EffectDescri
 			effectChain.pEffectDescriptors[i] = this->effects[i]->ToUnmanaged();
 
 		result = (ResultCode)this->XAudio2Voice->SetEffectChain(&effectChain);
+
+		//per MSDN, the API handles the effect and I should not clear its memory.
 	}
 
 	return result;
@@ -331,15 +328,14 @@ ResultCode Voice::SetEffectChain(System::Collections::Generic::List<EffectDescri
 /// </remarks>
 ResultCode Voice::SetEffectParameters(System::UInt32 effectIndex, IEffectParameter^ parameters, System::UInt32 operationSet)
 {
-	void** parameter;
-	System::UInt32* size;
+	void* parameter = NULL;
+	System::UInt32 size;
 	parameters->ToUnmanaged(parameter, size);
 
-	ResultCode result = (ResultCode)this->XAudio2Voice->SetEffectParameters(effectIndex, *parameter, *size);
+	ResultCode result = (ResultCode)this->XAudio2Voice->SetEffectParameters(effectIndex, parameter, size);
 
 	//deallocate the pointers
 	parameters->ReleaseMemory(parameter);
-	delete size;
 
 	return result;
 }
@@ -388,7 +384,11 @@ ResultCode Voice::SetOutputMatrix(Voice^ destination, System::UInt32 sourceChann
 	float* unmanagedVol = new float[volumeMatrix->Length];
 	System::Runtime::InteropServices::Marshal::Copy(volumeMatrix, 0, IntPtr(unmanagedVol), volumeMatrix->Length);
 
-	return (ResultCode)this->XAudio2Voice->SetOutputMatrix(destination->XAudio2Voice, sourceChannels, destinationChannels, unmanagedVol, operationSet);
+	ResultCode result = (ResultCode)this->XAudio2Voice->SetOutputMatrix(destination->XAudio2Voice, sourceChannels, destinationChannels, unmanagedVol, operationSet);
+
+	delete [] unmanagedVol;
+
+	return result;
 }
 
 /// <summary>Designates a new set of submix or mastering Voice destinations to receive this Voice's output</summary>
@@ -405,7 +405,11 @@ ResultCode Voice::SetOutputVoices(array<VoiceSendDescriptor^>^ voices)
 	for (System::Int32 i = 0; i < voices->Length; ++i)
 		sendList.pSends[i] = voices[i]->ToUnmanaged();
 
-	return (ResultCode)this->XAudio2Voice->SetOutputVoices(&sendList);
+	ResultCode result = (ResultCode)this->XAudio2Voice->SetOutputVoices(&sendList);
+
+	delete [] sendList.pSends;
+
+	return result;
 }
 
 /// <summary>Sets the voice's volume output matrix for each channel</summary>
