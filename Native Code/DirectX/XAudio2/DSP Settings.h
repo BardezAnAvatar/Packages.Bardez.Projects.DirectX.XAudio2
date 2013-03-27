@@ -22,7 +22,7 @@ namespace Bardez
 		{
 			namespace X3DAudio
 			{
-				/// <summary>Represents the DSP settings received from a 3D calculation call</summary>
+				/// <summary>Represents the DSP (Digital Signal Processing) settings received from a 3D calculation call</summary>
 				/// <remarks>
 				///		The following members must be allocated (not set) before passing this structure to the <see cref="X3DAudio::CalculateAudio" /> method:
 				///			* ChannelCountSource
