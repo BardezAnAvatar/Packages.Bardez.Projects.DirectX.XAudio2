@@ -2,11 +2,14 @@
 #ifndef Bardez_Projects_Directx_XAudio2_EffectDescriptor
 #define Bardez_Projects_Directx_XAudio2_EffectDescriptor
 
+
 #include <xaudio2.h>
-#include "Effect Base.h"
+#include "IEffectBase.h"
+
 
 using namespace System;
 using namespace Bardez::Projects::DirectX::XAudio2::XAPO;
+
 
 namespace Bardez
 {
@@ -22,7 +25,7 @@ namespace Bardez
 				#pragma region Members
 				protected:
 					/// <summary>Reference to the effect object</summary>
-					EffectBase^ effect;
+					IEffectBase^ effect;
 
 					/// <summary>Indicates whether or not to start the effect as enabled</summary>
 					System::Boolean initialState;
@@ -31,13 +34,15 @@ namespace Bardez
 					System::UInt32 outputChannels;
 				#pragma endregion
 
+
+
 				#pragma region Properties
 				public:
 					/// <summary>Reference to the effect object</summary>
-					property EffectBase^ Effect
+					property IEffectBase^ Effect
 					{
-						EffectBase^ get();
-						void set(EffectBase^ value);
+						IEffectBase^ get();
+						void set(IEffectBase^ value);
 					}
 
 					/// <summary>Indicates whether or not to start the effect as enabled</summary>
@@ -53,15 +58,9 @@ namespace Bardez
 						System::UInt32 get();
 						void set(System::UInt32 value);
 					}
-
-				internal:
-					/// <summary>Pointer to the effect COM object/interface</summary>
-					property IUnknown* UnmanagedEffect
-					{
-						IUnknown* get();
-						void set(IUnknown* value);
-					}
 				#pragma endregion
+
+
 
 				#pragma region Construction
 				public:
@@ -70,22 +69,12 @@ namespace Bardez
 
 					/// <summary>Definition constructor</summary>
 					/// <param name="effectObject">Reference to an effect object</param>
-					/// <param name="enabled">Is the effect enabled?</param>
+					/// <param name="enabled">Flag indicating whether the effect enabled initially</param>
 					/// <param name="channels">Output number of channels</param>
-					EffectDescriptor(EffectBase^ effectObject, System::Boolean enabled, System::UInt32 channels);
-
-				//internal:
-				//	/// <summary>Definition constructor</summary>
-				//	/// <param name="pointer">Pointer to the effect</param>
-				//	/// <param name="enabled">Is the effect enabled?</param>
-				//	/// <param name="channels">Output number of channels</param>
-				//	EffectDescriptor(IUnknown* pointer, System::Boolean enabled, System::UInt32 channels);
-
-				//	/// <summary>Unmanaged constructor</summary>
-				//	/// <param name="params">Unmanaged parameters struct</param>
-				//	EffectDescriptor(XAUDIO2_EFFECT_DESCRIPTOR params);
+					EffectDescriptor(IEffectBase^ effectObject, System::Boolean enabled, System::UInt32 channels);
 				#pragma endregion
 				
+
 
 				#pragma region Methods
 				internal:
@@ -100,3 +89,4 @@ namespace Bardez
 }
 
 #endif
+
