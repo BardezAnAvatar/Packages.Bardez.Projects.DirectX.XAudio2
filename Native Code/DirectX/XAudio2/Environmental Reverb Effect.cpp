@@ -36,7 +36,6 @@ EnvironmentalReverbEffect::EnvironmentalReverbEffect()
 /// <param name="flags">Flags used when constructing the reverb. Must be 0.</param>
 EnvironmentalReverbEffect::EnvironmentalReverbEffect(UInt32 flags)
 {
-	
 	this->CreateReverb(flags);
 }
 
@@ -45,12 +44,14 @@ EnvironmentalReverbEffect::EnvironmentalReverbEffect(UInt32 flags)
 void EnvironmentalReverbEffect::CreateReverb(UInt32 flags)
 {
 	IUnknown* reverbEffect;
-    HRESULT hr = XAudio2CreateReverb(&reverbEffect, flags);
+	HRESULT hr = XAudio2CreateReverb(&reverbEffect, flags);
 	if (FAILED (hr))
 	{
 		ResultCode result = (ResultCode)hr;
 		throw gcnew ApplicationException(String::Format("Encountered failure while creating the reverb effect. Code {0}; Description {1}", hr, result.ToString()));
 	}
+
+	this->UnmanagedPointer = reverbEffect;
 }
 #pragma endregion
 
