@@ -464,7 +464,7 @@ SourceVoice^ XAudio2Interface::CreateSourceVoice(WaveFormatEx^ format)
 /// <returns>S_OK on success, otherwise an error code.</returns>
 ResultCode XAudio2Interface::CreateSubmixVoice(SubmixVoice^% submixVoice, System::UInt32 channels, System::UInt32 sampleRate, System::UInt32 flags, System::UInt32 stage, System::Collections::Generic::IList<VoiceSendDescriptor^>^ sends, System::Collections::Generic::IList<EffectDescriptor^>^ effectChain)
 {
-	IXAudio2SubmixVoice* ptr;
+	IXAudio2SubmixVoice* ptr = NULL;
 	XAUDIO2_EFFECT_CHAIN* chain = GetEffectChain(effectChain);	//static method
 	XAUDIO2_VOICE_SENDS* output = GetVoiceSends(sends);			//static method
 
@@ -766,7 +766,7 @@ XAUDIO2_VOICE_SENDS* XAudio2Interface::GetVoiceSends(System::Collections::Generi
 		output->SendCount = System::Convert::ToUInt32(sends->Count);
 		output->pSends = new XAUDIO2_SEND_DESCRIPTOR[sends->Count];
 
-		// copy effect chain
+		// copy voice sends
 		for (System::Int32 i = 0; i < sends->Count; ++i)
 			output->pSends[i] = sends[i]->ToUnmanaged();
 	}
