@@ -10,6 +10,7 @@
 
 using namespace System;
 using namespace Bardez::Projects::DirectX::XAudio2::XAPO;
+using namespace Bardez::Projects::Multimedia::MediaBase::Render::Audio;
 
 
 namespace Bardez
@@ -25,191 +26,6 @@ namespace Bardez
 					/// <summary>Managed representation of an XAudio2 XAUDIO2FX_REVERB_PARAMETERS structure</summary>
 					public ref class EnvironmentalReverbParameters : public IEffectParameter
 					{
-					#pragma region Constants
-					public:
-						/// <summary>Constant for default preset</summary>
-						static property EnvironmentalReverbParameters^ Default
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-						
-						/// <summary>Constant for generic preset</summary>
-						static property EnvironmentalReverbParameters^ Generic
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-						
-						/// <summary>Constant for padded cell preset</summary>
-						static property EnvironmentalReverbParameters^ PaddedCell
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-						
-						/// <summary>Constant for a generic "room" preset</summary>
-						static property EnvironmentalReverbParameters^ GenericRoom
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for bathroom preset</summary>
-						static property EnvironmentalReverbParameters^ BathRoom
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for living room preset</summary>
-						static property EnvironmentalReverbParameters^ LivingRoom
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for stone room preset</summary>
-						static property EnvironmentalReverbParameters^ StoneRoom
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for auditorium preset</summary>
-						static property EnvironmentalReverbParameters^ Auditorum
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for concert hall preset</summary>
-						static property EnvironmentalReverbParameters^ ConcertHall
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for cave preset</summary>
-						static property EnvironmentalReverbParameters^ Cave
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for arena preset</summary>
-						static property EnvironmentalReverbParameters^ Arena
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for hangar preset</summary>
-						static property EnvironmentalReverbParameters^ Hangar
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for carpeted hallway preset</summary>
-						static property EnvironmentalReverbParameters^ CarpetedHallway
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for hallway preset</summary>
-						static property EnvironmentalReverbParameters^ Hallway
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for stone corridor preset</summary>
-						static property EnvironmentalReverbParameters^ StoneCorridor
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for alley preset</summary>
-						static property EnvironmentalReverbParameters^ Alley
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for forest preset</summary>
-						static property EnvironmentalReverbParameters^ Forest
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for city preset</summary>
-						static property EnvironmentalReverbParameters^ City
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for mountains preset</summary>
-						static property EnvironmentalReverbParameters^ Mountains
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for quarry preset</summary>
-						static property EnvironmentalReverbParameters^ Quarry
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for plain preset</summary>
-						static property EnvironmentalReverbParameters^ Plain
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for parking lot preset</summary>
-						static property EnvironmentalReverbParameters^ ParkingLot
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for sewer pipe preset</summary>
-						static property EnvironmentalReverbParameters^ SewerPipe
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for underwater preset</summary>
-						static property EnvironmentalReverbParameters^ Underwater
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for small room preset</summary>
-						static property EnvironmentalReverbParameters^ SmallRoom
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for medium room preset</summary>
-						static property EnvironmentalReverbParameters^ MediumRoom
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for large room preset</summary>
-						static property EnvironmentalReverbParameters^ LargeRoom
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for medium hall preset</summary>
-						static property EnvironmentalReverbParameters^ MediumHall
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for large hall preset</summary>
-						static property EnvironmentalReverbParameters^ LargeHall
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-
-						/// <summary>Constant for plate preset</summary>
-						static property EnvironmentalReverbParameters^ Plate
-						{
-							EnvironmentalReverbParameters^ get();
-						}
-					#pragma endregion
-
-
-
 					#pragma region Fields
 					protected:
 						/// <summary>Ratio of wet (processed) signal to dry (original) signal</summary>
@@ -577,6 +393,10 @@ namespace Bardez
 							Byte earlyDiffusion, Byte lateDiffusion, Byte lowEQgain, Byte lowEQcutoff, Byte highEQgain, Byte highEQcutoff,
 							Single roomFilterFrequency, Single roomFilterMain, Single roomFilterHighFrequency, Single reflectionsGain, Single reverbGain,
 							Single decayTime, Single density, Single roomSize);
+
+						/// <summary>Copy constructor</summary>
+						/// <param name="settings">Generic <see cref="ReverbSettings" /> class to copy reverb parameters from</param>
+						EnvironmentalReverbParameters(ReverbSettings^ settings);
 
 					internal:
 						/// <summary>Unmanaged copy constructor</summary>

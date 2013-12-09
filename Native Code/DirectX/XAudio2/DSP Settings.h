@@ -196,6 +196,7 @@ namespace Bardez
 					#pragma endregion
 
 
+
 					#pragma region Destruction
 					public:
 						/// <summary>Destructor</summary>
@@ -236,6 +237,13 @@ namespace Bardez
 						/// <summary>Releases up native memory allocated for this unmanaged X3DAUDIO_DSP_SETTINGS</summary>
 						/// <param name="settings">Pointer to the DSP Settings to release memory for</param>
 						void ReleaseMemory(X3DAUDIO_DSP_SETTINGS** settings);
+
+					public:
+						/// <summary>Generates a Coefficient Matrix for application to setting an output matrix for a voice</summary>
+						/// <param name="sourceChannelCount">Number or channels in the source voice</param>
+						/// <param name="destinationChannelCount">Number of channels in the destination voice</param>
+						/// <returns>The matrix array, initialized to have no effect</returns>
+						static array<Single>^ GenerateCoefficientMatrix(Int64 sourceChannelCount, Int64 destinationChannelCount);
 					#pragma endregion
 				};
 			}

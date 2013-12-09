@@ -6,310 +6,7 @@
 using namespace System;
 using namespace System::Runtime::InteropServices;
 using namespace Bardez::Projects::DirectX::XAudio2::FX;
-
-
-#pragma region Constants
-/// <summary>Constant for default preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Default::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_DEFAULT;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-						
-/// <summary>Constant for generic preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Generic::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_GENERIC;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-						
-/// <summary>Constant for padded cell preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::PaddedCell::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_PADDEDCELL;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-						
-/// <summary>Constant for a generic "room" preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::GenericRoom::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_ROOM;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for bathroom preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::BathRoom::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_BATHROOM;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for living room preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::LivingRoom::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_LIVINGROOM;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for stone room preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::StoneRoom::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_STONEROOM;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for auditorium preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Auditorum::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_AUDITORIUM;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for concert hall preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::ConcertHall::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_CONCERTHALL;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for cave preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Cave::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_CAVE;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for arena preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Arena::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_ARENA;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for hangar preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Hangar::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_HANGAR;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for carpeted hallway preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::CarpetedHallway::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_CARPETEDHALLWAY;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for hallway preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Hallway::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_HALLWAY;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for stone corridor preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::StoneCorridor::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_STONECORRIDOR;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for alley preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Alley::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_ALLEY;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for forest preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Forest::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_FOREST;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for city preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::City::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_CITY;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for mountains preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Mountains::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_MOUNTAINS;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for quarry preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Quarry::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_QUARRY;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for plain preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Plain::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_PLAIN;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for parking lot preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::ParkingLot::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_PARKINGLOT;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for sewer pipe preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::SewerPipe::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_SEWERPIPE;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for underwater preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Underwater::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_UNDERWATER;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for small room preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::SmallRoom::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_SMALLROOM;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for medium room preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::MediumRoom::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_MEDIUMROOM;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for large room preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::LargeRoom::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_LARGEROOM;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for medium hall preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::MediumHall::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_MEDIUMHALL;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for large hall preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::LargeHall::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_LARGEHALL;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-
-/// <summary>Constant for plate preset</summary>
-EnvironmentalReverbParameters^ EnvironmentalReverbParameters::Plate::get()
-{
-	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset = XAUDIO2FX_I3DL2_PRESET_PLATE;
-	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
-	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
-	return gcnew EnvironmentalReverbParameters(&unmanaged);
-}
-#pragma endregion
+using namespace Bardez::Projects::Multimedia::MediaBase::Render::Audio;
 
 
 
@@ -744,6 +441,44 @@ EnvironmentalReverbParameters::EnvironmentalReverbParameters(
 			roomFilterFrequency, roomFilterMain, roomFilterHighFrequency, reflectionsGain, reverbGain,
 			decayTime, density, roomSize
 		);
+}
+
+/// <summary>Copy constructor</summary>
+/// <param name="settings">Generic <see cref="ReverbSettings" /> class to copy reverb parameters from</param>
+EnvironmentalReverbParameters::EnvironmentalReverbParameters(ReverbSettings^ settings)
+{
+	//copy the I3DL2 values
+	XAUDIO2FX_REVERB_I3DL2_PARAMETERS preset;
+	preset.WetDryMix = XAUDIO2FX_REVERB_DEFAULT_WET_DRY_MIX;
+	preset.Room = settings->GeneralRoomGain;
+	preset.RoomHF = settings->GeneralRoomHighFrequencyGain;
+	preset.RoomRolloffFactor = settings->RoomRolloffFactor;
+	preset.DecayTime = settings->DecayTime;
+	preset.DecayHFRatio = settings->DecayHighFrequencyRatio;
+	preset.Reflections = settings->Reflections;
+	preset.ReflectionsDelay = settings->ReflectionsDelay;
+	preset.Reverb = settings->Reverb;
+	preset.ReverbDelay = settings->ReverbDelay;
+	preset.Diffusion = settings->Diffusion;
+	preset.Density = settings->Density;
+	preset.HFReference = settings->HighFrequencyReference;
+
+	//perform the XAudio2 conversion
+	XAUDIO2FX_REVERB_PARAMETERS unmanaged;
+	XAUDIO2FX_REVERB_I3DL2_PARAMETERS* presetPointer = &preset;
+	ReverbConvertI3DL2ToNative(presetPointer, &unmanaged);
+	presetPointer = NULL;
+
+	//update the result to include the room size
+	Single roomSize = settings->EnvironmentSizeFeet;
+	if (roomSize > XAUDIO2FX_REVERB_MAX_ROOM_SIZE)
+		roomSize = XAUDIO2FX_REVERB_MAX_ROOM_SIZE;
+	else if (roomSize < XAUDIO2FX_REVERB_MIN_ROOM_SIZE)
+		roomSize = XAUDIO2FX_REVERB_MIN_ROOM_SIZE;
+	
+	unmanaged.RoomSize = roomSize;
+
+	this->DefineFromUnmanaged(&unmanaged);
 }
 
 /// <summary>Unmanaged copy constructor</summary>

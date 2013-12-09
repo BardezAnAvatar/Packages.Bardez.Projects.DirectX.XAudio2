@@ -46,9 +46,6 @@
     <Filter Include="Header Files\Wave Formats">
       <UniqueIdentifier>{74835cfb-3dd6-43ec-a369-af9900319e7e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\X3DAudio">
-      <UniqueIdentifier>{1b36f1e7-acae-443a-a25a-5e98027eb51e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Wave Formats">
       <UniqueIdentifier>{1f29d00a-9e2b-495c-86ff-119076683cf1}</UniqueIdentifier>
     </Filter>
@@ -57,6 +54,9 @@
     </Filter>
     <Filter Include="Source Files\XAudio2FX">
       <UniqueIdentifier>{f4a91373-7cdf-4535-a948-ef5cfbbcc86b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\X3DAudio">
+      <UniqueIdentifier>{1b36f1e7-acae-443a-a25a-5e98027eb51e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -132,3 +132,59 @@ How to apply the Obstruction and Exclusion effects:
 4) Doppler effect's frequency ratio (pitch), output matrix goes to source vource
 6) Direct coefficient goes on the source voice via filter parameters
 5) Reverb coefficient goes to a submix voice via output matrix
+
+
+/****************
+*	2013-05-06	*
+****************/
+Notes on low-pass filters.
+Low-pass gives the effect of muffling, as I already know. However, the XAudio2 implementation has been frustratingly confusing.
+From this source (http://www.win32developer.com/tutorial/xaudio/xaudio_tutorial_7.shtm),
+the parameters appear to be as follows:
+*	The Frequency is the radian frequency, which must be between 0.0 and 1.0.
+		In this case, I would give a frequency, and a header function could give me the resultant radian frequency
+*	And the attenuation factor (also known as "Q") is stored as its reciprocal in the structure as OneOverQ.
+		This would be my point of most confusion. I get the inversion of it. But until now, I do not think
+		that I 'got' that the Q was the Attenuation factor, which would seem to be the meat.
+		I can find from Wikipedia (http://en.wikipedia.org/wiki/Attenuation_coefficient) a Attenuation coefficient,
+		which seems to suggest the two are the same/related.
+		Further, this (http://www.wisegeek.com/what-is-the-attenuation-coefficient.htm) explains that the coefficient
+		is a factor of how the sound it attenuated due to the thickness of the material.
+
+The presets in I3DL2 are an attenuation and a control ratio:
+	Attenuation at high frequencies
+	Low frequency in regard to high frequency (which is set in the Reverb params, I believe)
+		obstruction is 0.0 ratio, which means, I think, that the filter is set AT the specified high frequency
+		Occlusion is 0.25 ratio, which means, I think, that the filter is set at 75% of the specified high frequency
+
+What this says, to me, is that the I3DL2 presets have the attenuation coefficient and the frequency defined, and I
+need to combine this with an environment-specified thickness, which yields the values for a low pass filter.
+
+Reverb:
+To get it to sound correct, you need to play the reverb AS WELL AS the direct path, not just the reverb. Oops on me
+
+
+/****************
+*	2013-05-07	*
+****************/
+Looking at the XAudio2Sound3D project again, it suddenly makes sense on how to apply 3D effects.
+The default assumption is that there will be a reverb effect in place.
+Now that I know that you need to have the direct path play as well as the reverb effect path play, reading that
+code again, I see that there is a set of filter application for each path:
+	1) Set the frequency ratio on the source voice
+	2) Direct Path
+		a) Set the output matrix of in & out channels with the matrix coefficients
+		b) Set the reverb's low-pass filter with the direct coefficient
+	3) Reverb path
+		a) set the output matrix of mono with the ReverbLevel matrix (single value)
+		b) set the reverb's low-pass filter with the reverb coefficient
+
+See Audio.cpp, lines 384-400 in that project for the explanation. I get it now!
+
+Also, to disable an output matrix, low pass filter and frequency ratio:
+	Low-pass filter:
+		Both values to 1.0f
+	Frequency ratio:
+		Set ratio to 1.0f
+	Output matrix:
+		Set all values to 1.0f to match the source channel mapping.

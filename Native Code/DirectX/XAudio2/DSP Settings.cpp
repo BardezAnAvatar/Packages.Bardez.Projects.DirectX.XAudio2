@@ -174,7 +174,7 @@ DspSettings::DspSettings(UInt32 sourceChannels, UInt32 destinationChannels)
 	this->channelCountDestination = destinationChannels;
 	
 	//allocate matrix and delay arrays
-	this->coefficientsMatrix = gcnew array<Single>(this->channelCountSource * this->channelCountDestination);
+	this->coefficientsMatrix = DspSettings::GenerateCoefficientMatrix(this->channelCountSource, this->channelCountDestination);
 	this->delayTimes = gcnew array<Single>(this->channelCountDestination);
 }
 
@@ -336,6 +336,22 @@ void DspSettings::ReleaseMemory(X3DAUDIO_DSP_SETTINGS** settings)
 		delete *settings;
 		*settings = NULL;
 	}
+}
+
+/// <summary>Generates a Coefficient Matrix for application to setting an output matrix for a voice</summary>
+/// <param name="sourceChannelCount">Number or channels in the source voice</param>
+/// <param name="destinationChannelCount">Number of channels in the destination voice</param>
+/// <returns>The matrix array, initialized to have no effect</returns>
+array<Single>^ DspSettings::GenerateCoefficientMatrix(Int64 sourceChannelCount, Int64 destinationChannelCount)
+{
+	Int64 count = sourceChannelCount * destinationChannelCount;
+
+	array<Single>^ matrix = gcnew array<Single>(count);
+
+	for (Int32 index = 0; index < count; ++index)
+		matrix[index] = 1.0F;
+
+	return matrix;
 }
 #pragma endregion
 
