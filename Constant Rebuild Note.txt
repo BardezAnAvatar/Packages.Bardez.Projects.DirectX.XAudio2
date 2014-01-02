@@ -1,0 +1,14 @@
+devenv.exe Information: 0 : Project 'N:\Code\Infinity Engine\Infinity +1\Native Code\DirectX\Direct2D\Direct2D.vcxproj' is not up to date because 1 build inputs were missing.
+devenv.exe Information: 0 : 	up to date is missing: 'C:\WINDOWS\REGISTRATION\R000000000006.CLB'
+devenv.exe Information: 0 : Project 'N:\Code\Infinity Engine\Infinity +1\Native Code\DirectX\XAudio2\XAudio2.vcxproj' is not up to date because 2 build inputs were missing.
+devenv.exe Information: 0 : 	up to date is missing: 'C:\USERS\BARDEZ\APPDATA\LOCAL\TEMP\.NETFRAMEWORK,VERSION=V4.0.ASSEMBLYATTRIBUTES.CPP'
+devenv.exe Information: 0 : 	up to date is missing: 'C:\WINDOWS\REGISTRATION\R000000000006.CLB'
+
+
+The following line is referenced in VS2010's C++ task file: CL.read.1.tlog (found in my established tmp directories)
+C:\WINDOWS\REGISTRATION\R000000000006.CLB
+
+This is the COM+ registration database, *I think*. It changes from machine to machine.
+
+
+To fix the bhaalfordamned thing, clean each C++ project, then rebuild. Things will be fine.
