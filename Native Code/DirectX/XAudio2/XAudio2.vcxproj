@@ -235,13 +235,13 @@
     <None Include="How to Apply 3d effects.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Basic Structures\Basic Structures.csproj">
+    <ProjectReference Include="..\..\..\Entities\Basic Structures\Basic Structures.csproj">
       <Project>{257201a0-0b65-4ea0-ac04-0b8005aecc37}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Media Base\Media Base.csproj">
+    <ProjectReference Include="..\..\..\Entities\Media Base\Media Base.csproj">
       <Project>{31ca90a7-1628-493b-a99b-8b9f6899158f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ReusableCode\ReusableCode.csproj">
+    <ProjectReference Include="..\..\..\Utility Projects\ReusableCode\ReusableCode.csproj">
       <Project>{72729da3-9933-4c3d-91c6-2cf0336d6493}</Project>
     </ProjectReference>
   </ItemGroup>
