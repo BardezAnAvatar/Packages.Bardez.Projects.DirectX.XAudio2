@@ -108,13 +108,13 @@ namespace Bardez
 					/// <param name="builder">StringBuilder to write to</param>
 					void WriteString(StringBuilder^ builder)
 					{
-						StringFormat::ToStringAlignment("Device ID", builder);
+						StringFormat::ToStringAlignment("Device ID", builder, true);
 						builder->Append(this->deviceId);
-						StringFormat::ToStringAlignment("Device name", builder);
+						StringFormat::ToStringAlignment("Device name", builder, true);
 						builder->Append(this->displayName);
-						StringFormat::ToStringAlignment("Device Role", builder);
+						StringFormat::ToStringAlignment("Device Role", builder, true);
 						builder->Append(this->deviceRole.ToString());
-						StringFormat::ToStringAlignment("Output format", builder);
+						StringFormat::ToStringAlignment("Output format", builder, true);
 						this->outputFormat->WriteString(builder);
 					}
 				};
