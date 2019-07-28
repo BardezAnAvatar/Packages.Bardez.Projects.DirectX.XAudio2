@@ -1,0 +1,6 @@
+DirectX SDK (2.7): https://www.microsoft.com/en-us/download/details.aspx?id=6812
+(for newer versions of Windows, this migrated into the Windows SDK)
+
+For LibAV / ffmpeg, that needs to be downloaded
+
+Additionally, we need to get things set up into the `lib` subdir so that the native projects can reference them
