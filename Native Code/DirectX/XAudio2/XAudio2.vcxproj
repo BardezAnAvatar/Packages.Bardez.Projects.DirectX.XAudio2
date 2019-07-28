@@ -82,8 +82,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>\Code\DirectX\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>\Code\DirectX\Lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\lib\DirectX\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib\DirectX\Lib\x64;$(LibraryPath)</LibraryPath>
     <OutDir>bin\$(Configuration)\</OutDir>
     <IntDir>tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
