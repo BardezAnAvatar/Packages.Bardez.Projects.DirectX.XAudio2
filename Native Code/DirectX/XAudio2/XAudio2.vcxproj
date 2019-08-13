@@ -237,6 +237,9 @@
     <ClCompile Include="XAudio2 Interface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Basic Structures">
+      <HintPath>..\..\..\packages\Bardez.BasicStructures.1.0.0\lib\net40\Basic Structures.dll</HintPath>
+    </Reference>
     <Reference Include="ReusableCode">
       <HintPath>..\..\..\packages\Bardez.ReusableCode.1.0.0\lib\net40\ReusableCode.dll</HintPath>
     </Reference>
@@ -246,9 +249,6 @@
     <None Include="How to Apply 3d effects.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Entities\Basic Structures\Basic Structures.csproj">
-      <Project>{257201a0-0b65-4ea0-ac04-0b8005aecc37}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Entities\Media Base\Media Base.csproj">
       <Project>{31ca90a7-1628-493b-a99b-8b9f6899158f}</Project>
     </ProjectReference>
