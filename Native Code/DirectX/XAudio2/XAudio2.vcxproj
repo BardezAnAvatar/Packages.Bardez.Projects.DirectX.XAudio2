@@ -237,6 +237,9 @@
     <ClCompile Include="XAudio2 Interface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ReusableCode">
+      <HintPath>..\..\..\packages\Bardez.ReusableCode.1.0.0\lib\net40\ReusableCode.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -248,9 +251,6 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\Entities\Media Base\Media Base.csproj">
       <Project>{31ca90a7-1628-493b-a99b-8b9f6899158f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Utility Projects\ReusableCode\ReusableCode.csproj">
-      <Project>{72729da3-9933-4c3d-91c6-2cf0336d6493}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
