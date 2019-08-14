@@ -240,6 +240,9 @@
     <Reference Include="Basic Structures">
       <HintPath>..\..\..\packages\Bardez.BasicStructures.1.0.0\lib\net40\Basic Structures.dll</HintPath>
     </Reference>
+    <Reference Include="Media Base">
+      <HintPath>..\..\..\packages\Bardez.MultiMedia.MediaBase.1.0.0\lib\net40\Media Base.dll</HintPath>
+    </Reference>
     <Reference Include="ReusableCode">
       <HintPath>..\..\..\packages\Bardez.ReusableCode.1.0.0\lib\net40\ReusableCode.dll</HintPath>
     </Reference>
@@ -247,11 +250,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="How to Apply 3d effects.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Entities\Media Base\Media Base.csproj">
-      <Project>{31ca90a7-1628-493b-a99b-8b9f6899158f}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
