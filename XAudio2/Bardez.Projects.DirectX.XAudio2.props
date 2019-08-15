@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Reference Include="Bardez.Projects.DirectX.XAudio2" Condition="'$(Platform)|$(Configuration)' == 'Debug|x86'">
+      <HintPath>$(MSBuildThisFileDirectory)..\x86\Debug\Bardez.Projects.DirectX.XAudio2.dll</HintPath>
+    </Reference>
+    <Reference Include="Bardez.Projects.DirectX.XAudio2" Condition="'$(Platform)|$(Configuration)' == 'Release|x86'">
+      <HintPath>$(MSBuildThisFileDirectory)..\x86\Release\Bardez.Projects.DirectX.XAudio2.dll</HintPath>
+    </Reference>
+    <Reference Include="Bardez.Projects.DirectX.XAudio2" Condition="'$(Platform)|$(Configuration)' == 'Debug|x64'">
+      <HintPath>$(MSBuildThisFileDirectory)..\x64\Debug\Bardez.Projects.DirectX.XAudio2.dll</HintPath>
+    </Reference>
+    <Reference Include="Bardez.Projects.DirectX.XAudio2" Condition="'$(Platform)|$(Configuration)' == 'Release|x64'">
+      <HintPath>$(MSBuildThisFileDirectory)..\x64\Release\Bardez.Projects.DirectX.XAudio2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
