@@ -278,5 +278,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="How to Apply 3d effects.txt" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
