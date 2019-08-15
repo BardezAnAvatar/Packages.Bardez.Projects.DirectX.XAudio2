@@ -80,15 +80,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\lib\DirectX\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\lib\DirectX\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\packages\DirectX.2010.6.0\src\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\packages\DirectX.2010.6.0\lib\native\x86;$(LibraryPath)</LibraryPath>
     <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\lib\DirectX\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\lib\DirectX\Lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\packages\DirectX.2010.6.0\src\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\packages\DirectX.2010.6.0\lib\native\x64;$(LibraryPath)</LibraryPath>
     <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -97,16 +97,16 @@
     <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
     <TargetExt>.dll</TargetExt>
-    <IncludePath>$(SolutionDir)\lib\DirectX\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\lib\DirectX\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\packages\DirectX.2010.6.0\src\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\packages\DirectX.2010.6.0\lib\native\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
     <TargetExt>.dll</TargetExt>
-    <IncludePath>$(SolutionDir)\lib\DirectX\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\lib\DirectX\Lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\packages\DirectX.2010.6.0\src\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\packages\DirectX.2010.6.0\lib\native\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
