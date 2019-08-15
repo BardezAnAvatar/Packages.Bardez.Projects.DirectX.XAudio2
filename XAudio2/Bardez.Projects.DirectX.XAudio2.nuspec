@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Bardez.Projects.DirectX.XAudio2</id>
+    <version>2010.06.1</version>
+    <title>Bardez.Projects.DirectX.XAudio2</title>
+    <authors>Erik "Bardez" Frantz</authors>
+    <owners>Erik "Bardez" Frantz</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>DirectX XAudio2 integration</description>
+    <summary>.NET integration with XAudio2</summary>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <language>en-GB</language>
+    <tags>DirectX XAudio2</tags>
+    <dependencies>
+      <dependency id="Bardez.BasicStructures" version="1.0.0" />
+      <dependency id="Bardez.MultiMedia.MediaBase" version="1.0.0" />
+      <dependency id="Bardez.ReusableCode" version="1.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="**/*.h" target="src/" />
+    <file src="**/*.cpp" target="src/" />
+    <file src="bin\Win32\Debug\Bardez.Projects.DirectX.XAudio2.*" target="build/x86/Debug" />
+    <file src="bin\Win32\Release\Bardez.Projects.DirectX.XAudio2.*" target="build/x86/Release" />
+    <file src="bin\x64\Debug\Bardez.Projects.DirectX.XAudio2.*" target="build/x64/Debug" />
+    <file src="bin\x64\Release\Bardez.Projects.DirectX.XAudio2.*" target="build/x64/Release" />
+    <file src="Bardez.Projects.DirectX.XAudio2.props" target="build\net40" />
+  </files>
+</package>

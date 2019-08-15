@@ -250,6 +250,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Bardez.Projects.DirectX.XAudio2.nuspec" />
+    <None Include="Bardez.Projects.DirectX.XAudio2.props" />
     <None Include="How to Apply 3d effects.txt" />
     <None Include="packages.config" />
   </ItemGroup>

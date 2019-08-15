@@ -279,5 +279,7 @@
   <ItemGroup>
     <None Include="How to Apply 3d effects.txt" />
     <None Include="packages.config" />
+    <None Include="Bardez.Projects.DirectX.XAudio2.nuspec" />
+    <None Include="Bardez.Projects.DirectX.XAudio2.props" />
   </ItemGroup>
 </Project>
