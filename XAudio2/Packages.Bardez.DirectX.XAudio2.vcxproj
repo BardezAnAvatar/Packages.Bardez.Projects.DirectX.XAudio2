@@ -80,8 +80,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>\Code\DirectX\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>N:\Code\DirectX\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\lib\DirectX\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib\DirectX\Lib\x86;$(LibraryPath)</LibraryPath>
     <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -97,16 +97,16 @@
     <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
     <TargetExt>.dll</TargetExt>
-    <IncludePath>\Code\DirectX\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>\Code\DirectX\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\lib\DirectX\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib\DirectX\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
     <TargetExt>.dll</TargetExt>
-    <IncludePath>\Code\DirectX\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>\Code\DirectX\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\lib\DirectX\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib\DirectX\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
