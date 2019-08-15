@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\XAudio2 Classes">
+      <UniqueIdentifier>{4fd6be55-7c49-40b2-9d94-cb0967d709ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\XAudio2 Components">
+      <UniqueIdentifier>{ea2ecd93-75a4-41ff-8331-c72b3d58c8ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\XAudio2 Classes">
+      <UniqueIdentifier>{0392bdbb-eb36-4946-8ab7-04b7555ec247}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\XAPO">
+      <UniqueIdentifier>{0af3c34b-38c9-44d9-b81c-154309ea4626}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\XAPO">
+      <UniqueIdentifier>{b284b144-0455-4955-b487-b485832813b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\XAudio2 Components">
+      <UniqueIdentifier>{486fcab7-4e3e-4af2-bae1-1db77eca31d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\XAudio2 Components\Enums">
+      <UniqueIdentifier>{2baf0655-2ab1-4396-91f8-ce8a8cd56b05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\XAudio2 Classes\Callbacks">
+      <UniqueIdentifier>{2a1d3981-23b2-4a50-baa5-f29fe8d0f0a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\XAudio2 Classes\Callbacks">
+      <UniqueIdentifier>{83def106-4ddc-464f-9737-f8c14fec0c2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\X3DAudio">
+      <UniqueIdentifier>{582cef77-01af-413c-b1e5-663dd40aa264}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Wave Formats">
+      <UniqueIdentifier>{74835cfb-3dd6-43ec-a369-af9900319e7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Wave Formats">
+      <UniqueIdentifier>{1f29d00a-9e2b-495c-86ff-119076683cf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\XAudio2FX">
+      <UniqueIdentifier>{dde832e8-b40b-4428-9328-a1399b43f964}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\XAudio2FX">
+      <UniqueIdentifier>{f4a91373-7cdf-4535-a948-ef5cfbbcc86b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\X3DAudio">
+      <UniqueIdentifier>{1b36f1e7-acae-443a-a25a-5e98027eb51e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="XAudio2 Interface.h">
+      <Filter>Header Files\XAudio2 Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Voice.h">
+      <Filter>Header Files\XAudio2 Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Device Role.h">
+      <Filter>Header Files\XAudio2 Components\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Filter Types.h">
+      <Filter>Header Files\XAudio2 Components\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Filter Parameter.h">
+      <Filter>Header Files\XAudio2 Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Device Details.h">
+      <Filter>Header Files\XAudio2 Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Voice Details.h">
+      <Filter>Header Files\XAudio2 Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect Descriptor.h">
+      <Filter>Header Files\XAudio2 Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Voice Send Descriptor.h">
+      <Filter>Header Files\XAudio2 Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Mastering Voice.h">
+      <Filter>Header Files\XAudio2 Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Submix Voice.h">
+      <Filter>Header Files\XAudio2 Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Voice.h">
+      <Filter>Header Files\XAudio2 Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Voice State.h">
+      <Filter>Header Files\XAudio2 Components</Filter>
+    </ClInclude>
+    <ClInclude Include="WMA Buffer.h">
+      <Filter>Header Files\XAudio2 Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Voice Callback.h">
+      <Filter>Header Files\XAudio2 Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Callback.h">
+      <Filter>Header Files\XAudio2 Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Performance Data.h">
+      <Filter>Header Files\XAudio2 Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Processor.h">
+      <Filter>Header Files\XAudio2 Components\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug Configuration.h">
+      <Filter>Header Files\XAudio2 Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Trace Mask.h">
+      <Filter>Header Files\XAudio2 Components\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Break Mask.h">
+      <Filter>Header Files\XAudio2 Components\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Unmanaged Engine Callback Base.h">
+      <Filter>Header Files\XAudio2 Classes\Callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="Unmanaged Voice Callback Base.h">
+      <Filter>Header Files\XAudio2 Classes\Callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio Buffer.h">
+      <Filter>Header Files\XAudio2 Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Wave Format Ex API Converter.h">
+      <Filter>Header Files\Wave Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Wave Format Extensible API Converter.h">
+      <Filter>Header Files\Wave Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="Callback Delegates.h">
+      <Filter>Header Files\XAudio2 Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Listener.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="Cone.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="Emitter.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="X3DAudio Calculation Flags.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="DSP Settings.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="X3DAudio Interface.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="Distance Setting.h">
+      <Filter>Header Files\X3DAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="Volume Meter Levels.h">
+      <Filter>Header Files\XAudio2FX</Filter>
+    </ClInclude>
+    <ClInclude Include="IEffectParameter.h">
+      <Filter>Header Files\XAPO</Filter>
+    </ClInclude>
+    <ClInclude Include="Environmental Reverb Effect.h">
+      <Filter>Header Files\XAPO</Filter>
+    </ClInclude>
+    <ClInclude Include="IEffectBase.h">
+      <Filter>Header Files\XAPO</Filter>
+    </ClInclude>
+    <ClInclude Include="Environmental Reverb Parameters.h">
+      <Filter>Header Files\XAudio2FX</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="XAudio2 Interface.cpp">
+      <Filter>Source Files\XAudio2 Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Voice Send Descriptor.cpp">
+      <Filter>Source Files\XAudio2 Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Voice Details.cpp">
+      <Filter>Source Files\XAudio2 Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Filter Parameter.cpp">
+      <Filter>Source Files\XAudio2 Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect Descriptor.cpp">
+      <Filter>Source Files\XAudio2 Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Voice.cpp">
+      <Filter>Source Files\XAudio2 Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mastering Voice.cpp">
+      <Filter>Source Files\XAudio2 Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Submix Voice.cpp">
+      <Filter>Source Files\XAudio2 Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Voice.cpp">
+      <Filter>Source Files\XAudio2 Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Voice State.cpp">
+      <Filter>Source Files\XAudio2 Components</Filter>
+    </ClCompile>
+    <ClCompile Include="WMA Buffer.cpp">
+      <Filter>Source Files\XAudio2 Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Performance Data.cpp">
+      <Filter>Source Files\XAudio2 Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug Configuration.cpp">
+      <Filter>Source Files\XAudio2 Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Unmanaged Engine Callback Base.cpp">
+      <Filter>Source Files\XAudio2 Classes\Callbacks</Filter>
+    </ClCompile>
+    <ClCompile Include="Unmanaged Voice Callback Base.cpp">
+      <Filter>Source Files\XAudio2 Classes\Callbacks</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio Buffer.cpp">
+      <Filter>Source Files\XAudio2 Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Wave Format Ex API Converter.cpp">
+      <Filter>Source Files\Wave Formats</Filter>
+    </ClCompile>
+    <ClCompile Include="Wave Format Extensible API Converter.cpp">
+      <Filter>Source Files\Wave Formats</Filter>
+    </ClCompile>
+    <ClCompile Include="Voice Callback.cpp">
+      <Filter>Source Files\XAudio2 Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Callback.cpp">
+      <Filter>Source Files\XAudio2 Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Cone.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="Listener.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="Distance Setting.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="Emitter.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="X3DAudio Interface.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="DSP Settings.cpp">
+      <Filter>Source Files\X3DAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="Volume Meter Levels.cpp">
+      <Filter>Source Files\XAudio2FX</Filter>
+    </ClCompile>
+    <ClCompile Include="Environmental Reverb Effect.cpp">
+      <Filter>Source Files\XAPO</Filter>
+    </ClCompile>
+    <ClCompile Include="Environmental Reverb Parameters.cpp">
+      <Filter>Source Files\XAudio2FX</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="How to Apply 3d effects.txt" />
+  </ItemGroup>
+</Project>

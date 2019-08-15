@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FE898E65-DAFF-435D-9A72-4C9D3306636A}</ProjectGuid>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <Keyword>ManagedCProj</Keyword>
+    <RootNamespace>XAudio2</RootNamespace>
+    <SccProjectName>
+    </SccProjectName>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>\Code\DirectX\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>N:\Code\DirectX\Lib\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)\lib\DirectX\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib\DirectX\Lib\x64;$(LibraryPath)</LibraryPath>
+    <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
+    <TargetExt>.dll</TargetExt>
+    <IncludePath>\Code\DirectX\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>\Code\DirectX\Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>tmp\$(Platform)\$(Configuration)\</IntDir>
+    <TargetExt>.dll</TargetExt>
+    <IncludePath>\Code\DirectX\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>\Code\DirectX\Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Link>
+    <Xdcmake>
+      <DocumentLibraryDependencies>true</DocumentLibraryDependencies>
+    </Xdcmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Link>
+    <Xdcmake>
+      <DocumentLibraryDependencies>true</DocumentLibraryDependencies>
+    </Xdcmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Actor.h" />
+    <ClInclude Include="Break Mask.h" />
+    <ClInclude Include="Callback Delegates.h" />
+    <ClInclude Include="Cone.h" />
+    <ClInclude Include="Debug Configuration.h" />
+    <ClInclude Include="Distance Setting.h" />
+    <ClInclude Include="DSP Settings.h" />
+    <ClInclude Include="IEffectBase.h" />
+    <ClInclude Include="IEffectParameter.h" />
+    <ClInclude Include="Effect Descriptor.h" />
+    <ClInclude Include="Emitter.h" />
+    <ClInclude Include="Engine Callback.h" />
+    <ClInclude Include="Filter Parameter.h" />
+    <ClInclude Include="Filter Types.h" />
+    <ClInclude Include="Listener.h" />
+    <ClInclude Include="Performance Data.h" />
+    <ClInclude Include="Processor.h" />
+    <ClInclude Include="Mastering Voice.h" />
+    <ClInclude Include="Environmental Reverb Effect.h" />
+    <ClInclude Include="Environmental Reverb Parameters.h" />
+    <ClInclude Include="Source Voice.h" />
+    <ClInclude Include="Submix Voice.h" />
+    <ClInclude Include="Trace Mask.h" />
+    <ClInclude Include="Unmanaged Engine Callback Base.h" />
+    <ClInclude Include="Unmanaged Voice Callback Base.h" />
+    <ClInclude Include="Version.h" />
+    <ClInclude Include="Audio Buffer.h" />
+    <ClInclude Include="Voice Callback.h" />
+    <ClInclude Include="Voice Send Descriptor.h" />
+    <ClInclude Include="Voice Details.h" />
+    <ClInclude Include="Voice State.h" />
+    <ClInclude Include="Voice.h" />
+    <ClInclude Include="Device Details.h" />
+    <ClInclude Include="Device Role.h" />
+    <ClInclude Include="Volume Meter Levels.h" />
+    <ClInclude Include="Wave Format Ex API Converter.h" />
+    <ClInclude Include="Wave Format Extensible API Converter.h" />
+    <ClInclude Include="WMA Buffer.h" />
+    <ClInclude Include="X3DAudio Calculation Flags.h" />
+    <ClInclude Include="X3DAudio Interface.h" />
+    <ClInclude Include="XAudio2 Interface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Cone.cpp" />
+    <ClCompile Include="Debug Configuration.cpp" />
+    <ClCompile Include="Distance Setting.cpp" />
+    <ClCompile Include="DSP Settings.cpp" />
+    <ClCompile Include="Effect Descriptor.cpp" />
+    <ClCompile Include="Emitter.cpp" />
+    <ClCompile Include="Engine Callback.cpp" />
+    <ClCompile Include="Environmental Reverb Effect.cpp" />
+    <ClCompile Include="Filter Parameter.cpp" />
+    <ClCompile Include="Listener.cpp" />
+    <ClCompile Include="Mastering Voice.cpp" />
+    <ClCompile Include="Performance Data.cpp" />
+    <ClCompile Include="Environmental Reverb Parameters.cpp" />
+    <ClCompile Include="Source Voice.cpp" />
+    <ClCompile Include="Submix Voice.cpp" />
+    <ClCompile Include="Audio Buffer.cpp" />
+    <ClCompile Include="Unmanaged Engine Callback Base.cpp" />
+    <ClCompile Include="Unmanaged Voice Callback Base.cpp" />
+    <ClCompile Include="Voice Callback.cpp" />
+    <ClCompile Include="Voice Details.cpp" />
+    <ClCompile Include="Voice Send Descriptor.cpp" />
+    <ClCompile Include="Voice State.cpp" />
+    <ClCompile Include="Voice.cpp" />
+    <ClCompile Include="Volume Meter Levels.cpp" />
+    <ClCompile Include="Wave Format Ex API Converter.cpp" />
+    <ClCompile Include="Wave Format Extensible API Converter.cpp" />
+    <ClCompile Include="WMA Buffer.cpp" />
+    <ClCompile Include="X3DAudio Interface.cpp" />
+    <ClCompile Include="XAudio2 Interface.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Basic Structures">
+      <HintPath>..\..\..\packages\Bardez.BasicStructures.1.0.0\lib\net40\Basic Structures.dll</HintPath>
+    </Reference>
+    <Reference Include="Media Base">
+      <HintPath>..\..\..\packages\Bardez.MultiMedia.MediaBase.1.0.0\lib\net40\Media Base.dll</HintPath>
+    </Reference>
+    <Reference Include="ReusableCode">
+      <HintPath>..\..\..\packages\Bardez.ReusableCode.1.0.0\lib\net40\ReusableCode.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="How to Apply 3d effects.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
